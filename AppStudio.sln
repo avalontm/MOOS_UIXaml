@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUIStudio", "AppStudio\GUIStudio.csproj", "{99C97AC6-24E1-414B-AF31-8DA9DFB2EA64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamlConversion", "XAML conversion\XamlConversion.csproj", "{CE11B1F5-1289-4197-B1E9-816D9B040785}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99C97AC6-24E1-414B-AF31-8DA9DFB2EA64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99C97AC6-24E1-414B-AF31-8DA9DFB2EA64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99C97AC6-24E1-414B-AF31-8DA9DFB2EA64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99C97AC6-24E1-414B-AF31-8DA9DFB2EA64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE11B1F5-1289-4197-B1E9-816D9B040785}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE11B1F5-1289-4197-B1E9-816D9B040785}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE11B1F5-1289-4197-B1E9-816D9B040785}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE11B1F5-1289-4197-B1E9-816D9B040785}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {54C01FCC-26A2-4EED-BD08-688FE9FCC582}
+	EndGlobalSection
+EndGlobal
