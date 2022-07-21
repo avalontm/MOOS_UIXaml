@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using GUIStudio;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -69,7 +70,7 @@ namespace AppStudio
         }
 
 
-        void onCompile(object sender, RoutedEventArgs e)
+        async void onCompile(object sender, RoutedEventArgs e)
         {
             string result = xamlConvert.ConvertToString(txtEditor.Text);
             Debug.WriteLine(result);
@@ -81,10 +82,26 @@ namespace AppStudio
 
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "C# file (*.cs)|*.cs";
-
+            saveFileDialog.FileName = "Program.cs";
             if (saveFileDialog.ShowDialog() == true)
             {
-                File.WriteAllText(saveFileDialog.FileName, result);
+                string format = "using System.Runtime;\n";
+                format += "using System.Runtime.InteropServices;\n\n";
+                format += "static unsafe class Program\n";
+                format += "{\n\n";
+                format += "    [RuntimeExport(\"Main\")]\n";
+                format += "    public static void Main()\n";
+                format += "    {\n";
+                format += "\n";
+                format += "    }\n";
+                format += "\n";
+                format += result;
+                format += "\n";
+                format += "}\n";
+
+                File.WriteAllText(saveFileDialog.FileName, format);
+                string outResult = await StudioManager.onCompile("mossapp");
+                Debug.WriteLine($"[RESULT] {outResult}");
             }
         }
     }

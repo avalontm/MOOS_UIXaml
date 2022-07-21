@@ -17,7 +17,7 @@ namespace AppStudio
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            Get().ShowDialog();
+            //Get().ShowDialog();
 
         }
 
