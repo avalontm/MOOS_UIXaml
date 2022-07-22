@@ -23,7 +23,7 @@ namespace GUIStudio
             result += "<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>\n";
             result += "<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>\n";
 
-            result += "<IlcSystemModule>ConsoleApp1</IlcSystemModule>\n";
+            result += "<IlcSystemModule>MoosAPP</IlcSystemModule>\n";
             result += "<EntryPointSymbol>Main</EntryPointSymbol>\n";
             result += "<LinkerSubsystem>NATIVE</LinkerSubsystem>\n";
             result += "<IlcOptimizationPreference>Speed</IlcOptimizationPreference>\n";
@@ -39,12 +39,13 @@ namespace GUIStudio
             result += "</ItemGroup>\n";
 
             result += "<Target Name=\"CustomizeReferences\" BeforeTargets=\"BeforeCompile\" AfterTargets=\"FindReferenceAssembliesForReferences\">\n";
-            result += "<ItemGroup/>\n";
+            result += "<ItemGroup>\n";
             result += "<ReferencePathWithRefAssemblies Remove=\"@(ReferencePathWithRefAssemblies)\" />\n";
             result += "<ReferencePath Remove=\"@(ReferencePath)\" />\n";
             result += "</ItemGroup>\n";
-            result += "<Import Project=\"..\\Corlib\\Corlib.projitems\" Label=\"Shared\" />\n";
-            result += "<Project/>\n";
+            result += "</Target>\n";
+            result += "<Import Project=\"D:\\MOOS\\Corlib\\Corlib.projitems\" Label=\"Shared\" />\n";
+            result += "</Project>\n";
 
             return result;
         }

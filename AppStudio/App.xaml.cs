@@ -17,11 +17,10 @@ namespace AppStudio
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            //Get().ShowDialog();
 
         }
 
-        private Window Get()
+        public static Window Get()
         {
             Window window = new Window();
             window.Title = "MOOS GUI";
@@ -38,8 +37,7 @@ namespace AppStudio
             return window;
         }
 
-
-        void ButtonCommand(object obj)
+        static void ButtonCommand(object obj)
         {
             MessageBox.Show("Clicked!");
         }
