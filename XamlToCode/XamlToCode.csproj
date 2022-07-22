@@ -8,8 +8,8 @@
     <ProjectGuid>{CE11B1F5-1289-4197-B1E9-816D9B040785}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>XamlConversion</RootNamespace>
-    <AssemblyName>XAML conversion</AssemblyName>
+    <RootNamespace>XamlToCode</RootNamespace>
+    <AssemblyName>XamlToCode</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -46,17 +46,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Parsers\BindingParser.cs" />
-    <Compile Include="Parsers\ObjectParser.cs" />
-    <Compile Include="Parsers\ParserBase.cs" />
-    <Compile Include="Parsers\PropertyCollectionParser.cs" />
-    <Compile Include="Parsers\PropertyObjectParser.cs" />
-    <Compile Include="Parsers\PropertyParser.cs" />
-    <Compile Include="Parsers\RootObjectParser.cs" />
-    <Compile Include="Parsers\XamlParser.cs" />
+    <Compile Include="CodeDomDomWriter.cs" />
+    <Compile Include="CodeDomObjectNode.cs" />
+    <Compile Include="DOM\DomNode.cs" />
+    <Compile Include="DOM\ItemNode.cs" />
+    <Compile Include="DOM\MemberNode.cs" />
+    <Compile Include="DOM\NodeCollection.cs" />
+    <Compile Include="DOM\ObjectNode.cs" />
+    <Compile Include="DOM\ValueNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XamlConvertor.cs" />
-    <Compile Include="XamlSchemaContextWithDefault.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="XamlToCodeConverter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

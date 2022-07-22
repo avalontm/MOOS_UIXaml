@@ -17,8 +17,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using XamlConversion;
 using XamlMOOS;
+using XamlToCode;
 
 namespace AppStudio
 {
@@ -53,8 +53,8 @@ namespace AppStudio
             }
         }
 
-        XamlConvertor _xamlConvert;
-        public XamlConvertor xamlConvert
+        XamlToCodeConverter _xamlConvert;
+        public XamlToCodeConverter xamlConvert
         {
             get { return _xamlConvert; }
             set
@@ -70,14 +70,23 @@ namespace AppStudio
         {
             InitializeComponent();
             Instance = this;
-            xamlConvert = new XamlConvertor();
-            xamlCode = "<Window Title=\"MOOS GUI\" Width=\"300\" Height=\"300\" WindowStartupLocation=\"CenterScreen\">\n";
+            xamlConvert = new XamlToCodeConverter();
+            xamlCode = "<Window x:Class=\"MOOS\"\n";
+            xamlCode += "       xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\"\n";
+            xamlCode += "       xmlns:x=\"http://schemas.microsoft.com/winfx/2006/xaml\"\n";
+            xamlCode += "       Title=\"MOOS GUI\" Width=\"300\" Height=\"300\" WindowStartupLocation=\"CenterScreen\">\n\n";
             xamlCode += "   <Window.Content>\n";
             xamlCode += "       <Grid>\n";
+            xamlCode += "       <Grid.RowDefinitions>\n";
+            xamlCode += "           <RowDefinition Height=\"Auto\"/>\n";
+            xamlCode += "           <RowDefinition Height=\"*\"/>\n";
+            xamlCode += "           <RowDefinition Height=\"10\"/>\n";
+            xamlCode += "       </Grid.RowDefinitions>\n";
             xamlCode += "           <Grid.Children>\n";
-            xamlCode += "               <Button Command=\"{Binding ButtonCommand}\" Background=\"#dedede\" Margin=\"5\" Content=\"Click Me!\"/>\n";
+            xamlCode += "               <Button Grid.Row=\"0\" Command=\"{Binding ElementName=ClickMeCommand}\" Background=\"#dedede\" Margin=\"5\" Content=\"Click Me!\"/>\n";
+            xamlCode += "               <Button Grid.Row=\"1\" Command=\"{Binding ElementName=ClickMeCommand}\" Background=\"#dedede\" Margin=\"5\" Content=\"Click Me!\"/>\n";
             xamlCode += "           </Grid.Children>\n";
-            xamlCode += "       </Grid>\n";
+            xamlCode += "       </Grid>\n\n";
             xamlCode += "   </Window.Content>\n";
             xamlCode += "</Window>\n";
             txtEditor.Text = xamlCode;
@@ -87,6 +96,8 @@ namespace AppStudio
         void onLoaded(object sender, RoutedEventArgs e)
         {
             Instance = this;
+            MOOSWindow my = new MOOSWindow();
+            my.Show();
         }
 
         void onUnloaded(object sender, RoutedEventArgs e)
@@ -96,9 +107,16 @@ namespace AppStudio
 
         async void onCompile(object sender, RoutedEventArgs e)
         {
-            string result = xamlConvert.ConvertToString(txtEditor.Text);
-            debug = result + "\n";
-            debug += "==================== [Finish] ====================" + "\n\n";
+            //try
+            //{
+                string result = xamlConvert.Convert(txtEditor.Text);
+                debug = result + "\n";
+                debug += "==================== [Finish] ====================" + "\n\n";
+            //}
+           // catch (Exception ex)
+            //{
+           //     debug += ex;
+            //}
         }
 
         void onChangedFontSize(object sender, SelectionChangedEventArgs e)
