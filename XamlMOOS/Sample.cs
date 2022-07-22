@@ -16,14 +16,15 @@ using System.Windows.Media;
 
 
 
-public partial class MOOSWindow : System.Windows.Window
+public partial class MOOS : System.Windows.Window
 {
 
     private System.Globalization.CultureInfo EnglishCultureInfo = new System.Globalization.CultureInfo("en-us", false);
 
-    public MOOSWindow()
+    public MOOS()
     {
         ClickMeCommand = new RelayCommand(ontest);
+
         this.Title = "MOOS GUI";
         this.Width = 300;
         this.Height = 300;
@@ -36,7 +37,7 @@ public partial class MOOSWindow : System.Windows.Window
         // ---------------------------
         RowDefinition _rowDefinition2 = new RowDefinition();
         _rowDefinitionCollection1.Add(_rowDefinition2);
-        GridLengthConverter _gridLengthConverter = new GridLengthConverter();
+        XamlMOOS.Conveters.GridLengthConverter _gridLengthConverter = new XamlMOOS.Conveters.GridLengthConverter();
         _rowDefinition2.Height = ((GridLength)(_gridLengthConverter.ConvertFrom(null, EnglishCultureInfo, "Auto")));
         // ---------------------------
         RowDefinition _rowDefinition3 = new RowDefinition();
@@ -56,9 +57,9 @@ public partial class MOOSWindow : System.Windows.Window
         Binding _binding7 = new Binding("");
         _binding7.Source = ClickMeCommand;
         _button6.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding7);
-        BrushConverter _brushConverter = new BrushConverter();
+        XamlMOOS.Conveters.BrushConverter _brushConverter = new XamlMOOS.Conveters.BrushConverter();
         _button6.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#dedede")));
-        ThicknessConverter _thicknessConverter = new ThicknessConverter();
+        XamlMOOS.Conveters.ThicknessConverter _thicknessConverter = new XamlMOOS.Conveters.ThicknessConverter();
         _button6.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
         _button6.Content = "Click Me!";
         // ---------------------------
@@ -74,6 +75,7 @@ public partial class MOOSWindow : System.Windows.Window
         _button8.Content = "Click Me!";
     }
 
+    // ---------------------------  
     void ontest(object obj)
     {
         MessageBox.Show("Clicked!");
@@ -82,8 +84,8 @@ public partial class MOOSWindow : System.Windows.Window
     ICommand ClickMeCommand { get; set; }
     public class RelayCommand : ICommand
     {
-        private readonly Predicate<object> _canExecute;
-        private readonly Action<object> _execute;
+        readonly Predicate<object> _canExecute;
+        readonly Action<object> _execute;
 
         public RelayCommand(Action<object> execute)
         {

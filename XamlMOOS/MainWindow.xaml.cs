@@ -75,19 +75,15 @@ namespace AppStudio
             xamlCode += "       xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\"\n";
             xamlCode += "       xmlns:x=\"http://schemas.microsoft.com/winfx/2006/xaml\"\n";
             xamlCode += "       Title=\"MOOS GUI\" Width=\"300\" Height=\"300\" WindowStartupLocation=\"CenterScreen\">\n\n";
-            xamlCode += "   <Window.Content>\n";
-            xamlCode += "       <Grid>\n";
+            xamlCode += "   <Grid>\n";
             xamlCode += "       <Grid.RowDefinitions>\n";
             xamlCode += "           <RowDefinition Height=\"Auto\"/>\n";
             xamlCode += "           <RowDefinition Height=\"*\"/>\n";
             xamlCode += "           <RowDefinition Height=\"10\"/>\n";
-            xamlCode += "       </Grid.RowDefinitions>\n";
-            xamlCode += "           <Grid.Children>\n";
-            xamlCode += "               <Button Grid.Row=\"0\" Command=\"{Binding ElementName=ClickMeCommand}\" Background=\"#dedede\" Margin=\"5\" Content=\"Click Me!\"/>\n";
-            xamlCode += "               <Button Grid.Row=\"1\" Command=\"{Binding ElementName=ClickMeCommand}\" Background=\"#dedede\" Margin=\"5\" Content=\"Click Me!\"/>\n";
-            xamlCode += "           </Grid.Children>\n";
-            xamlCode += "       </Grid>\n\n";
-            xamlCode += "   </Window.Content>\n";
+            xamlCode += "       </Grid.RowDefinitions>\n\n";
+            xamlCode += "           <Button Grid.Row=\"0\" Command=\"{Binding ElementName=ClickMeCommand}\" Background=\"#dedede\" Margin=\"5\" Content=\"Click Me!\"/>\n";
+            xamlCode += "           <Button Grid.Row=\"1\" Command=\"{Binding ElementName=ClickMeCommand}\" Background=\"#dedede\" Margin=\"5\" Content=\"Click Me!\"/>\n";
+            xamlCode += "   </Grid>\n\n";
             xamlCode += "</Window>\n";
             txtEditor.Text = xamlCode;
             DataContext = this;
@@ -96,7 +92,7 @@ namespace AppStudio
         void onLoaded(object sender, RoutedEventArgs e)
         {
             Instance = this;
-            MOOSWindow my = new MOOSWindow();
+            MOOS my = new MOOS();
             my.Show();
         }
 
