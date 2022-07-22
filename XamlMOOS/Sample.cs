@@ -23,7 +23,7 @@ public partial class MOOS : System.Windows.Window
 
     public MOOS()
     {
-        ClickMeCommand = new RelayCommand(ontest);
+        ClickMeCommand = new RelayCommand(onClick);
 
         this.Title = "MOOS GUI";
         this.Width = 300;
@@ -76,7 +76,7 @@ public partial class MOOS : System.Windows.Window
     }
 
     // ---------------------------  
-    void ontest(object obj)
+    void onClick(object obj)
     {
         MessageBox.Show("Clicked!");
     }

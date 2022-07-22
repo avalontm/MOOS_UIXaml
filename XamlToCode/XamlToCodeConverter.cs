@@ -377,6 +377,7 @@ namespace XamlToCode
 
             // Grab all the attributes of the binding
             NodeCollection<MemberNode> members = targetObjectNode.MemberNodes;
+        
             foreach (MemberNode member in members)
             {
                 switch (member.Member.Name)
@@ -387,12 +388,9 @@ namespace XamlToCode
                     case "Path":
                         path = ExtractItemMemberValue(member.ItemNodes[0]);
                         break;
-                    default:
-                        elementName = member.Member.Name;
-                        break;
                 }
             }
-
+  
             // Create a constructor for the binding adding the Path, if it exists
             CodeExpression ctor = new CodeObjectCreateExpression(targetObjectNode.Type.UnderlyingType.Name, new CodePrimitiveExpression(path));
             CodeVariableDeclarationStatement cvds = new CodeVariableDeclarationStatement(targetObjectNode.Type.UnderlyingType.Name, targetName, ctor);
@@ -661,11 +659,6 @@ namespace XamlToCode
                 if (fieldInfo != null)
                     return false;
             }
-            /*
-            else if (type == typeof(ICommand))
-            {
-                return false;
-            }*/
             return true;
         }
 
@@ -813,11 +806,7 @@ namespace XamlToCode
                     return new CodeFieldReferenceExpression(ctre, fieldInfo.Name);
                 }
             }
-            else if (type == typeof(ICommand))
-            {
-                object command = $"new Action({value})";
-                return new CodePrimitiveExpression(command);
-            }
+
                 throw new Exception("Type " + type.Name + " isn't supported by GenerateExpressionForString");
         }
 
