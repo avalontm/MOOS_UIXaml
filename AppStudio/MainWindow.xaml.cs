@@ -18,6 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using XamlConversion;
+using XamlMOOS;
 
 namespace AppStudio
 {
@@ -41,6 +42,17 @@ namespace AppStudio
             }
         }
 
+        string _debug;
+        public string debug
+        {
+            get { return _debug; }
+            set
+            {
+                _debug = value;
+                RaisePropertyChanged("debug");
+            }
+        }
+
         XamlConvertor _xamlConvert;
         public XamlConvertor xamlConvert
         {
@@ -52,15 +64,18 @@ namespace AppStudio
             }
         }
 
+        public static MainWindow Instance { private set; get; }
+
         public MainWindow()
         {
             InitializeComponent();
+            Instance = this;
             xamlConvert = new XamlConvertor();
             xamlCode = "<Window Title=\"MOOS GUI\" Width=\"300\" Height=\"300\" WindowStartupLocation=\"CenterScreen\">\n";
             xamlCode += "   <Window.Content>\n";
             xamlCode += "       <Grid>\n";
             xamlCode += "           <Grid.Children>\n";
-            xamlCode += "               <Button Command=\"{Binding ButtonCommand}\" Margin=\"5\" Content=\"Click Me!\"/>\n";
+            xamlCode += "               <Button Command=\"{Binding ButtonCommand}\" Background=\"#dedede\" Margin=\"5\" Content=\"Click Me!\"/>\n";
             xamlCode += "           </Grid.Children>\n";
             xamlCode += "       </Grid>\n";
             xamlCode += "   </Window.Content>\n";
@@ -71,28 +86,69 @@ namespace AppStudio
 
         void onLoaded(object sender, RoutedEventArgs e)
         {
-            //App.Get().Show();
+            Instance = this;
+        }
+
+        void onUnloaded(object sender, RoutedEventArgs e)
+        {
+            Instance = null;
         }
 
         async void onCompile(object sender, RoutedEventArgs e)
         {
             string result = xamlConvert.ConvertToString(txtEditor.Text);
-            Debug.WriteLine(result);
+            debug = result + "\n";
+            debug += "==================== [Finish] ====================" + "\n\n";
+        }
 
-            if (string.IsNullOrEmpty(result))
+        void onChangedFontSize(object sender, SelectionChangedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(cmbFontSize.Text))
+            {
+                string content = ((ComboBoxItem)cmbFontSize.Items[cmbFontSize.SelectedIndex]).Content.ToString();
+                txtEditor.FontSize = ((double.Parse(content) * 96) / 72);
+            }
+        }
+
+        void onNew(object sender, RoutedEventArgs e)
+        {
+            var result =  MessageBox.Show("Are you sure you want to create a new document?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.No)
+            {
+                return;
+            }
+
+            txtEditor.Text = string.Empty;
+        }
+
+        void onOpen(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Moos Xaml File (*.mxaml)|*.mxaml";
+
+            if (openFileDialog.ShowDialog() == true)
+{
+                txtEditor.Text = File.ReadAllText(openFileDialog.FileName);
+            }
+        }
+
+        void onSave(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtEditor.Text))
             {
                 return;
             }
 
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "C# file (*.cs)|*.cs";
-            saveFileDialog.FileName = "Program.cs";
+            saveFileDialog.Filter = "Moos Xaml File (*.mxaml)|*.mxaml";
+            saveFileDialog.FileName = "moos_gui";
 
             if (saveFileDialog.ShowDialog() == true)
             {
-                File.WriteAllText(saveFileDialog.FileName, result);
-                //string outResult = await StudioManager.onCompile(result, "mossapp");
+                File.WriteAllText(saveFileDialog.FileName, txtEditor.Text);
             }
+
         }
 
 

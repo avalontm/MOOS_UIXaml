@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Xaml.Schema;
 using System.Xml.Linq;
 
@@ -47,7 +48,7 @@ namespace XamlConversion.Parsers
         [Obsolete]
         protected CodeExpression ConvertTo(string value, Type type)
         {
-            Debug.WriteLine($"[ConvertTo] {type.ToString()}");
+            Debug.WriteLine($"[ConvertTo] {type.ToString()} = {value}");
             var valueExpression = new CodePrimitiveExpression(value);
 
             var converter = TypeDescriptor.GetConverter(type);
@@ -56,8 +57,19 @@ namespace XamlConversion.Parsers
                 return valueExpression;
 
             if (type == typeof(double))
-                return new CodePrimitiveExpression(double.Parse(value, CultureInfo.InvariantCulture));
+                return new CodePrimitiveExpression(int.Parse(value));
 
+            if (type == typeof(WindowStartupLocation))
+            {
+                var bindingVariableName = $"WindowStartupLocation.{value}";
+                return new CodeVariableReferenceExpression(bindingVariableName);
+            }
+
+            if (type == typeof(Thickness))
+            {
+                var bindingVariableName = $"new Thickness({value})";
+                return new CodeVariableReferenceExpression(bindingVariableName);
+            }
             if (type == typeof(RoutedEventHandler))
             {
                 var bindingParser = new BindingParser(State);
@@ -68,7 +80,7 @@ namespace XamlConversion.Parsers
             if (type == typeof(ICommand))
             {
                 var bindingParser = new BindingParser(State);
-                var bindingVariableName = $"new RelayCommand({bindingParser.ParseBinding(value)})";
+                var bindingVariableName = $"new Action({bindingParser.ParseBinding(value)})";
                 return new CodeVariableReferenceExpression(bindingVariableName);
             }
 
@@ -78,6 +90,13 @@ namespace XamlConversion.Parsers
                 var bindingVariableName = bindingParser.Parse(value);
                 return new CodeVariableReferenceExpression(bindingVariableName);
             }
+
+            if (type == typeof(Brush))
+            {
+                string bindingVariableName = string.Format("0x{0}",int.Parse(value.Substring(1), System.Globalization.NumberStyles.HexNumber));
+                return new CodeVariableReferenceExpression(bindingVariableName);
+            }
+
             // there is no conversion availabe, the generated code won't compile, but there is nothing we can do about that
             if (converter == null)
                 return valueExpression;

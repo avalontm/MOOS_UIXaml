@@ -6,17 +6,62 @@
         xmlns:local="clr-namespace:AppStudio"
         xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
         mc:Ignorable="d"
-        Title="MOOS - GUI Builder!" Height="600" Width="800" WindowStartupLocation="CenterOwner" Loaded="onLoaded">
+        Title="XAML MOOS - GUI Builder!" Height="600" Width="800" WindowStartupLocation="CenterScreen" Loaded="onLoaded" Unloaded="onUnloaded">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+    <DockPanel>
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+                <Button Click="onNew" Content="New" />
+                <Button Click="onOpen" Content="Open" />
+                <Button Click="onSave" Content="Save" />
+            </ToolBar>
+            <ToolBar>
+                <Button Command="Cut" Content="Cut" />
+                <Button Command="Copy" Content="Copy" />
+                <Button Command="Paste" Content="Paste" />
+            </ToolBar>
+            <ToolBar>
+                <Button Click="onCompile">
+                    <Button.Content>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-        <avalonEdit:TextEditor Grid.Row="1" Margin="5" x:Name="txtEditor" FontFamily="Consolas" FontSize="10pt" ShowLineNumbers="True" SyntaxHighlighting="XML" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible"/>
+                            <Image Grid.Column="0" Source="/Resources/toolbar_run.png" />
+                            <Label Grid.Column="1" Content="Generate"/>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+            </ToolBar>
+            <ToolBar>
+                <Separator />
+                <Label>Font size:</Label>
+                <ComboBox x:Name="cmbFontSize" Width="60" SelectionChanged="onChangedFontSize">
+                    <ComboBoxItem IsSelected="True">10</ComboBoxItem>
+                    <ComboBoxItem>12</ComboBoxItem>
+                    <ComboBoxItem>14</ComboBoxItem>
+                    <ComboBoxItem>16</ComboBoxItem>
+                </ComboBox>
+            </ToolBar>
+        </ToolBarTray>
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-        <Button Grid.Row="2" Height="42" Click="onCompile" Content="Compilar"/>
-    </Grid>
+            <avalonEdit:TextEditor Grid.Row="1" Margin="5" x:Name="txtEditor" FontFamily="Consolas" FontSize="10pt" ShowLineNumbers="True" SyntaxHighlighting="XML" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible"/>
+            
+            <Grid Grid.Row="2">
+                <TextBox x:Name="txtDebug" Text="{Binding debug}" Margin="5" Height="150" IsReadOnly="True" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"/>
+            </Grid>
+        </Grid>
+
+
+    </DockPanel>
+
 </Window>

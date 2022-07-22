@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUIStudio", "AppStudio\GUIStudio.csproj", "{99C97AC6-24E1-414B-AF31-8DA9DFB2EA64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XamlMOOS", "AppStudio\XamlMOOS.csproj", "{99C97AC6-24E1-414B-AF31-8DA9DFB2EA64}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamlConversion", "XAML conversion\XamlConversion.csproj", "{CE11B1F5-1289-4197-B1E9-816D9B040785}"
 EndProject
