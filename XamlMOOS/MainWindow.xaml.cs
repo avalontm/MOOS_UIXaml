@@ -93,7 +93,7 @@ namespace AppStudio
         {
             Instance = this;
             MOOS my = new MOOS();
-            my.Show();
+            //my.Show();
         }
 
         void onUnloaded(object sender, RoutedEventArgs e)
