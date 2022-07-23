@@ -5,6 +5,7 @@
 
 ![Main](images/screen1.png)
 
+# FEATURES
 - [x] Command
 - [x] Margin
 - [x] Background
