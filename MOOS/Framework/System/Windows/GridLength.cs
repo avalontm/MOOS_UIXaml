@@ -19,13 +19,6 @@ namespace System.Windows
         public bool IsStar { get; private set; }
         public int Value { get; private set; }
 
-        public GridLength(int value)
-        {
-            this.GridUnitType = GridUnitType.Auto;
-            this.Value = value;
-            onSetProperties();
-        }
-
         public GridLength(int value, GridUnitType unit)
         {
             this.GridUnitType = unit;
@@ -53,8 +46,6 @@ namespace System.Windows
                     IsStar = true;
                     break;
             }
-
-            Debug.WriteLine($"[GridLength] {Value} == {this.GridUnitType}");
         }
     }
 }

@@ -16,7 +16,7 @@ namespace System.Windows
                 return gridLength;
             }
 
-            switch (source.ToString().ToUpper())
+            switch (source.ToString().ToLower())
             {
                 case "auto":
                     gridLength = new GridLength(42, GridUnitType.Auto);
