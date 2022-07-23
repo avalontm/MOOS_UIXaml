@@ -5,7 +5,9 @@
 
 ![Main](images/screen1.png)
 
+- [x] Command
+- [x] Margin
 - [x] Background
 - [x] Foreground
 - [x] Grid.Row
-- [] Grid.Column
+- [ ] Grid.Column
