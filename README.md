@@ -10,4 +10,6 @@
 - [x] Background
 - [x] Foreground
 - [x] Grid.Row
+- [x] BorderBrush
+- [x] BorderThickness
 - [ ] Grid.Column
