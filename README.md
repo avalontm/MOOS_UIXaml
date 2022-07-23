@@ -5,6 +5,12 @@
 
 ![Main](images/screen1.png)
 
+# CONTROLS
+- [x] Window
+- [x] Button
+- [x] Grid
+
+
 # FEATURES
 - [x] Command
 - [x] Margin
