@@ -19,4 +19,4 @@
 - [x] Grid.Row
 - [x] BorderBrush
 - [x] BorderThickness
-- [ ] Grid.Column
+- [x] Grid.Column
