@@ -3,25 +3,29 @@
 ##HOW USE
 >use MOOS from directory MOOS/build for test
 
-![Main](images/screen1.png)
-
-# CONTROLS
-- [x] Window
-- [x] Button
-- [x] Grid
-
+![Main](images/screen2.png)
 
 # FEATURES
-- [x] Command
+
+## Controls
+- [x] Window
+- [x] Button
+- [x] Label
+- [x] Grid
+
+## Properties
 - [x] Margin
 - [x] Background
 - [x] Foreground
 - [x] BorderBrush
 - [x] BorderThickness
 
-# GRIDS
+## Events
+- [x] Command
+
+## Grids
 - [x] Grid.Row
 - [x] Grid.Column
-- [x] GridRowSpan
+- [x] Grid.RowSpan
 - [x] Grid.ColumnSpan
 - [ ] Grid SubGrids
