@@ -5,14 +5,13 @@
 
 ![Main](images/screen2.png)
 
-# CONTROLS
+# FEATURES
+
+## CONTROLS
 - [x] Window
 - [x] Button
 - [x] Label
 - [x] Grid
-
-
-# FEATURES
 
 ## Properties
 - [x] Command
