@@ -10,6 +10,8 @@ namespace System.Windows.Controls
         public string Content { set; get; }
         public int FontSize { set; get; }
         public FontWeight FontWeight { get; set; }
+        public HorizontalAlignment HorizontalContentAlignment { get; set; }
+        public VerticalAlignment VerticalContentAlignment { get; set; }
 
         public Label()
         {
@@ -18,6 +20,8 @@ namespace System.Windows.Controls
             Y = 0;
             Width = 300;
             Height = 42;
+            HorizontalContentAlignment = HorizontalAlignment.Stretch;
+            VerticalContentAlignment = VerticalAlignment.Stretch;
         }
 
         public override void Update()

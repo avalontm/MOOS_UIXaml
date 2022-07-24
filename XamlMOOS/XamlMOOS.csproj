@@ -12,6 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Remove="UIMoos.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AvalonEdit" Version="6.1.3.50" />
   </ItemGroup>
 
@@ -21,6 +25,7 @@
 
   <ItemGroup>
     <Resource Include="Resources\toolbar_run.png" />
+    <EmbeddedResource Include="UIMoos.xaml" />
   </ItemGroup>
 
   <ItemGroup>

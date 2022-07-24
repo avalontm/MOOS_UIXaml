@@ -11,7 +11,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace AppStudio
+namespace XamlMOOS
 {
     public partial class App : Application
     {

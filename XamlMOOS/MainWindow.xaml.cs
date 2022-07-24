@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,11 +17,13 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using System.Windows.Resources;
 using System.Windows.Shapes;
+using System.Xaml;
 using XamlMOOS;
 using XamlToCode;
 
-namespace AppStudio
+namespace XamlMOOS
 {
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
@@ -71,20 +74,16 @@ namespace AppStudio
             InitializeComponent();
             Instance = this;
             xamlConvert = new XamlToCodeConverter();
-            xamlCode = "<Window x:Class=\"MOOS\"\n";
-            xamlCode += "       xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\"\n";
-            xamlCode += "       xmlns:x=\"http://schemas.microsoft.com/winfx/2006/xaml\"\n";
-            xamlCode += "       Title=\"MOOS GUI\" Width=\"300\" Height=\"300\" WindowStartupLocation=\"CenterScreen\">\n\n";
-            xamlCode += "   <Grid>\n";
-            xamlCode += "       <Grid.RowDefinitions>\n";
-            xamlCode += "           <RowDefinition Height=\"Auto\"/>\n";
-            xamlCode += "           <RowDefinition Height=\"*\"/>\n";
-            xamlCode += "           <RowDefinition Height=\"10\"/>\n";
-            xamlCode += "       </Grid.RowDefinitions>\n\n";
-            xamlCode += "           <Button Grid.Row=\"0\" Command=\"{Binding ElementName=ClickMeCommand}\" Background=\"#dedede\" Margin=\"5\" Content=\"Click Me!\"/>\n";
-            xamlCode += "           <Button Grid.Row=\"1\" Command=\"{Binding ElementName=ClickMeCommand}\" Background=\"#dedede\" Margin=\"5\" Content=\"Click Me!\"/>\n";
-            xamlCode += "   </Grid>\n\n";
-            xamlCode += "</Window>\n";
+
+            var assembly = Assembly.GetExecutingAssembly();
+            string resourceName = assembly.GetManifestResourceNames().Single(str => str.EndsWith("UIMoos.xaml"));
+
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                xamlCode = reader.ReadToEnd();
+            }
+
             txtEditor.Text = xamlCode;
             DataContext = this;
         }
