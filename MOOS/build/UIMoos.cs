@@ -24,13 +24,30 @@ public partial class UIMoos : Window
     ICommand ClickMeCommand { get; set; }
     ICommand ClickEnterCommand { get; set; }
     ICommand ClickDelCommand { get; set; }
+    ICommand ClickMinusCommand { get; set; }
+    ICommand ClickPlusCommand { get; set; }
+
     public System.Windows.Controls.Label lblNumbers;
+
+    Opreation opreation = Opreation.None;
+
+    enum Opreation
+    {
+        None,
+        Plus,
+        Minus
+    }
+
+    ulong Num1 = 0;
+    ulong Num2 = 0;
 
     public UIMoos()
     {
         ClickMeCommand = new ICommand(onClick);
         ClickEnterCommand = new ICommand(onEnter);
         ClickDelCommand = new ICommand(onDelete);
+        ClickPlusCommand = new ICommand(onPlus);
+        ClickMinusCommand = new ICommand(onMinus);
 
         this.Title = "MOOS GUI";
         this.Width = 300;
@@ -146,15 +163,14 @@ public partial class UIMoos : Window
         // ---------------------------
         Button _button19 = new Button();
         _uIElementCollection12.Add(_button19);
-        Grid.SetRow(_button19, 2);
+        Grid.SetRow(_button19, 4);
         Grid.SetColumn(_button19, 3);
-        Grid.SetRowSpan(_button19, 4);
         // ---------------------------
         Binding _binding20 = new Binding("");
         _binding20.Source = ClickEnterCommand;
         _button19.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding20);
         _button19.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#1e4ab0")));
-        _button19.Foreground = Brushes.Green;
+        _button19.Foreground = Brushes.Black;
         _button19.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
         _button19.Content = "ENTER";
         _button19.BorderBrush = Brushes.Black;
@@ -177,137 +193,200 @@ public partial class UIMoos : Window
         // ---------------------------
         Button _button23 = new Button();
         _uIElementCollection12.Add(_button23);
-        Grid.SetColumn(_button23, 1);
-        Grid.SetRow(_button23, 1);
+        Grid.SetRow(_button23, 2);
+        Grid.SetColumn(_button23, 3);
         // ---------------------------
         Binding _binding24 = new Binding("");
-        _binding24.Source = ClickMeCommand;
+        _binding24.Source = ClickPlusCommand;
         _button23.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding24);
-        _button23.CommandParameter = "8";
-        _button23.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#a83271")));
-        _button23.Foreground = Brushes.White;
+        _button23.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#1e4ab0")));
+        _button23.Foreground = Brushes.Black;
         _button23.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
-        _button23.Content = "8";
-        _button23.BorderBrush = Brushes.Black;
+        _button23.Content = "+";
+        _button23.BorderBrush = Brushes.White;
         _button23.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
         // ---------------------------
         Button _button25 = new Button();
         _uIElementCollection12.Add(_button25);
-        Grid.SetColumn(_button25, 1);
-        Grid.SetRow(_button25, 2);
+        Grid.SetRow(_button25, 3);
+        Grid.SetColumn(_button25, 3);
         // ---------------------------
         Binding _binding26 = new Binding("");
-        _binding26.Source = ClickMeCommand;
+        _binding26.Source = ClickMinusCommand;
         _button25.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding26);
-        _button25.CommandParameter = "5";
-        _button25.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#bd3d2a")));
-        _button25.Foreground = Brushes.White;
+        _button25.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#1e4ab0")));
+        _button25.Foreground = Brushes.Black;
         _button25.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
-        _button25.Content = "5";
-        _button25.BorderBrush = Brushes.Black;
+        _button25.Content = "-";
+        _button25.BorderBrush = Brushes.White;
         _button25.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
         // ---------------------------
         Button _button27 = new Button();
         _uIElementCollection12.Add(_button27);
         Grid.SetColumn(_button27, 1);
-        Grid.SetRow(_button27, 3);
+        Grid.SetRow(_button27, 1);
         // ---------------------------
         Binding _binding28 = new Binding("");
         _binding28.Source = ClickMeCommand;
         _button27.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding28);
-        _button27.CommandParameter = "2";
-        _button27.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#53b01e")));
+        _button27.CommandParameter = "8";
+        _button27.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#a83271")));
         _button27.Foreground = Brushes.White;
         _button27.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
-        _button27.Content = "2";
+        _button27.Content = "8";
         _button27.BorderBrush = Brushes.Black;
         _button27.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
         // ---------------------------
         Button _button29 = new Button();
         _uIElementCollection12.Add(_button29);
-        Grid.SetColumn(_button29, 0);
-        Grid.SetRow(_button29, 4);
-        Grid.SetColumnSpan(_button29, 2);
+        Grid.SetColumn(_button29, 1);
+        Grid.SetRow(_button29, 2);
         // ---------------------------
         Binding _binding30 = new Binding("");
         _binding30.Source = ClickMeCommand;
         _button29.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding30);
-        _button29.CommandParameter = "0";
-        _button29.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#1e4ab0")));
+        _button29.CommandParameter = "5";
+        _button29.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#bd3d2a")));
         _button29.Foreground = Brushes.White;
         _button29.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
-        _button29.Content = "0";
+        _button29.Content = "5";
         _button29.BorderBrush = Brushes.Black;
         _button29.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
         // ---------------------------
         Button _button31 = new Button();
         _uIElementCollection12.Add(_button31);
-        Grid.SetColumn(_button31, 2);
-        Grid.SetRow(_button31, 1);
+        Grid.SetColumn(_button31, 1);
+        Grid.SetRow(_button31, 3);
         // ---------------------------
         Binding _binding32 = new Binding("");
         _binding32.Source = ClickMeCommand;
         _button31.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding32);
-        _button31.CommandParameter = "9";
-        _button31.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#a83271")));
+        _button31.CommandParameter = "2";
+        _button31.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#53b01e")));
         _button31.Foreground = Brushes.White;
         _button31.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
-        _button31.Content = "9";
+        _button31.Content = "2";
         _button31.BorderBrush = Brushes.Black;
         _button31.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
         // ---------------------------
         Button _button33 = new Button();
         _uIElementCollection12.Add(_button33);
-        Grid.SetColumn(_button33, 2);
-        Grid.SetRow(_button33, 2);
+        Grid.SetColumn(_button33, 0);
+        Grid.SetRow(_button33, 4);
+        Grid.SetColumnSpan(_button33, 2);
         // ---------------------------
         Binding _binding34 = new Binding("");
         _binding34.Source = ClickMeCommand;
         _button33.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding34);
-        _button33.CommandParameter = "6";
-        _button33.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#bd3d2a")));
+        _button33.CommandParameter = "0";
+        _button33.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#1e4ab0")));
         _button33.Foreground = Brushes.White;
         _button33.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
-        _button33.Content = "6";
+        _button33.Content = "0";
         _button33.BorderBrush = Brushes.Black;
         _button33.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
         // ---------------------------
         Button _button35 = new Button();
         _uIElementCollection12.Add(_button35);
         Grid.SetColumn(_button35, 2);
-        Grid.SetRow(_button35, 3);
+        Grid.SetRow(_button35, 1);
         // ---------------------------
         Binding _binding36 = new Binding("");
         _binding36.Source = ClickMeCommand;
         _button35.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding36);
-        _button35.CommandParameter = "3";
-        _button35.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#53b01e")));
+        _button35.CommandParameter = "9";
+        _button35.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#a83271")));
         _button35.Foreground = Brushes.White;
         _button35.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
-        _button35.Content = "3";
+        _button35.Content = "9";
         _button35.BorderBrush = Brushes.Black;
         _button35.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
         // ---------------------------
         Button _button37 = new Button();
         _uIElementCollection12.Add(_button37);
         Grid.SetColumn(_button37, 2);
-        Grid.SetRow(_button37, 4);
+        Grid.SetRow(_button37, 2);
         // ---------------------------
         Binding _binding38 = new Binding("");
         _binding38.Source = ClickMeCommand;
         _button37.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding38);
-        _button37.CommandParameter = ".";
-        _button37.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#1e4ab0")));
+        _button37.CommandParameter = "6";
+        _button37.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#bd3d2a")));
         _button37.Foreground = Brushes.White;
         _button37.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
-        _button37.Content = ".";
+        _button37.Content = "6";
         _button37.BorderBrush = Brushes.Black;
         _button37.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
+        // ---------------------------
+        Button _button39 = new Button();
+        _uIElementCollection12.Add(_button39);
+        Grid.SetColumn(_button39, 2);
+        Grid.SetRow(_button39, 3);
+        // ---------------------------
+        Binding _binding40 = new Binding("");
+        _binding40.Source = ClickMeCommand;
+        _button39.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding40);
+        _button39.CommandParameter = "3";
+        _button39.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#53b01e")));
+        _button39.Foreground = Brushes.White;
+        _button39.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
+        _button39.Content = "3";
+        _button39.BorderBrush = Brushes.Black;
+        _button39.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
+        // ---------------------------
+        Button _button41 = new Button();
+        _uIElementCollection12.Add(_button41);
+        Grid.SetColumn(_button41, 2);
+        Grid.SetRow(_button41, 4);
+        // ---------------------------
+        Binding _binding42 = new Binding("");
+        _binding42.Source = ClickMeCommand;
+        _button41.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding42);
+        _button41.CommandParameter = ".";
+        _button41.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#1e4ab0")));
+        _button41.Foreground = Brushes.White;
+        _button41.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
+        _button41.Content = ".";
+        _button41.BorderBrush = Brushes.Black;
+        _button41.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
+    }
+
+    void onMinus(object obj)
+    {
+        if (!string.IsNullOrEmpty(lblNumbers.Content))
+        {
+            Num1 = Convert.ToUInt32(lblNumbers.Content);
+        }
+
+        if (Num1 == 0)
+        {
+            Num1 = Num2;
+        }
+
+        opreation = Opreation.Minus;
+        Num2 = 0;
+        lblNumbers.Content = String.Empty;
+    }
+
+    void onPlus(object obj)
+    {
+        if (!string.IsNullOrEmpty(lblNumbers.Content))
+        {
+            Num1 = Convert.ToUInt32(lblNumbers.Content);
+        }
+
+        if (Num1 == 0)
+        {
+            Num1 = Num2;
+        }
+
+        opreation = Opreation.Plus;
+        Num2 = 0;
+        lblNumbers.Content = String.Empty;
     }
 
     void onDelete(object obj)
     {
-        Debug.WriteLine($"[DELETE] {obj.ToString()}");
         if (!String.IsNullOrEmpty(lblNumbers.Content))
         {
             lblNumbers.Content = lblNumbers.Content.Remove(lblNumbers.Content.Length);
@@ -316,7 +395,27 @@ public partial class UIMoos : Window
 
     void onEnter(object obj)
     {
-        MessageBox.Show("Clicked on Enter!","UIXaml Moos");
+        switch (opreation )
+        {
+            case Opreation.Plus:
+                Num1 += Num2;
+                break;
+            case Opreation.Minus:
+                if (Num1 >= Num2)
+                {
+                    Num1 -= Num2;
+                }
+                else
+                {
+                    Num1 = 0;
+                    Num2 = 0;
+                }
+                break;
+            default:
+                Num2 = 0;
+                break;
+        }
+        lblNumbers.Content = Num1.ToString();
     }
 
     void onClick(object obj)
