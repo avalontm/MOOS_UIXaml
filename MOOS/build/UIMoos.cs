@@ -353,11 +353,6 @@ public partial class UIMoos : Window
 
     void onMinus(object obj)
     {
-        if (!string.IsNullOrEmpty(lblNumbers.Content))
-        {
-            Num1 = Convert.ToUInt32(lblNumbers.Content);
-        }
-
         if (Num1 == 0)
         {
             Num1 = Num2;
@@ -370,11 +365,6 @@ public partial class UIMoos : Window
 
     void onPlus(object obj)
     {
-        if (!string.IsNullOrEmpty(lblNumbers.Content))
-        {
-            Num1 = Convert.ToUInt32(lblNumbers.Content);
-        }
-
         if (Num1 == 0)
         {
             Num1 = Num2;
@@ -390,6 +380,12 @@ public partial class UIMoos : Window
         if (!String.IsNullOrEmpty(lblNumbers.Content))
         {
             lblNumbers.Content = lblNumbers.Content.Remove(lblNumbers.Content.Length);
+
+            if (!string.IsNullOrEmpty(lblNumbers.Content))
+            {
+                Num2 = Convert.ToUInt32(lblNumbers.Content);
+            }
+
         }
     }
 
@@ -421,6 +417,12 @@ public partial class UIMoos : Window
     void onClick(object obj)
     {
         lblNumbers.Content += obj.ToString();
+
+        if (!string.IsNullOrEmpty(lblNumbers.Content))
+        {
+            Num2 = Convert.ToUInt32(lblNumbers.Content);
+        }
+
     }
 
 }
