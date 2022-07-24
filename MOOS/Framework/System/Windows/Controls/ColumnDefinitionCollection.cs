@@ -8,9 +8,8 @@ namespace System.Windows.Controls
     {
         public GridLength Width { set; get; }
 
-        public ColumnDefinitionCollection()
+        public ColumnDefinitionCollection() : base()
         {
-            new List<ColumnDefinition>();
         }
     }
 }

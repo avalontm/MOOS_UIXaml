@@ -66,22 +66,6 @@ namespace System.Windows.Controls
                 return;
             }
 
-            //Position & margin
-            if (Pos == null)
-            {
-                X = this.Parent.X + this.Margin.Left;
-                Y = this.Parent.Y + this.Margin.Top;
-                Width = this.Parent.Width - (this.Margin.Right * 2);
-                Height = this.Parent.Height - (this.Margin.Bottom * 2);
-            }
-            else
-            {
-                X = this.Pos.Position.X + this.Margin.Left;
-                Y = this.Pos.Position.Y + this.Margin.Top;
-                Width = this.Pos.Position.Width - (this.Margin.Right * 2);
-                Height = this.Pos.Position.Height - (this.Margin.Bottom * 2);
-            }
-
             Framebuffer.Graphics.FillRectangle(X, Y, Width, Height, Background.Value);
 
             if (Content != null)

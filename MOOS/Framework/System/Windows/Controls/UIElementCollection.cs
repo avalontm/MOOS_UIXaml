@@ -8,7 +8,6 @@ namespace System.Windows.Controls
     {
         public UIElementCollection() :base()
         {
-
         }
     }
 }

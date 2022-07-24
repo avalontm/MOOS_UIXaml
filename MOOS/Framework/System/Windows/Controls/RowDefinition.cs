@@ -16,6 +16,7 @@ namespace System.Windows.Controls
         public RowDefinition()
         {
             Position = new Position();
+            Height = new GridLength(1, GridUnitType.Star);
         }
 
         public override string ToString()

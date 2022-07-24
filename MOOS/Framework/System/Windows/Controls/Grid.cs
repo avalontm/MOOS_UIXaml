@@ -4,25 +4,6 @@ using System.Diagnostics;
 
 namespace System.Windows.Controls
 {
-    public class GridCollection
-    { 
-        public Position Position { set; get; }
-        public int Row { set; get; }
-        public int Column { set; get; }
-
-        public GridCollection(int row, int column)
-        {
-            Position = new Position();
-            Row = row;
-            Column = column;
-        }
-
-        public override string ToString()
-        {
-            return $"X: {Position.X}, Y: {Position.Y}, Width: {Position.Width}, Height: {Position.Height}";
-        }
-    }
-
     public class Grid : Widget
     {
         public RowDefinitionCollection RowDefinitions { set; get; }
@@ -68,7 +49,6 @@ namespace System.Windows.Controls
 
             _columns = ColumnDefinitions.Count;
 
-
             if (Grids.Count == 0)
             {
                 for (int c = 0; c < _columns; c++)
@@ -79,7 +59,6 @@ namespace System.Windows.Controls
                     }
                 }
             }
-
             onUpdateGrids();
             onDrawGrids();
         }
@@ -95,7 +74,7 @@ namespace System.Windows.Controls
             colPixels = 0;
             rowTotalStar = 0;
             colTotalStar = 0;
-
+         
             for (int c = 0; c < _columns; c++)
             {
                 if (!ColumnDefinitions[c].Width.IsStar)
@@ -106,6 +85,12 @@ namespace System.Windows.Controls
                 {
                     colTotalStar++;
                 }
+               
+            }
+    
+            if (colTotalStar == 0)
+            {
+                colTotalStar = 1;
             }
 
             for (int r = 0; r < _rows; r++)
@@ -119,6 +104,12 @@ namespace System.Windows.Controls
                     rowTotalStar++;
                 }
             }
+
+            if (rowTotalStar == 0)
+            {
+                rowTotalStar = 1;
+            }
+
 
             for (int c = 0; c < _columns; c++)
             {
@@ -135,6 +126,7 @@ namespace System.Windows.Controls
                     GridPosY(r, c);
                 }
             }
+ 
         }
 
         void onDrawGrids()
@@ -162,7 +154,7 @@ namespace System.Windows.Controls
         {
             if (c == 0)
             {
-                ColumnDefinitions[c].Position.X = this.Parent.X + ColumnDefinitions[c].Position.X;
+                ColumnDefinitions[c].Position.X = this.X + ColumnDefinitions[c].Position.X;
             }
             else
             {
@@ -174,7 +166,7 @@ namespace System.Windows.Controls
         {
             if (r == 0)
             {
-                RowDefinitions[r].Position.Y = this.Parent.Y + RowDefinitions[r].Position.Y;
+                RowDefinitions[r].Position.Y = this.Y + RowDefinitions[r].Position.Y;
             }
             else
             {

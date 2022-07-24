@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 
-
 namespace System.Windows.Controls
 {
-    public class ColumnDefinition
+    public class GridCollection
     {
         public Position Position { set; get; }
-        public int ActualHeight { get; }
-        public int MaxHeight { get; set; }
-        public int MinHeight { get; set; }
-        public int Offset { get; }
-        public GridLength Width { set; get; }
+        public int Row { set; get; }
+        public int Column { set; get; }
 
-        public ColumnDefinition()
+        public GridCollection(int row, int column)
         {
             Position = new Position();
-            Width = new GridLength(1, GridUnitType.Star);
+            Row = row;
+            Column = column;
         }
 
         public override string ToString()
