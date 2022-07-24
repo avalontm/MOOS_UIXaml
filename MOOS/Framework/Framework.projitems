@@ -11,6 +11,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)System\Globalization\CultureInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Controls\ColumnDefinition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Controls\ColumnDefinitionCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Media\ColorConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\MessageBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Input\ICommand.cs" />

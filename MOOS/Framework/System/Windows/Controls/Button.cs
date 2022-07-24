@@ -67,7 +67,7 @@ namespace System.Windows.Controls
             }
 
             //Position & margin
-            if (Row == null)
+            if (Pos == null)
             {
                 X = this.Parent.X + this.Margin.Left;
                 Y = this.Parent.Y + this.Margin.Top;
@@ -76,10 +76,10 @@ namespace System.Windows.Controls
             }
             else
             {
-                X = this.Row.Position.X + this.Margin.Left;
-                Y = this.Row.Position.Y + this.Margin.Top;
-                Width = this.Row.Position.Width - (this.Margin.Right * 2);
-                Height = this.Row.Position.Height - (this.Margin.Bottom * 2);
+                X = this.Pos.Position.X + this.Margin.Left;
+                Y = this.Pos.Position.Y + this.Margin.Top;
+                Width = this.Pos.Position.Width - (this.Margin.Right * 2);
+                Height = this.Pos.Position.Height - (this.Margin.Bottom * 2);
             }
 
             Framebuffer.Graphics.FillRectangle(X, Y, Width, Height, Background.Value);

@@ -17,7 +17,7 @@ namespace System.Windows
         public bool IsAbsolute { get; private set; }
         public bool IsAuto { get; private set; }
         public bool IsStar { get; private set; }
-        public int Value { get; private set; }
+        public int Value { get; set; }
 
         public GridLength(int value, GridUnitType unit)
         {

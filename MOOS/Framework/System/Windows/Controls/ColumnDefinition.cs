@@ -4,16 +4,16 @@ using System.Collections.Generic;
 
 namespace System.Windows.Controls
 {
-    public class RowDefinition 
+    public class ColumnDefinition
     {
         public Position Position { set; get; }
         public int ActualHeight { get; }
         public int MaxHeight { get; set; }
         public int MinHeight { get; set; }
         public int Offset { get; }
-        public GridLength Height { set; get; }
+        public GridLength Width { set; get; }
 
-        public RowDefinition()
+        public ColumnDefinition()
         {
             Position = new Position();
         }

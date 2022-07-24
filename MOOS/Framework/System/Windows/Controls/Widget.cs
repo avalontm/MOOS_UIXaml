@@ -50,16 +50,16 @@ namespace System.Windows.Controls
             }
         }
 
-        RowDefinition _row;
-        public RowDefinition Row
+        GridCollection _pos;
+        public GridCollection Pos
         {
             set
             {
-                _row = value;
+                _pos = value;
             }
             get
             {
-                return _row;
+                return _pos;
             }
         }
 
