@@ -130,7 +130,7 @@ public partial class UIMoos : Window
         Grid.SetRow(_button17, 3);
         // ---------------------------
         Binding _binding18 = new Binding("");
-        _binding18.Source = ClickEnterCommand;
+        _binding18.Source = ClickMeCommand;
         _button17.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding18);
         _button17.CommandParameter = "1";
         _button17.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#53b01e")));
@@ -147,7 +147,7 @@ public partial class UIMoos : Window
         Grid.SetRowSpan(_button19, 4);
         // ---------------------------
         Binding _binding20 = new Binding("");
-        _binding20.Source = ClickMeCommand;
+        _binding20.Source = ClickEnterCommand;
         _button19.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding20);
         _button19.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#1e4ab0")));
         _button19.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));

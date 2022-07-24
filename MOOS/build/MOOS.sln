@@ -9,7 +9,7 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Corlib", "..\Corlib\Corlib.
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Kernel", "..\Kernel\Kernel.shproj", "{066034BC-37FE-4605-8BDB-C525EC29DBE4}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Framework", "..\Framework\Framework.shproj", "{CBF8A3A1-5076-42AD-8189-A54052C8DAB2}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "UIFramework", "..\Framework\UIFramework.shproj", "{CBF8A3A1-5076-42AD-8189-A54052C8DAB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
