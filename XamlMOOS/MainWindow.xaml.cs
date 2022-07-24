@@ -98,6 +98,7 @@ namespace XamlMOOS
         void onUnloaded(object sender, RoutedEventArgs e)
         {
             Instance = null;
+            Brushes.White
         }
 
         async void onCompile(object sender, RoutedEventArgs e)

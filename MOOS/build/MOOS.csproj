@@ -43,7 +43,7 @@
 
 <Import Project="..\Corlib\Corlib.projitems" Label="Shared" />
 <Import Project="..\Kernel\Kernel.projitems" Label="Shared" />
-<Import Project="..\Framework\Framework.projitems" Label="Shared" />
+<Import Project="..\UIFramework\UIFramework.projitems" Label="Shared" />
 	
 	<Target Name="BuildISO" AfterTargets="Publish">
 		<Exec WorkingDirectory="$(MSBuildStartupDirectory)\Tools\" Command="&quot;$(MSBuildStartupDirectory)\Tools\nasm.exe&quot; -fbin &quot;$(MSBuildStartupDirectory)\Tools\Trampoline.asm&quot; -o &quot;$(MSBuildStartupDirectory)\Tools\Trampoline&quot;"></Exec>

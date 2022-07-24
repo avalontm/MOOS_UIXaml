@@ -9,7 +9,7 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Corlib", "..\Corlib\Corlib.
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Kernel", "..\Kernel\Kernel.shproj", "{066034BC-37FE-4605-8BDB-C525EC29DBE4}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "UIFramework", "..\Framework\UIFramework.shproj", "{CBF8A3A1-5076-42AD-8189-A54052C8DAB2}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "UIFramework", "..\UIFramework\UIFramework.shproj", "{CBF8A3A1-5076-42AD-8189-A54052C8DAB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,9 +31,9 @@ Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\Kernel\Kernel.projitems*{066034bc-37fe-4605-8bdb-c525ec29dbe4}*SharedItemsImports = 13
 		..\Corlib\Corlib.projitems*{2ea1f38f-f26e-4148-8ffd-38713478e015}*SharedItemsImports = 13
-		..\Framework\Framework.projitems*{cbf8a3a1-5076-42ad-8189-a54052c8dab2}*SharedItemsImports = 13
+		..\UIFramework\UIFramework.projitems*{cbf8a3a1-5076-42ad-8189-a54052c8dab2}*SharedItemsImports = 13
 		..\Corlib\Corlib.projitems*{cf0cab83-235d-48e4-a31d-8294c780a12c}*SharedItemsImports = 5
-		..\Framework\Framework.projitems*{cf0cab83-235d-48e4-a31d-8294c780a12c}*SharedItemsImports = 5
 		..\Kernel\Kernel.projitems*{cf0cab83-235d-48e4-a31d-8294c780a12c}*SharedItemsImports = 5
+		..\UIFramework\UIFramework.projitems*{cf0cab83-235d-48e4-a31d-8294c780a12c}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal
