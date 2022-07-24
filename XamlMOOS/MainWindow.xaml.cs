@@ -102,16 +102,8 @@ namespace XamlMOOS
 
         async void onCompile(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
-                string result = xamlConvert.Convert(txtEditor.Text);
-                debug = result + "\n";
-                debug += "==================== [Finish] ====================" + "\n\n";
-            //}
-           // catch (Exception ex)
-            //{
-           //     debug += ex;
-            //}
+            string result = xamlConvert.Convert(txtEditor.Text);
+            debug = result + "\n";
         }
 
         void onChangedFontSize(object sender, SelectionChangedEventArgs e)
