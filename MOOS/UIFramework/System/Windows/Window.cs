@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using System.Windows.Media;
 
 namespace System.Windows
 {
@@ -55,6 +56,7 @@ namespace System.Windows
             Y= 0;
             Width = 300;
             Height = 150;
+            Background = Brushes.White;
             this.WindowStartupLocation = WindowStartupLocation.Manual;
             WindowManager.Childrens.Add(this);
         }
