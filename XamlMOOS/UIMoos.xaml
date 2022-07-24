@@ -18,23 +18,24 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Label x:Name="lblNumbers" Grid.ColumnSpan="4" Content="TEST" Foreground="Red" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontWeight="DemiBold"/>
+        <Label x:Name="lblNumbers" Grid.ColumnSpan="4" Content="TEST" Margin="5" Foreground="Red" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontWeight="DemiBold" BorderBrush="Black" BorderThickness="1"/>
 
-        <Button Grid.Row="1" Command="{Binding ElementName=ClickMeCommand}" CommandParameter="7" Background="#a83271" Foreground="White" Margin="5" Content="7" BorderBrush="White" BorderThickness="2"/>
-        <Button Grid.Row="2" Command="{Binding ElementName=ClickMeCommand}" CommandParameter="4" Background="#bd3d2a" Foreground="White" Margin="5" Content="4" BorderBrush="White" BorderThickness="2"/>
-        <Button Grid.Row="3" Command="{Binding ElementName=ClickMeCommand}" CommandParameter="1" Background="#53b01e" Foreground="White" Margin="5" Content="1" BorderBrush="White" BorderThickness="2"/>
-        <Button Grid.Row="1" Grid.Column="3" Grid.RowSpan="4" Command="{Binding ElementName=ClickEnterCommand}" Background="#1e4ab0" Foreground="Green" Margin="5" Content="ENTER" BorderBrush="White" BorderThickness="2"/>
+        <Button Grid.Row="1" Command="{Binding ElementName=ClickMeCommand}" CommandParameter="7" Background="#a83271" Foreground="White" Margin="5" Content="7" BorderBrush="Black" BorderThickness="2"/>
+        <Button Grid.Row="2" Command="{Binding ElementName=ClickMeCommand}" CommandParameter="4" Background="#bd3d2a" Foreground="White" Margin="5" Content="4" BorderBrush="Black" BorderThickness="2"/>
+        <Button Grid.Row="3" Command="{Binding ElementName=ClickMeCommand}" CommandParameter="1" Background="#53b01e" Foreground="White" Margin="5" Content="1" BorderBrush="Black" BorderThickness="2"/>
+        <Button Grid.Row="2" Grid.Column="3" Grid.RowSpan="4" Command="{Binding ElementName=ClickEnterCommand}" Background="#1e4ab0" Foreground="Green" Margin="5" Content="ENTER" BorderBrush="Black" BorderThickness="2"/>
+        <Button Grid.Row="1" Grid.Column="3" Command="{Binding ElementName=ClickDelCommand}" Background="Red" Foreground="White" Margin="5" Content="DEL" BorderBrush="Black" BorderThickness="2"/>
 
-        <Button Grid.Column="1" Grid.Row="1" Command="{Binding ElementName=ClickMeCommand}" CommandParameter="8" Background="#a83271" Foreground="White" Margin="5" Content="8" BorderBrush="White" BorderThickness="2"/>
-        <Button Grid.Column="1" Grid.Row="2" Command="{Binding ElementName=ClickMeCommand}" CommandParameter="5" Background="#bd3d2a" Foreground="White" Margin="5" Content="5" BorderBrush="White" BorderThickness="2"/>
-        <Button Grid.Column="1" Grid.Row="3" Command="{Binding ElementName=ClickMeCommand}" CommandParameter="2" Background="#53b01e" Foreground="White" Margin="5" Content="2" BorderBrush="White" BorderThickness="2"/>
-        <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Command="{Binding ElementName=ClickMeCommand}" CommandParameter="0" Background="#1e4ab0" Foreground="White" Margin="5" Content="0" BorderBrush="White" BorderThickness="2"/>
+        <Button Grid.Column="1" Grid.Row="1" Command="{Binding ElementName=ClickMeCommand}" CommandParameter="8" Background="#a83271" Foreground="White" Margin="5" Content="8" BorderBrush="Black" BorderThickness="2"/>
+        <Button Grid.Column="1" Grid.Row="2" Command="{Binding ElementName=ClickMeCommand}" CommandParameter="5" Background="#bd3d2a" Foreground="White" Margin="5" Content="5" BorderBrush="Black" BorderThickness="2"/>
+        <Button Grid.Column="1" Grid.Row="3" Command="{Binding ElementName=ClickMeCommand}" CommandParameter="2" Background="#53b01e" Foreground="White" Margin="5" Content="2" BorderBrush="Black" BorderThickness="2"/>
+        <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Command="{Binding ElementName=ClickMeCommand}" CommandParameter="0" Background="#1e4ab0" Foreground="White" Margin="5" Content="0" BorderBrush="Black" BorderThickness="2"/>
 
 
-        <Button Grid.Column="2" Grid.Row="1" Command="{Binding ElementName=ClickMeCommand}" CommandParameter="9" Background="#a83271" Foreground="White" Margin="5" Content="9" BorderBrush="White" BorderThickness="2"/>
-        <Button Grid.Column="2" Grid.Row="2" Command="{Binding ElementName=ClickMeCommand}" CommandParameter="6" Background="#bd3d2a" Foreground="White" Margin="5" Content="6" BorderBrush="White" BorderThickness="2"/>
-        <Button Grid.Column="2" Grid.Row="3" Command="{Binding ElementName=ClickMeCommand}" CommandParameter="3" Background="#53b01e" Foreground="White" Margin="5" Content="3" BorderBrush="White" BorderThickness="2"/>
-        <Button Grid.Column="2" Grid.Row="4" Command="{Binding ElementName=ClickMeCommand}" CommandParameter="." Background="#1e4ab0" Foreground="White" Margin="5" Content="." BorderBrush="White" BorderThickness="2"/>
+        <Button Grid.Column="2" Grid.Row="1" Command="{Binding ElementName=ClickMeCommand}" CommandParameter="9" Background="#a83271" Foreground="White" Margin="5" Content="9" BorderBrush="Black" BorderThickness="2"/>
+        <Button Grid.Column="2" Grid.Row="2" Command="{Binding ElementName=ClickMeCommand}" CommandParameter="6" Background="#bd3d2a" Foreground="White" Margin="5" Content="6" BorderBrush="Black" BorderThickness="2"/>
+        <Button Grid.Column="2" Grid.Row="3" Command="{Binding ElementName=ClickMeCommand}" CommandParameter="3" Background="#53b01e" Foreground="White" Margin="5" Content="3" BorderBrush="Black" BorderThickness="2"/>
+        <Button Grid.Column="2" Grid.Row="4" Command="{Binding ElementName=ClickMeCommand}" CommandParameter="." Background="#1e4ab0" Foreground="White" Margin="5" Content="." BorderBrush="Black" BorderThickness="2"/>
 
     </Grid>
 

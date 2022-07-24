@@ -163,6 +163,12 @@ namespace System
         public string Remove(int index)
         {
             string retult = "";
+
+            if (index >= this.Length)
+            {
+                index = this.Length -1;
+            }
+
             for (int i = 0; i < this.Length; i++)
             {
                 if (i != index)
@@ -200,7 +206,7 @@ namespace System
 
         public static bool IsNullOrEmpty(string value)
         {
-            if (value == null || value.Length == 0)
+            if (value == null || value != null && value.Length == 0)
             {
                 return true;
             }

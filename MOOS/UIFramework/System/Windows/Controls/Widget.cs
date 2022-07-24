@@ -70,9 +70,9 @@ namespace System.Windows.Controls
         public Widget() : base()
         {
             Parent = this;
-            Background = new Brush(0xFF222222);
-            Foreground = new Brush(0xFFFFFF);
-            BorderBrush = new Brush(0xFF333333);
+            Background = Brushes.White;
+            Foreground = Brushes.Black;
+            BorderBrush = Brushes.Black;
             ColorNormal = new Brush(0xFF111111);
             ColorFocus = new Brush(0xFF141414);
             BorderThickness = new Thickness(1);
