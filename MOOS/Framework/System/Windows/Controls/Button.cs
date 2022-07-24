@@ -12,6 +12,7 @@ namespace System.Windows.Controls
         public string Content { set; get; }
         public Binding Command { set; get; }
         public static object CommandProperty { get;  set; }
+        public object CommandParameter { get; set; }
 
         bool clicked;
 
@@ -22,6 +23,7 @@ namespace System.Windows.Controls
             Width = 300;
             Height = 42;
             Background = new Brush(0xFF111111);
+            CommandParameter = string.Empty;
         }
 
         public override void Update()
@@ -39,7 +41,8 @@ namespace System.Windows.Controls
                         if (!clicked)
                         {
                             clicked = true;
-                            Command.Source.Execute.Invoke();
+
+                            Command.Source.Execute.Invoke(CommandParameter);
                         }
 
                     }

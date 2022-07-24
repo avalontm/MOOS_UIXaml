@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Controls\GridCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Controls\Label.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\FontWeightConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\Windows\HorizontalAlignment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Media\Brushes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Media\ColorConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\MessageBox.cs" />
@@ -34,6 +35,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Media\Brush.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Thickness.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\ThicknessConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\Windows\VerticalAlignment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Window.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\WindowManager.cs" />
   </ItemGroup>

@@ -22,10 +22,13 @@ public partial class UIMoos : Window
 {
     CultureInfo EnglishCultureInfo = new CultureInfo("en-us", false);
     ICommand ClickMeCommand { get; set; }
+    ICommand ClickEnterCommand { get; set; }
+    public System.Windows.Controls.Label lblNumbers;
 
     public UIMoos()
     {
         ClickMeCommand = new ICommand(onClick);
+        ClickEnterCommand = new ICommand(onEnter);
 
         this.Title = "MOOS GUI";
         this.Width = 300;
@@ -80,10 +83,10 @@ public partial class UIMoos : Window
         // ---------------------------
         UIElementCollection _uIElementCollection12 = _grid0.Children;
         // ---------------------------
-        Label lblNumbers = new Label();
+        lblNumbers = new Label();
         _uIElementCollection12.Add(lblNumbers);
         Grid.SetColumnSpan(lblNumbers, 4);
-        lblNumbers.Content = "TEST";
+        lblNumbers.Content = "";
         lblNumbers.Foreground = Brushes.White;
         lblNumbers.HorizontalContentAlignment = HorizontalAlignment.Center;
         lblNumbers.VerticalContentAlignment = VerticalAlignment.Center;
@@ -98,6 +101,7 @@ public partial class UIMoos : Window
         Binding _binding14 = new Binding("");
         _binding14.Source = ClickMeCommand;
         _button13.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding14);
+        _button13.CommandParameter = "7";
         _button13.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#a83271")));
         _button13.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
         ThicknessConverter _thicknessConverter = new ThicknessConverter();
@@ -113,6 +117,7 @@ public partial class UIMoos : Window
         Binding _binding16 = new Binding("");
         _binding16.Source = ClickMeCommand;
         _button15.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding16);
+        _button15.CommandParameter = "4";
         _button15.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#bd3d2a")));
         _button15.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
         _button15.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
@@ -127,6 +132,7 @@ public partial class UIMoos : Window
         Binding _binding18 = new Binding("");
         _binding18.Source = ClickMeCommand;
         _button17.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding18);
+        _button17.CommandParameter = "1";
         _button17.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#53b01e")));
         _button17.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
         _button17.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
@@ -141,7 +147,7 @@ public partial class UIMoos : Window
         Grid.SetRowSpan(_button19, 4);
         // ---------------------------
         Binding _binding20 = new Binding("");
-        _binding20.Source = ClickMeCommand;
+        _binding20.Source = ClickEnterCommand;
         _button19.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding20);
         _button19.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#1e4ab0")));
         _button19.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
@@ -158,6 +164,7 @@ public partial class UIMoos : Window
         Binding _binding22 = new Binding("");
         _binding22.Source = ClickMeCommand;
         _button21.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding22);
+        _button21.CommandParameter = "8";
         _button21.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#a83271")));
         _button21.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
         _button21.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
@@ -173,6 +180,7 @@ public partial class UIMoos : Window
         Binding _binding24 = new Binding("");
         _binding24.Source = ClickMeCommand;
         _button23.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding24);
+        _button23.CommandParameter = "5";
         _button23.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#bd3d2a")));
         _button23.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
         _button23.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
@@ -188,6 +196,7 @@ public partial class UIMoos : Window
         Binding _binding26 = new Binding("");
         _binding26.Source = ClickMeCommand;
         _button25.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding26);
+        _button25.CommandParameter = "2";
         _button25.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#53b01e")));
         _button25.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
         _button25.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
@@ -204,6 +213,7 @@ public partial class UIMoos : Window
         Binding _binding28 = new Binding("");
         _binding28.Source = ClickMeCommand;
         _button27.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding28);
+        _button27.CommandParameter = "0";
         _button27.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#1e4ab0")));
         _button27.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
         _button27.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
@@ -219,6 +229,7 @@ public partial class UIMoos : Window
         Binding _binding30 = new Binding("");
         _binding30.Source = ClickMeCommand;
         _button29.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding30);
+        _button29.CommandParameter = "9";
         _button29.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#a83271")));
         _button29.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
         _button29.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
@@ -234,6 +245,7 @@ public partial class UIMoos : Window
         Binding _binding32 = new Binding("");
         _binding32.Source = ClickMeCommand;
         _button31.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding32);
+        _button31.CommandParameter = "6";
         _button31.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#bd3d2a")));
         _button31.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
         _button31.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
@@ -249,6 +261,7 @@ public partial class UIMoos : Window
         Binding _binding34 = new Binding("");
         _binding34.Source = ClickMeCommand;
         _button33.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding34);
+        _button33.CommandParameter = "3";
         _button33.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#53b01e")));
         _button33.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
         _button33.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
@@ -264,6 +277,7 @@ public partial class UIMoos : Window
         Binding _binding36 = new Binding("");
         _binding36.Source = ClickMeCommand;
         _button35.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding36);
+        _button35.CommandParameter = ".";
         _button35.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#1e4ab0")));
         _button35.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
         _button35.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
@@ -271,8 +285,15 @@ public partial class UIMoos : Window
         _button35.BorderBrush = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
         _button35.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
     }
-    void onClick()
+
+    void onEnter(object obj)
     {
-        MessageBox.Show("Clicked!","MOOS");
+        MessageBox.Show("Clicked on Enter!","UIXaml Moos");
     }
+
+    void onClick(object obj)
+    {
+        lblNumbers.Content += obj.ToString();
+    }
+
 }

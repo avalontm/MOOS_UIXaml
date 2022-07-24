@@ -6,9 +6,9 @@ namespace System.Windows.Input
 {
     public class ICommand
     {
-        public Action Execute { set; get; }
+        public Action<object> Execute { set; get; }
 
-        public ICommand(Action action)
+        public ICommand(Action<object> action)
         {
             Execute = action;
         }
