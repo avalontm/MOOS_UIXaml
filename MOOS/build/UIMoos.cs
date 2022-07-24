@@ -86,7 +86,7 @@ public partial class UIMoos : Window
         lblNumbers = new Label();
         _uIElementCollection12.Add(lblNumbers);
         Grid.SetColumnSpan(lblNumbers, 4);
-        lblNumbers.Content = "TEST";
+        lblNumbers.Content = "";
         ThicknessConverter _thicknessConverter = new ThicknessConverter();
         lblNumbers.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
         lblNumbers.Foreground = Brushes.Red;

@@ -77,11 +77,6 @@ namespace System.Windows.Controls
             }
         }
 
-        public void DrawBorder()
-        {
-            Framebuffer.Graphics.DrawRectangle(X - (int)BorderThickness.Left, Y - (int)BorderThickness.Top, Width + (int)(BorderThickness.Right*2), Height + (int)(BorderThickness.Bottom*2), BorderBrush.Value);
-        }
-
         public void SetBinding(object commandProperty, Binding binding)
         {
             Command = binding;

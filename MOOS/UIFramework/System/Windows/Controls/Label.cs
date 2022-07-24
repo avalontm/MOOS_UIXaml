@@ -37,6 +37,11 @@ namespace System.Windows.Controls
             {
                 WindowManager.font.DrawString(X + (Width / 2) - ((WindowManager.font.MeasureString(Content)) / 2), (Y + (Height / 2)) - (WindowManager.font.FontSize / 2), Content, Foreground.Value);
             }
+
+            if (BorderBrush != null)
+            {
+                DrawBorder();
+            }
         }
     }
 }

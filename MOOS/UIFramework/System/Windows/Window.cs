@@ -176,10 +176,5 @@ namespace System.Windows
 
             Framebuffer.Graphics.DrawImage(CloseButtonX, CloseButtonY, WindowManager.CloseButton);
         }
-
-        public void DrawBorder(bool HasBar = true)
-        {
-            Framebuffer.Graphics.DrawRectangle(X - (int)BorderThickness.Left, Y - (HasBar ? BarHeight : 0) - (int)BorderThickness.Top, Width + (int)(BorderThickness.Right*2), (HasBar ? BarHeight : 0) + Height + (int)(BorderThickness.Bottom*2), BorderBrush.Value);
-        }
     }
 }

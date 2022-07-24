@@ -1,4 +1,5 @@
 
+using MOOS;
 using System.Diagnostics;
 using System.Windows.Media;
 
@@ -115,6 +116,10 @@ namespace System.Windows.Controls
             Y = parent.Y;
             Width = parent.Width;
             Height = parent.Height;
+        }
+        public void DrawBorder()
+        {
+            Framebuffer.Graphics.DrawRectangle(X - (int)(BorderThickness.Left-1), Y - (int)(BorderThickness.Top-1), Width + (int)(BorderThickness.Right), Height + (int)(BorderThickness.Bottom), BorderBrush.Value);
         }
 
         public void onMouseFocus()
