@@ -20,8 +20,9 @@
 - [x] BorderBrush
 - [x] BorderThickness
 
-## Events
+## Buttons Events
 - [x] Command
+- [x] CommandParameter
 
 ## Grids
 - [x] Grid.Row
