@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 
 namespace System.Windows.Media
 {
@@ -34,6 +35,19 @@ namespace System.Windows.Media
             }
 
             return value;
+        }
+
+        public static uint ConvertPixel(uint pixel, uint color)
+        {
+            Color _base = Color.FromArgb(pixel);
+            Color _color = Color.FromArgb(color);
+
+            int a = (_base.A * _color.A) / 255;
+            int r = (_base.R * _color.R) / 255;
+            int g = (_base.G * _color.G) / 255;
+            int b = (_base.B * _color.B) / 255;
+
+           return (uint)(a << 24 | r << 16 | g << 8 | b);
         }
     }
 }

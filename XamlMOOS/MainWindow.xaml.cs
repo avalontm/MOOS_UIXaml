@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -98,7 +99,6 @@ namespace XamlMOOS
         void onUnloaded(object sender, RoutedEventArgs e)
         {
             Instance = null;
-            Brushes.White
         }
 
         async void onCompile(object sender, RoutedEventArgs e)

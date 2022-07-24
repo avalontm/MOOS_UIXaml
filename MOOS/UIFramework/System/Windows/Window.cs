@@ -157,8 +157,8 @@ namespace System.Windows
             base.Draw();
 
             //WindowBar
-            Framebuffer.Graphics.FillRectangle(X, Y - BarHeight, Width, BarHeight, 0xFF111111);
-            WindowManager.font.DrawString(X + (Width / 2) - ((WindowManager.font.MeasureString(Title)) / 2), Y - BarHeight + (BarHeight / 4), Title, Foreground.Value);
+            Framebuffer.Graphics.FillRectangle(X, Y - BarHeight, Width, BarHeight, 0xFFFFFFFF);
+            WindowManager.font.DrawString(X + (Width / 2) - ((WindowManager.font.MeasureString(Title)) / 2), Y - BarHeight + (BarHeight / 4), Title, 0xFF000000);
 
             Framebuffer.Graphics.FillRectangle(X, Y, Width, Height, Background.Value);
 

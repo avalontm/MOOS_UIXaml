@@ -20,6 +20,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\HorizontalAlignment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Media\Brushes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Media\ColorConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Media\FontFamily.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Media\FontFamilyConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\MessageBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Input\ICommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Media\BrushConverter.cs" />

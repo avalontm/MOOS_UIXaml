@@ -2,6 +2,7 @@ using MOOS.Graph;
 using System;
 using System.Diagnostics;
 using System.Drawing;
+using System.Windows.Media;
 
 namespace MOOS.Misc
 {
@@ -21,7 +22,7 @@ namespace MOOS.Misc
             FontSize = size;
         }
 
-        public int DrawChar(Graphics g,int X, int Y, char Chr, uint color = 0x000000)
+        public int DrawChar(Graphics g,int X, int Y, char Chr, uint color = 0xFF000000)
         {
             int index = charset.IndexOf(Chr);
             if (index == -1)
@@ -49,10 +50,16 @@ namespace MOOS.Misc
                 {
                     uint _color = image.GetPixel(baseX + w, baseY + h);
 
+                    //if (_color > 0)
+                    //{
+                        _color = ColorConverter.ConvertPixel(_color, color);
+                    //}
+
                     if (X != -1 && Y != -1)
                     {
                         g.DrawPoint(X + w, Y + h, _color, true);
                     }
+
                     if ((_color & 0xFF000000) == 0)
                     {
                         counter++;
@@ -85,7 +92,7 @@ namespace MOOS.Misc
             return w;
         }
 
-        public void DrawString(int X, int Y, string Str, uint color = 0x000000, int LineLimit = -1, int HeightLimit = -1)
+        public void DrawString(int X, int Y, string Str, uint color = 0xFF000000, int LineLimit = -1, int HeightLimit = -1)
         {
             int w = 0, h = 0;
             for (int i = 0; i < Str.Length; i++)

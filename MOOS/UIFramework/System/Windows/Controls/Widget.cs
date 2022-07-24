@@ -35,6 +35,7 @@ namespace System.Windows.Controls
         public Brush ColorNormal { set; get; }
         public int GridRow { get;  set; }
         public int GridColumn { get; set; }
+        public FontFamily FontFamily { get; set; }
 
         Widget _parent;
         public Widget Parent
@@ -77,6 +78,7 @@ namespace System.Windows.Controls
             BorderThickness = new Thickness(1);
             Margin = new Thickness();
             Padding = new Thickness();
+            FontFamily = new FontFamily();
         }
 
         public virtual void Draw()
