@@ -33,5 +33,5 @@
 
 ## Fonts
 - [ ] FontSize
-- [ ] Foreground
+- [x] Foreground
 - [ ] FontWeight
