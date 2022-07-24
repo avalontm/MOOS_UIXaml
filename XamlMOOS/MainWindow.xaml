@@ -52,18 +52,16 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*" MinHeight="50"/>
-                <RowDefinition MinHeight="150" Height="150"/>
+                <RowDefinition Height="*" MinHeight="150"/>
             </Grid.RowDefinitions>
 
             <avalonEdit:TextEditor Grid.Row="1" Margin="5" x:Name="txtEditor" FontFamily="Consolas" FontSize="10pt" ShowLineNumbers="True" SyntaxHighlighting="XML" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible"/>
 
             <GridSplitter Grid.Row="1" Margin="5,10,5,0" VerticalAlignment="Bottom" ResizeDirection="Rows" HorizontalAlignment="Stretch" Height="2" BorderBrush="Black"/>
-            
+
             <Grid Grid.Row="2">
-                <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
-                    <TextBox x:Name="txtDebug" Text="{Binding debug}" Margin="5" IsReadOnly="True" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"/>
-                </ScrollViewer>
-             </Grid>
+                <TextBox x:Name="txtDebug" Text="{Binding debug}" Margin="5" IsReadOnly="True" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"/>
+            </Grid>
         </Grid>
 
 
