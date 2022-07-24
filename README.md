@@ -7,7 +7,7 @@
 
 # FEATURES
 
-## CONTROLS
+## Controls
 - [x] Window
 - [x] Button
 - [x] Label
