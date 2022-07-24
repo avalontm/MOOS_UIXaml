@@ -14,12 +14,14 @@
 - [x] Grid
 
 ## Properties
-- [x] Command
 - [x] Margin
 - [x] Background
 - [x] Foreground
 - [x] BorderBrush
 - [x] BorderThickness
+
+## Events
+- [x] Command
 
 ## Grids
 - [x] Grid.Row
