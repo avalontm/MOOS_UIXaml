@@ -30,3 +30,8 @@
 - [x] Grid.RowSpan
 - [x] Grid.ColumnSpan
 - [ ] Grid SubGrids
+
+## Fonts
+- [ ] FontSize
+- [ ] Foreground
+- [ ] FontWeight
