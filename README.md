@@ -20,8 +20,9 @@
 - [x] BorderBrush
 - [x] BorderThickness
 
-## Events
+## Buttons Events
 - [x] Command
+- [x] CommandParameter
 
 ## Grids
 - [x] Grid.Row
@@ -29,3 +30,8 @@
 - [x] Grid.RowSpan
 - [x] Grid.ColumnSpan
 - [ ] Grid SubGrids
+
+## Fonts
+- [ ] FontSize
+- [ ] Foreground
+- [ ] FontWeight
