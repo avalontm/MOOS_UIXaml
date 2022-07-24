@@ -8,6 +8,7 @@
 # CONTROLS
 - [x] Window
 - [x] Button
+- [x] Label
 - [x] Grid
 
 
@@ -22,6 +23,6 @@
 # GRIDS
 - [x] Grid.Row
 - [x] Grid.Column
-- [x] GridRowSpan
+- [x] Grid.RowSpan
 - [x] Grid.ColumnSpan
 - [ ] Grid SubGrids
