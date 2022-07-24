@@ -61,11 +61,6 @@ namespace System.Windows.Controls
         {
             base.Draw();
 
-            if (this.Parent == null)
-            {
-                return;
-            }
-
             Framebuffer.Graphics.FillRectangle(X, Y, Width, Height, Background.Value);
 
             if (Content != null)

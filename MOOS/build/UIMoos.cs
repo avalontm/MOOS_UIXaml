@@ -42,212 +42,232 @@ public partial class UIMoos : Window
         RowDefinition _rowDefinition2 = new RowDefinition();
         _rowDefinitionCollection1.Add(_rowDefinition2);
         GridLengthConverter _gridLengthConverter = new GridLengthConverter();
-        _rowDefinition2.Height = ((GridLength)(_gridLengthConverter.ConvertFrom(null, EnglishCultureInfo, "*")));
+        _rowDefinition2.Height = ((GridLength)(_gridLengthConverter.ConvertFrom(null, EnglishCultureInfo, "50")));
         // ---------------------------
         RowDefinition _rowDefinition3 = new RowDefinition();
         _rowDefinitionCollection1.Add(_rowDefinition3);
-        _rowDefinition3.Height = ((GridLength)(_gridLengthConverter.ConvertFrom(null, EnglishCultureInfo, "50")));
+        _rowDefinition3.Height = ((GridLength)(_gridLengthConverter.ConvertFrom(null, EnglishCultureInfo, "*")));
         // ---------------------------
         RowDefinition _rowDefinition4 = new RowDefinition();
         _rowDefinitionCollection1.Add(_rowDefinition4);
-        _rowDefinition4.Height = ((GridLength)(_gridLengthConverter.ConvertFrom(null, EnglishCultureInfo, "50")));
+        _rowDefinition4.Height = ((GridLength)(_gridLengthConverter.ConvertFrom(null, EnglishCultureInfo, "*")));
         // ---------------------------
         RowDefinition _rowDefinition5 = new RowDefinition();
         _rowDefinitionCollection1.Add(_rowDefinition5);
         _rowDefinition5.Height = ((GridLength)(_gridLengthConverter.ConvertFrom(null, EnglishCultureInfo, "*")));
         // ---------------------------
-        ColumnDefinitionCollection _columnDefinitionCollection6 = _grid0.ColumnDefinitions;
+        RowDefinition _rowDefinition6 = new RowDefinition();
+        _rowDefinitionCollection1.Add(_rowDefinition6);
+        _rowDefinition6.Height = ((GridLength)(_gridLengthConverter.ConvertFrom(null, EnglishCultureInfo, "*")));
         // ---------------------------
-        ColumnDefinition _columnDefinition7 = new ColumnDefinition();
-        _columnDefinitionCollection6.Add(_columnDefinition7);
-        _columnDefinition7.Width = ((GridLength)(_gridLengthConverter.ConvertFrom(null, EnglishCultureInfo, "*")));
+        ColumnDefinitionCollection _columnDefinitionCollection7 = _grid0.ColumnDefinitions;
         // ---------------------------
         ColumnDefinition _columnDefinition8 = new ColumnDefinition();
-        _columnDefinitionCollection6.Add(_columnDefinition8);
-        _columnDefinition8.Width = ((GridLength)(_gridLengthConverter.ConvertFrom(null, EnglishCultureInfo, "60")));
+        _columnDefinitionCollection7.Add(_columnDefinition8);
+        _columnDefinition8.Width = ((GridLength)(_gridLengthConverter.ConvertFrom(null, EnglishCultureInfo, "*")));
         // ---------------------------
         ColumnDefinition _columnDefinition9 = new ColumnDefinition();
-        _columnDefinitionCollection6.Add(_columnDefinition9);
+        _columnDefinitionCollection7.Add(_columnDefinition9);
         _columnDefinition9.Width = ((GridLength)(_gridLengthConverter.ConvertFrom(null, EnglishCultureInfo, "*")));
         // ---------------------------
-        UIElementCollection _uIElementCollection10 = _grid0.Children;
+        ColumnDefinition _columnDefinition10 = new ColumnDefinition();
+        _columnDefinitionCollection7.Add(_columnDefinition10);
+        _columnDefinition10.Width = ((GridLength)(_gridLengthConverter.ConvertFrom(null, EnglishCultureInfo, "*")));
         // ---------------------------
-        Button _button11 = new Button();
-        _uIElementCollection10.Add(_button11);
-        Grid.SetRow(_button11, 0);
+        ColumnDefinition _columnDefinition11 = new ColumnDefinition();
+        _columnDefinitionCollection7.Add(_columnDefinition11);
+        _columnDefinition11.Width = ((GridLength)(_gridLengthConverter.ConvertFrom(null, EnglishCultureInfo, "*")));
         // ---------------------------
-        Binding _binding12 = new Binding("");
-        _binding12.Source = ClickMeCommand;
-        _button11.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding12);
-        _button11.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#a83271")));
-        _button11.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
+        UIElementCollection _uIElementCollection12 = _grid0.Children;
+        // ---------------------------
+        Label _label13 = new Label();
+        _uIElementCollection12.Add(_label13);
+        Grid.SetColumnSpan(_label13, 4);
+        _label13.Content = "TEST";
+        _label13.Foreground = Brushes.White;
+        _label13.FontSize = 20;
+        FontWeightConverter _fontWeightConverter = new FontWeightConverter();
+        _label13.FontWeight = ((FontWeight)(_fontWeightConverter.ConvertFrom(null, EnglishCultureInfo, "DemiBold")));
+        // ---------------------------
+        Button _button14 = new Button();
+        _uIElementCollection12.Add(_button14);
+        Grid.SetRow(_button14, 1);
+        // ---------------------------
+        Binding _binding15 = new Binding("");
+        _binding15.Source = ClickMeCommand;
+        _button14.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding15);
+        _button14.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#a83271")));
+        _button14.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
         ThicknessConverter _thicknessConverter = new ThicknessConverter();
-        _button11.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
-        _button11.Content = "7";
-        _button11.BorderBrush = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
-        _button11.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
+        _button14.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
+        _button14.Content = "7";
+        _button14.BorderBrush = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
+        _button14.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
         // ---------------------------
-        Button _button13 = new Button();
-        _uIElementCollection10.Add(_button13);
-        Grid.SetRow(_button13, 1);
+        Button _button16 = new Button();
+        _uIElementCollection12.Add(_button16);
+        Grid.SetRow(_button16, 2);
         // ---------------------------
-        Binding _binding14 = new Binding("");
-        _binding14.Source = ClickMeCommand;
-        _button13.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding14);
-        _button13.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#bd3d2a")));
-        _button13.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
-        _button13.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
-        _button13.Content = "4";
-        _button13.BorderBrush = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
-        _button13.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
+        Binding _binding17 = new Binding("");
+        _binding17.Source = ClickMeCommand;
+        _button16.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding17);
+        _button16.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#bd3d2a")));
+        _button16.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
+        _button16.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
+        _button16.Content = "4";
+        _button16.BorderBrush = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
+        _button16.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
         // ---------------------------
-        Button _button15 = new Button();
-        _uIElementCollection10.Add(_button15);
-        Grid.SetRow(_button15, 2);
+        Button _button18 = new Button();
+        _uIElementCollection12.Add(_button18);
+        Grid.SetRow(_button18, 3);
         // ---------------------------
-        Binding _binding16 = new Binding("");
-        _binding16.Source = ClickMeCommand;
-        _button15.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding16);
-        _button15.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#53b01e")));
-        _button15.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
-        _button15.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
-        _button15.Content = "1";
-        _button15.BorderBrush = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
-        _button15.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
+        Binding _binding19 = new Binding("");
+        _binding19.Source = ClickMeCommand;
+        _button18.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding19);
+        _button18.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#53b01e")));
+        _button18.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
+        _button18.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
+        _button18.Content = "1";
+        _button18.BorderBrush = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
+        _button18.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
         // ---------------------------
-        Button _button17 = new Button();
-        _uIElementCollection10.Add(_button17);
-        Grid.SetRow(_button17, 3);
+        Button _button20 = new Button();
+        _uIElementCollection12.Add(_button20);
+        Grid.SetRow(_button20, 1);
+        Grid.SetColumn(_button20, 3);
+        Grid.SetRowSpan(_button20, 4);
         // ---------------------------
-        Binding _binding18 = new Binding("");
-        _binding18.Source = ClickMeCommand;
-        _button17.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding18);
-        _button17.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#1e4ab0")));
-        _button17.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
-        _button17.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
-        _button17.Content = "ENTER";
-        _button17.BorderBrush = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
-        _button17.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
+        Binding _binding21 = new Binding("");
+        _binding21.Source = ClickMeCommand;
+        _button20.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding21);
+        _button20.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#1e4ab0")));
+        _button20.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
+        _button20.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
+        _button20.Content = "ENTER";
+        _button20.BorderBrush = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
+        _button20.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
         // ---------------------------
-        Button _button19 = new Button();
-        _uIElementCollection10.Add(_button19);
-        Grid.SetColumn(_button19, 1);
-        Grid.SetRow(_button19, 0);
+        Button _button22 = new Button();
+        _uIElementCollection12.Add(_button22);
+        Grid.SetColumn(_button22, 1);
+        Grid.SetRow(_button22, 1);
         // ---------------------------
-        Binding _binding20 = new Binding("");
-        _binding20.Source = ClickMeCommand;
-        _button19.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding20);
-        _button19.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#a83271")));
-        _button19.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
-        _button19.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
-        _button19.Content = "8";
-        _button19.BorderBrush = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
-        _button19.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
+        Binding _binding23 = new Binding("");
+        _binding23.Source = ClickMeCommand;
+        _button22.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding23);
+        _button22.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#a83271")));
+        _button22.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
+        _button22.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
+        _button22.Content = "8";
+        _button22.BorderBrush = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
+        _button22.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
         // ---------------------------
-        Button _button21 = new Button();
-        _uIElementCollection10.Add(_button21);
-        Grid.SetColumn(_button21, 1);
-        Grid.SetRow(_button21, 1);
+        Button _button24 = new Button();
+        _uIElementCollection12.Add(_button24);
+        Grid.SetColumn(_button24, 1);
+        Grid.SetRow(_button24, 2);
         // ---------------------------
-        Binding _binding22 = new Binding("");
-        _binding22.Source = ClickMeCommand;
-        _button21.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding22);
-        _button21.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#bd3d2a")));
-        _button21.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
-        _button21.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
-        _button21.Content = "5";
-        _button21.BorderBrush = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
-        _button21.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
+        Binding _binding25 = new Binding("");
+        _binding25.Source = ClickMeCommand;
+        _button24.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding25);
+        _button24.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#bd3d2a")));
+        _button24.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
+        _button24.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
+        _button24.Content = "5";
+        _button24.BorderBrush = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
+        _button24.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
         // ---------------------------
-        Button _button23 = new Button();
-        _uIElementCollection10.Add(_button23);
-        Grid.SetColumn(_button23, 1);
-        Grid.SetRow(_button23, 2);
+        Button _button26 = new Button();
+        _uIElementCollection12.Add(_button26);
+        Grid.SetColumn(_button26, 1);
+        Grid.SetRow(_button26, 3);
         // ---------------------------
-        Binding _binding24 = new Binding("");
-        _binding24.Source = ClickMeCommand;
-        _button23.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding24);
-        _button23.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#53b01e")));
-        _button23.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
-        _button23.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
-        _button23.Content = "2";
-        _button23.BorderBrush = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
-        _button23.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
+        Binding _binding27 = new Binding("");
+        _binding27.Source = ClickMeCommand;
+        _button26.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding27);
+        _button26.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#53b01e")));
+        _button26.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
+        _button26.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
+        _button26.Content = "2";
+        _button26.BorderBrush = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
+        _button26.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
         // ---------------------------
-        Button _button25 = new Button();
-        _uIElementCollection10.Add(_button25);
-        Grid.SetColumn(_button25, 1);
-        Grid.SetRow(_button25, 3);
+        Button _button28 = new Button();
+        _uIElementCollection12.Add(_button28);
+        Grid.SetColumn(_button28, 0);
+        Grid.SetRow(_button28, 4);
+        Grid.SetColumnSpan(_button28, 2);
         // ---------------------------
-        Binding _binding26 = new Binding("");
-        _binding26.Source = ClickMeCommand;
-        _button25.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding26);
-        _button25.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#1e4ab0")));
-        _button25.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
-        _button25.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
-        _button25.Content = "0";
-        _button25.BorderBrush = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
-        _button25.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
+        Binding _binding29 = new Binding("");
+        _binding29.Source = ClickMeCommand;
+        _button28.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding29);
+        _button28.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#1e4ab0")));
+        _button28.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
+        _button28.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
+        _button28.Content = "0";
+        _button28.BorderBrush = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
+        _button28.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
         // ---------------------------
-        Button _button27 = new Button();
-        _uIElementCollection10.Add(_button27);
-        Grid.SetColumn(_button27, 2);
-        Grid.SetRow(_button27, 0);
+        Button _button30 = new Button();
+        _uIElementCollection12.Add(_button30);
+        Grid.SetColumn(_button30, 2);
+        Grid.SetRow(_button30, 1);
         // ---------------------------
-        Binding _binding28 = new Binding("");
-        _binding28.Source = ClickMeCommand;
-        _button27.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding28);
-        _button27.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#a83271")));
-        _button27.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
-        _button27.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
-        _button27.Content = "9";
-        _button27.BorderBrush = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
-        _button27.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
+        Binding _binding31 = new Binding("");
+        _binding31.Source = ClickMeCommand;
+        _button30.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding31);
+        _button30.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#a83271")));
+        _button30.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
+        _button30.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
+        _button30.Content = "9";
+        _button30.BorderBrush = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
+        _button30.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
         // ---------------------------
-        Button _button29 = new Button();
-        _uIElementCollection10.Add(_button29);
-        Grid.SetColumn(_button29, 2);
-        Grid.SetRow(_button29, 1);
+        Button _button32 = new Button();
+        _uIElementCollection12.Add(_button32);
+        Grid.SetColumn(_button32, 2);
+        Grid.SetRow(_button32, 2);
         // ---------------------------
-        Binding _binding30 = new Binding("");
-        _binding30.Source = ClickMeCommand;
-        _button29.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding30);
-        _button29.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#bd3d2a")));
-        _button29.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
-        _button29.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
-        _button29.Content = "6";
-        _button29.BorderBrush = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
-        _button29.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
+        Binding _binding33 = new Binding("");
+        _binding33.Source = ClickMeCommand;
+        _button32.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding33);
+        _button32.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#bd3d2a")));
+        _button32.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
+        _button32.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
+        _button32.Content = "6";
+        _button32.BorderBrush = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
+        _button32.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
         // ---------------------------
-        Button _button31 = new Button();
-        _uIElementCollection10.Add(_button31);
-        Grid.SetColumn(_button31, 2);
-        Grid.SetRow(_button31, 2);
+        Button _button34 = new Button();
+        _uIElementCollection12.Add(_button34);
+        Grid.SetColumn(_button34, 2);
+        Grid.SetRow(_button34, 3);
         // ---------------------------
-        Binding _binding32 = new Binding("");
-        _binding32.Source = ClickMeCommand;
-        _button31.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding32);
-        _button31.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#53b01e")));
-        _button31.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
-        _button31.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
-        _button31.Content = "3";
-        _button31.BorderBrush = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
-        _button31.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
+        Binding _binding35 = new Binding("");
+        _binding35.Source = ClickMeCommand;
+        _button34.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding35);
+        _button34.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#53b01e")));
+        _button34.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
+        _button34.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
+        _button34.Content = "3";
+        _button34.BorderBrush = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
+        _button34.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
         // ---------------------------
-        Button _button33 = new Button();
-        _uIElementCollection10.Add(_button33);
-        Grid.SetColumn(_button33, 2);
-        Grid.SetRow(_button33, 3);
+        Button _button36 = new Button();
+        _uIElementCollection12.Add(_button36);
+        Grid.SetColumn(_button36, 2);
+        Grid.SetRow(_button36, 4);
         // ---------------------------
-        Binding _binding34 = new Binding("");
-        _binding34.Source = ClickMeCommand;
-        _button33.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding34);
-        _button33.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#1e4ab0")));
-        _button33.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
-        _button33.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
-        _button33.Content = ".";
-        _button33.BorderBrush = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
-        _button33.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
+        Binding _binding37 = new Binding("");
+        _binding37.Source = ClickMeCommand;
+        _button36.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding37);
+        _button36.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#1e4ab0")));
+        _button36.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
+        _button36.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
+        _button36.Content = ".";
+        _button36.BorderBrush = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
+        _button36.BorderThickness = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "2")));
     }
 
     void onClick()

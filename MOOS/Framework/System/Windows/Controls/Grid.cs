@@ -144,10 +144,60 @@ namespace System.Windows.Controls
                     {
                         Children[c].Parent = this;
                         Children[c].Pos = Grids[g];
+
+                        if (Children[c].GridColumnSpan > 0)
+                        {
+                            Children[c].Pos.Position.Width = GetGridColumnSpan(Children[c].GridColumn, Children[c].GridColumnSpan);
+                        }
+
+                        if (Children[c].GridRowSpan > 0)
+                        {
+                            Children[c].Pos.Position.Height = GetGridRowSpan(Children[c].GridRow, Children[c].GridRowSpan);
+                        }
+
                         Children[c].Draw();
                     }
                 }
             }
+
+        }
+
+        int GetGridRowSpan(int row, int span)
+        {
+            int result = RowDefinitions[row].Height.Value;
+
+            if (span > _rows)
+            {
+                span = _rows;
+            }
+            for (int r = row; r < span; r++)
+            {
+                if (Children[r].Pos != null)
+                {
+                    result += RowDefinitions[r].Height.Value;
+                }
+            }
+
+            return result;
+        }
+
+        int GetGridColumnSpan(int column, int span)
+        {
+            int result = 0;
+
+            if (span > _columns)
+            {
+                span = _columns;
+            }
+            for (int c = column; c < span; c++)
+            {
+                if (Children[c].Pos != null)
+                {
+                    result += ColumnDefinitions[c].Width.Value;
+                }
+            }
+          
+            return result;
         }
 
         void GridPosX(int r, int c)
@@ -216,6 +266,15 @@ namespace System.Windows.Controls
         public static void SetColumn(Widget control, int value)
         {
             control.GridColumn = value;
+        }
+        public static void SetColumnSpan(Widget control, int value)
+        {
+            control.GridColumnSpan = value;
+        }
+
+        public  static void SetRowSpan(Widget control, int value)
+        {
+            control.GridRowSpan = value;
         }
     }
 }

@@ -7,7 +7,7 @@ namespace System.Windows
 {
     public class GridLengthConverter
     {
-        public GridLength ConvertFrom(object context, CultureInfo cultureInfo, object source)
+        public object ConvertFrom(object context, CultureInfo cultureInfo, object source)
         {
             GridLength gridLength = null;
 

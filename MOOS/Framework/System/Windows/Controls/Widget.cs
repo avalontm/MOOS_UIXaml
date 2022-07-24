@@ -63,7 +63,10 @@ namespace System.Windows.Controls
             }
         }
 
-        public Widget() 
+        public int GridColumnSpan { get; set; }
+        public int GridRowSpan { get; set; }
+
+        public Widget() : base()
         {
             Parent = this;
             Background = new Brush(0xFF222222);
@@ -78,6 +81,11 @@ namespace System.Windows.Controls
 
         public virtual void Draw()
         {
+            if (this.Parent == null)
+            {
+                return;
+            }
+
             // Position & margin
             if (Pos == null)
             {
