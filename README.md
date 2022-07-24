@@ -3,7 +3,7 @@
 ##HOW USE
 >use MOOS from directory MOOS/build for test
 
-![Main](images/screen1.png)
+![Main](images/screen2.png)
 
 # CONTROLS
 - [x] Window
@@ -13,6 +13,8 @@
 
 
 # FEATURES
+
+## Properties
 - [x] Command
 - [x] Margin
 - [x] Background
@@ -20,7 +22,7 @@
 - [x] BorderBrush
 - [x] BorderThickness
 
-# GRIDS
+## Grids
 - [x] Grid.Row
 - [x] Grid.Column
 - [x] Grid.RowSpan
