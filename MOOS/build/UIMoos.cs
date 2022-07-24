@@ -130,7 +130,7 @@ public partial class UIMoos : Window
         Grid.SetRow(_button17, 3);
         // ---------------------------
         Binding _binding18 = new Binding("");
-        _binding18.Source = ClickMeCommand;
+        _binding18.Source = ClickEnterCommand;
         _button17.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding18);
         _button17.CommandParameter = "1";
         _button17.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#53b01e")));
