@@ -86,7 +86,7 @@ public partial class UIMoos : Window
         lblNumbers = new Label();
         _uIElementCollection12.Add(lblNumbers);
         Grid.SetColumnSpan(lblNumbers, 4);
-        lblNumbers.Content = "";
+        lblNumbers.Content = "TEST";
         lblNumbers.Foreground = Brushes.White;
         lblNumbers.HorizontalContentAlignment = HorizontalAlignment.Center;
         lblNumbers.VerticalContentAlignment = VerticalAlignment.Center;
@@ -147,7 +147,7 @@ public partial class UIMoos : Window
         Grid.SetRowSpan(_button19, 4);
         // ---------------------------
         Binding _binding20 = new Binding("");
-        _binding20.Source = ClickEnterCommand;
+        _binding20.Source = ClickMeCommand;
         _button19.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding20);
         _button19.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#1e4ab0")));
         _button19.Foreground = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#ffffff")));
