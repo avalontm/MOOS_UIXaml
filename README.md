@@ -16,7 +16,12 @@
 - [x] Margin
 - [x] Background
 - [x] Foreground
-- [x] Grid.Row
 - [x] BorderBrush
 - [x] BorderThickness
+
+# GRIDS
+- [x] Grid.Row
 - [x] Grid.Column
+- [x] GridRowSpan
+- [x] Grid.ColumnSpan
+- [ ] Grid SubGrids
