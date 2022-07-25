@@ -204,6 +204,30 @@ namespace System
             return result;
         }
 
+        public char[] ToCharArray()
+        {
+            char[] result = new char[this.Length];
+
+            for (int i = 0; i < this.Length; i++)
+            {
+                result[i] += (char)this[i];
+            }
+
+            return result;
+        }
+
+        public static string FromCharArray(char[] chars)
+        {
+            string result = "";
+
+            for (int i = 0; i < chars.Length; i++)
+            {
+                result += chars[i];
+            }
+
+            return result;
+        }
+
         public static bool IsNullOrEmpty(string value)
         {
             if (value == null || value != null && value.Length == 0)

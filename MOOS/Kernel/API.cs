@@ -1,8 +1,10 @@
+using Internal.Runtime.CompilerServices;
 using MOOS.Driver;
 using MOOS.FS;
 using MOOS.Misc;
 using System;
 using System.Diagnostics;
+using System.Windows;
 using static IDT;
 using static Internal.Runtime.CompilerHelpers.InteropHelpers;
 
@@ -36,6 +38,10 @@ namespace MOOS
                     return (delegate*<void>)&API_SwitchToConsoleMode;
                 case "DrawPoint":
                     return (delegate*<int, int, uint, void>)&API_DrawPoint;
+                case "Debug.WriteLine":
+                    return (delegate*<string, void>)&API_Debug_WriteLine;
+                case "UIApplication":
+                    return (delegate*<UIApplication, bool>)&API_UIApplication;
             }
             Panic.Error($"System call \"{name}\" is not found");
             return null;
@@ -54,7 +60,7 @@ namespace MOOS
             Framebuffer.TripleBuffered = false;
         }
 
-        public static void API_ReadAllBytes(string name,ulong* length,byte** data) 
+        public static void API_ReadAllBytes(string name,ulong* length, byte** data) 
         {
             byte[] buffer = File.Instance.ReadAllBytes(name);
 
@@ -106,5 +112,24 @@ namespace MOOS
         {
             Console.WriteLine("Hello from exe!");
         }
+
+        public static void API_Debug_WriteLine(string value)
+        {
+            Debug.WriteLine(value);
+        }
+
+        public unsafe static bool API_UIApplication(UIApplication app)
+        {
+            Window form = new Window();
+            form.Title = "App Exe";
+            form.X = app.x;
+            form.Y = app.y;
+            form.Width = app.width;
+            form.Height = app.height;
+            form.ShowDialog();
+            return true;
+          
+        }
+        
     }
 }

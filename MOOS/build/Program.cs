@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Runtime;
 using System.Windows.Forms;
 using System.Windows;
+using System.Diagnostics;
 
 static unsafe class Program
 {
@@ -91,14 +92,14 @@ static unsafe class Program
 
         WindowManager.Initialize();
         MessageBox.Initialize();
-      
+
         Console.WriteLine("Use Native AOT (Core RT) Technology.");
 
         Audio.Initialize();
         AC97.Initialize();
 
         SMain();
-        }
+    }
 
     public static void SMain()
     {
@@ -109,7 +110,7 @@ static unsafe class Program
         Image wall = Wallpaper;
         Wallpaper = wall.ResizeImage(Framebuffer.Width, Framebuffer.Height);
         wall.Dispose();
-        
+
         UIMoos xamlWindow = new UIMoos();
         xamlWindow.ShowDialog();
 
@@ -118,9 +119,10 @@ static unsafe class Program
             WindowManager.InputAll();
 
             Framebuffer.Graphics.DrawImage((Framebuffer.Width / 2) - (Wallpaper.Width / 2), (Framebuffer.Height / 2) - (Wallpaper.Height / 2), Wallpaper, false);
-
-            WindowManager.DrawAll();
+           
+            //UIKernel
             WindowManager.UpdateAll();
+            WindowManager.DrawAll();
 
             Framebuffer.Graphics.DrawImage(Control.MousePosition.X, Control.MousePosition.Y, WindowManager.HasWindowMoving ? CursorMoving : Cursor);
             Framebuffer.Update();

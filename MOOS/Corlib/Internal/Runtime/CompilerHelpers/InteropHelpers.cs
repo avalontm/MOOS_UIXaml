@@ -49,7 +49,7 @@ namespace Internal.Runtime.CompilerHelpers
         }
 #endif
 
-        internal static unsafe string StringToAnsiString(string str, bool bestFit, bool throwOnUnmappableChar) 
+        public static unsafe string StringToAnsiString(string str, bool bestFit, bool throwOnUnmappableChar) 
         {
             //No Ansi support, Return unicode
             return str;
@@ -61,6 +61,12 @@ namespace Internal.Runtime.CompilerHelpers
             return managedValue;
         }
 
+        public static unsafe string StringToUnicodeBuffer(string str, bool bestFit, bool throwOnUnmappableChar)
+        {
+            //No Ansi support, Return unicode
+            return str;
+        }
+        
         internal unsafe static void CoTaskMemFree(void* p)
         {
             //TO-DO

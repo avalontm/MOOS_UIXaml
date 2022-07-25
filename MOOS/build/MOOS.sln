@@ -9,13 +9,15 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Corlib", "..\Corlib\Corlib.
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Kernel", "..\Kernel\Kernel.shproj", "{066034BC-37FE-4605-8BDB-C525EC29DBE4}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "UIFramework", "..\UIFramework\UIFramework.shproj", "{CBF8A3A1-5076-42AD-8189-A54052C8DAB2}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "UIKernel", "..\UIKernel\UIKernel.shproj", "{CBF8A3A1-5076-42AD-8189-A54052C8DAB2}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NativeLib", "..\NativeLib\NativeLib.vcxproj", "{4C81C206-F900-4CEC-B646-828A840817A6}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibC", "..\LibC\LibC.vcxproj", "{19D564FF-D5CE-4566-9EF6-088112A4F08F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Doom", "..\Doom\Doom.vcxproj", "{A4E4E947-2D7F-4B52-98A2-1FDA9CE739E6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoosApp", "..\MoosApp\MoosApp.csproj", "{BDA32999-4C5D-4A68-BE18-BE9B5618E298}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,18 @@ Global
 		{A4E4E947-2D7F-4B52-98A2-1FDA9CE739E6}.Release|x64.Build.0 = Release|x64
 		{A4E4E947-2D7F-4B52-98A2-1FDA9CE739E6}.Release|x86.ActiveCfg = Release|Win32
 		{A4E4E947-2D7F-4B52-98A2-1FDA9CE739E6}.Release|x86.Build.0 = Release|Win32
+		{BDA32999-4C5D-4A68-BE18-BE9B5618E298}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDA32999-4C5D-4A68-BE18-BE9B5618E298}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDA32999-4C5D-4A68-BE18-BE9B5618E298}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BDA32999-4C5D-4A68-BE18-BE9B5618E298}.Debug|x64.Build.0 = Debug|Any CPU
+		{BDA32999-4C5D-4A68-BE18-BE9B5618E298}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BDA32999-4C5D-4A68-BE18-BE9B5618E298}.Debug|x86.Build.0 = Debug|Any CPU
+		{BDA32999-4C5D-4A68-BE18-BE9B5618E298}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDA32999-4C5D-4A68-BE18-BE9B5618E298}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDA32999-4C5D-4A68-BE18-BE9B5618E298}.Release|x64.ActiveCfg = Release|Any CPU
+		{BDA32999-4C5D-4A68-BE18-BE9B5618E298}.Release|x64.Build.0 = Release|Any CPU
+		{BDA32999-4C5D-4A68-BE18-BE9B5618E298}.Release|x86.ActiveCfg = Release|Any CPU
+		{BDA32999-4C5D-4A68-BE18-BE9B5618E298}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -85,9 +99,10 @@ Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\Kernel\Kernel.projitems*{066034bc-37fe-4605-8bdb-c525ec29dbe4}*SharedItemsImports = 13
 		..\Corlib\Corlib.projitems*{2ea1f38f-f26e-4148-8ffd-38713478e015}*SharedItemsImports = 13
-		..\UIFramework\UIFramework.projitems*{cbf8a3a1-5076-42ad-8189-a54052c8dab2}*SharedItemsImports = 13
+		..\Corlib\Corlib.projitems*{bda32999-4c5d-4a68-be18-be9b5618e298}*SharedItemsImports = 5
+		..\UIKernel\UIKernel.projitems*{cbf8a3a1-5076-42ad-8189-a54052c8dab2}*SharedItemsImports = 13
 		..\Corlib\Corlib.projitems*{cf0cab83-235d-48e4-a31d-8294c780a12c}*SharedItemsImports = 5
 		..\Kernel\Kernel.projitems*{cf0cab83-235d-48e4-a31d-8294c780a12c}*SharedItemsImports = 5
-		..\UIFramework\UIFramework.projitems*{cf0cab83-235d-48e4-a31d-8294c780a12c}*SharedItemsImports = 5
+		..\UIKernel\UIKernel.projitems*{cf0cab83-235d-48e4-a31d-8294c780a12c}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

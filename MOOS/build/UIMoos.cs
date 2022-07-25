@@ -27,7 +27,7 @@ public partial class UIMoos : Window
     ICommand ClickMinusCommand { get; set; }
     ICommand ClickPlusCommand { get; set; }
 
-    public System.Windows.Controls.Label lblNumbers;
+    public System.Windows.Controls.TextBox lblNumbers;
 
     Opreation opreation = Opreation.None;
 
@@ -100,10 +100,10 @@ public partial class UIMoos : Window
         // ---------------------------
         UIElementCollection _uIElementCollection12 = _grid0.Children;
         // ---------------------------
-        lblNumbers = new Label();
+        lblNumbers = new TextBox();
         _uIElementCollection12.Add(lblNumbers);
         Grid.SetColumnSpan(lblNumbers, 4);
-        lblNumbers.Content = "";
+        lblNumbers.Text = "";
         ThicknessConverter _thicknessConverter = new ThicknessConverter();
         lblNumbers.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
         lblNumbers.Foreground = Brushes.Red;
@@ -360,7 +360,7 @@ public partial class UIMoos : Window
 
         opreation = Opreation.Minus;
         Num2 = 0;
-        lblNumbers.Content = String.Empty;
+        lblNumbers.Text = String.Empty;
     }
 
     void onPlus(object obj)
@@ -372,18 +372,18 @@ public partial class UIMoos : Window
 
         opreation = Opreation.Plus;
         Num2 = 0;
-        lblNumbers.Content = String.Empty;
+        lblNumbers.Text = String.Empty;
     }
 
     void onDelete(object obj)
     {
-        if (!String.IsNullOrEmpty(lblNumbers.Content))
+        if (!String.IsNullOrEmpty(lblNumbers.Text))
         {
-            lblNumbers.Content = lblNumbers.Content.Remove(lblNumbers.Content.Length);
+            lblNumbers.Text = lblNumbers.Text.Remove(lblNumbers.Text.Length);
 
-            if (!string.IsNullOrEmpty(lblNumbers.Content))
+            if (!string.IsNullOrEmpty(lblNumbers.Text))
             {
-                Num2 = Convert.ToUInt32(lblNumbers.Content);
+                Num2 = Convert.ToUInt32(lblNumbers.Text);
             }
 
         }
@@ -411,16 +411,16 @@ public partial class UIMoos : Window
                 Num2 = 0;
                 break;
         }
-        lblNumbers.Content = Num1.ToString();
+        lblNumbers.Text = Num1.ToString();
     }
 
     void onClick(object obj)
     {
-        lblNumbers.Content += obj.ToString();
+        lblNumbers.Text += obj.ToString();
 
-        if (!string.IsNullOrEmpty(lblNumbers.Content))
+        if (!string.IsNullOrEmpty(lblNumbers.Text))
         {
-            Num2 = Convert.ToUInt32(lblNumbers.Content);
+            Num2 = Convert.ToUInt32(lblNumbers.Text);
         }
 
     }
