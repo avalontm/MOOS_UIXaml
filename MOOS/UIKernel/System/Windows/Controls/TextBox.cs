@@ -11,6 +11,7 @@ namespace System.Windows.Controls
     {
         public string Text { set;get; }
         public int FontSize { set; get; }
+        public int MaxLength { set; get; }
         public FontWeight FontWeight { get; set; }
         public HorizontalAlignment HorizontalContentAlignment { get; set; }
         public VerticalAlignment VerticalContentAlignment { get; set; }
@@ -25,13 +26,21 @@ namespace System.Windows.Controls
             HorizontalContentAlignment = HorizontalAlignment.Stretch;
             VerticalContentAlignment = VerticalAlignment.Stretch;
             Background = Brushes.White;
-            Keyboard.OnKeyChanged += PS2Keyboard_OnKeyChanged;
+            Keyboard.OnKeyChanged += Keyboard_OnKeyChanged;
         }
 
-        void PS2Keyboard_OnKeyChanged(ConsoleKeyInfo key)
+        void Keyboard_OnKeyChanged(ConsoleKeyInfo key)
         {
             if (IsFocus)
             {
+                if (MaxLength > 0)
+                {
+                    if (Text.Length > MaxLength)
+                    {
+                        return;
+                    }
+                }
+
                 switch (key.Key)
                 {
                     case ConsoleKey.Backspace:
@@ -67,19 +76,21 @@ namespace System.Windows.Controls
             if (!string.IsNullOrEmpty(Text))
             {
                 int w = 0, h = (Y + (Height / 2)) - (WindowManager.font.FontSize / 2);
-              
+
+                w = WindowManager.font.MeasureString(Text);
+
+                if (w > Width)
+                {
+                    start = (Width / WindowManager.font.FontSize) - Text.Length;
+                }
+                else
+                {
+                    start = 0;
+                }
+
                 for (int i = start; i < Text.Length; i++)
                 {
-                    w += WindowManager.font.DrawChar(Framebuffer.Graphics, X + w, h, Text[i], Foreground.Value);
-
-                    if (w + WindowManager.font.FontSize > Width)
-                    {
-                        start = 0;
-                    }
-                    else
-                    {
-                        start = 0;
-                    }
+                    WindowManager.font.DrawChar(Framebuffer.Graphics, X + w, h, Text[i], Foreground.Value); 
                 }
 
                 if (BorderBrush != null)
