@@ -8,6 +8,7 @@
 - [x] Window
 - [x] Button
 - [x] Label
+- [x] TextBox
 - [x] Grid
 
 ### Properties
