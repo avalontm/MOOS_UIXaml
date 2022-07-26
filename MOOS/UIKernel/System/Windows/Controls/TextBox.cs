@@ -81,16 +81,16 @@ namespace System.Windows.Controls
             int w = 0, h = (Y + (Height / 2)) - (WindowManager.font.FontSize / 2);
             int fnt = (WindowManager.font.FontSize / 2);
             int _w = (pos * fnt);
-
+            int _chr = 0;
             Framebuffer.Graphics.FillRectangle(X, Y, Width, Height, Background.Value);
 
             if (!string.IsNullOrEmpty(Text))
             {
                 w = WindowManager.font.MeasureString(Text);
               
-                if (w > Width - fnt)
+                if (w > Width + fnt)
                 {
-                    start = (Text.Length) - ((Width / fnt) - 2);
+                    start = (Text.Length) - (Width / fnt) - fnt;
                 }
                 else
                 {
@@ -103,7 +103,7 @@ namespace System.Windows.Controls
 
                     if (_w < (Width - fnt))
                     {
-                        WindowManager.font.DrawChar(Framebuffer.Graphics, X + _w, h, Text[i], Foreground.Value);
+                        _chr += WindowManager.font.DrawChar(Framebuffer.Graphics, X + _chr, h, Text[i], Foreground.Value);
                     }
                   pos++;
                 }
@@ -116,7 +116,7 @@ namespace System.Windows.Controls
                 if (DateTime.Now.Ticks > Flicker.Ticks )
                 {
                     Flicker = DateTime.Now.AddTicks(TimeSpan.FromMilliseconds(50).Ticks);
-                    Framebuffer.Graphics.DrawLine((X + _w), Y + 5, (X + _w), (Y + Height) - 5, 0xFF000000);
+                    Framebuffer.Graphics.DrawLine((X + _chr), Y + 5, (X + _chr), (Y + Height) - 5, 0xFF000000);
                 }
             }
 

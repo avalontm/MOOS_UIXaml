@@ -1,6 +1,6 @@
  MOOS
 
- Timestamp is 62df391f (Mon Jul 25 17:45:19 2022)
+ Timestamp is 62df7d2d (Mon Jul 25 22:35:41 2022)
 
  Preferred load address is 0000000010000000
 
@@ -8,7 +8,7 @@
  0001:00000000 00000220H .text                   CODE
  0001:00000220 0002aee5H .text$mn                CODE
  0002:00000000 00000039H .unbox$M                CODE
- 0003:00000000 00017ef0H .managedcode$I          CODE
+ 0003:00000000 00017ee8H .managedcode$I          CODE
  0004:00000000 00032190H .rdata                  DATA
  0004:00032190 00000034H .rdata$voltmd           DATA
  0004:000321c4 00000188H .rdata$zzzdbg           DATA
@@ -850,71 +850,71 @@
  0003:0001603c       MOOS_System_Windows_Controls_TextBox__Keyboard_OnKeyChanged 000000001004403c     MOOS.obj
  0003:000160ec       MOOS_System_Windows_Controls_TextBox__Update 00000000100440ec     MOOS.obj
  0003:000160f4       MOOS_System_Windows_Controls_TextBox__Draw 00000000100440f4     MOOS.obj
- 0003:00016330       MOOS_System_Windows_Controls_Button___ctor 0000000010044330     MOOS.obj
- 0003:00016390       MOOS_System_Windows_Controls_Button__Update 0000000010044390     MOOS.obj
- 0003:00016434       MOOS_System_Windows_Controls_Button__Draw 0000000010044434     MOOS.obj
- 0003:00016550       MOOS_System_Windows_Controls_Grid___ctor 0000000010044550     MOOS.obj
- 0003:00016698       MOOS_System_Windows_Controls_Grid__Update 0000000010044698     MOOS.obj
- 0003:000166f0       MOOS_System_Windows_Controls_Grid__Draw 00000000100446f0     MOOS.obj
- 0003:00016890       MOOS_System_Windows_Controls_Grid__onUpdateGrids 0000000010044890     MOOS.obj
- 0003:00016a70       MOOS_System_Windows_Controls_Grid__onDrawGrids 0000000010044a70     MOOS.obj
- 0003:00016cc0       MOOS_System_Windows_Controls_Grid__GetGridRowSpan 0000000010044cc0     MOOS.obj
- 0003:00016d50       MOOS_System_Windows_Controls_Grid__GetGridColumnSpan 0000000010044d50     MOOS.obj
- 0003:00016dc0       MOOS_System_Windows_Controls_Grid__GridPosX 0000000010044dc0     MOOS.obj
- 0003:00016e44       MOOS_System_Windows_Controls_Grid__GridPosY 0000000010044e44     MOOS.obj
- 0003:00016ec4       MOOS_System_Windows_Controls_Grid__GridHight 0000000010044ec4     MOOS.obj
- 0003:00016f58       MOOS_System_Windows_Controls_Grid__GridWidth 0000000010044f58     MOOS.obj
- 0003:00016ff0       MOOS_System_Windows_Controls_RowDefinition___ctor 0000000010044ff0     MOOS.obj
- 0003:0001704c       MOOS_System_Windows_Controls_RowDefinition__ToString 000000001004504c     MOOS.obj
- 0003:00017108       MOOS_System_Windows_Controls_RowDefinitionCollection___ctor 0000000010045108     MOOS.obj
- 0003:00017160       MOOS_System_Windows_Controls_UIElementCollection___ctor 0000000010045160     MOOS.obj
- 0003:0001718c       MOOS_System_Windows_Controls_Position___ctor 000000001004518c     MOOS.obj
- 0003:00017190       MOOS_System_Windows_Controls_Widget___ctor 0000000010045190     MOOS.obj
- 0003:000172dc       MOOS_System_Windows_Controls_Widget__Draw 00000000100452dc     MOOS.obj
- 0003:00017388       MOOS_System_Windows_Controls_Widget__Update 0000000010045388     MOOS.obj
- 0003:000173ec       MOOS_System_Windows_Controls_Widget__onSetParent 00000000100453ec     MOOS.obj
- 0003:00017408       MOOS_System_Windows_Controls_Widget__DrawBorder 0000000010045408     MOOS.obj
- 0003:0001747c       MOOS_System_Windows_Controls_Widget__isFocus 000000001004547c     MOOS.obj
- 0003:000174b4       MOOS_System_Threading_Monitor__Enter 00000000100454b4     MOOS.obj
- 0003:000174dc       MOOS_System_Threading_Monitor__Exit 00000000100454dc     MOOS.obj
- 0003:0001751c       MOOS_System_Drawing_Color__FromArgb_1 000000001004551c     MOOS.obj
- 0003:00017558       MOOS_System_Drawing_Image___ctor_0 0000000010045558     MOOS.obj
- 0003:0001755c       MOOS_System_Drawing_Image__ResizeImage 000000001004555c     MOOS.obj
- 0003:00017680       MOOS_System_Drawing_Image__Dispose 0000000010045680     MOOS.obj
- 0003:000176b0       MOOS_System_Runtime_TypeCast__CheckCastClass 00000000100456b0     MOOS.obj
- 0003:000176b0       RhTypeCast_CheckCastClass  00000000100456b0     MOOS.obj
- 0003:000176d8       MOOS_System_Runtime_TypeCast__CheckCastArray 00000000100456d8     MOOS.obj
- 0003:000176d8       RhTypeCast_CheckCastArray  00000000100456d8     MOOS.obj
- 0003:00017700       MOOS_System_Runtime_TypeCast__IsInstanceOfArray 0000000010045700     MOOS.obj
- 0003:00017700       RhTypeCast_IsInstanceOfArray 0000000010045700     MOOS.obj
- 0003:0001775c       MOOS_MOOS_SATA_HBACommandHeader__set_CommandFISLength 000000001004575c     MOOS.obj
- 0003:00017768       MOOS_MOOS_SATA_HBACommandHeader__set_Write 0000000010045768     MOOS.obj
- 0003:00017774       MOOS_MOOS_SATA_SATADevice__Configure 0000000010045774     MOOS.obj
- 0003:00017848       MOOS_MOOS_SATA_SATADevice__StartCMD 0000000010045848     MOOS.obj
- 0003:0001786c       MOOS_MOOS_SATA_SATADevice__StopCMD 000000001004586c     MOOS.obj
- 0003:000178a0       MOOS_MOOS_SATA_SATADevice__Read 00000000100458a0     MOOS.obj
- 0003:000178bc       MOOS_MOOS_SATA_SATADevice__Write 00000000100458bc     MOOS.obj
- 0003:000178d8       MOOS_MOOS_SATA_SATADevice__ReadOrWrite 00000000100458d8     MOOS.obj
- 0003:00017b9c       MOOS_MOOS_SATA_SATADevice__FindSlot 0000000010045b9c     MOOS.obj
- 0003:00017bd4       MOOS_MOOS_SATA_SATADevice___ctor 0000000010045bd4     MOOS.obj
- 0003:00017bf4       MOOS_MOOS_Misc_Interrupts_INT___ctor 0000000010045bf4     MOOS.obj
- 0003:00017bf8       MOOS_MOOS_Driver_EHCI_TD__Clean 0000000010045bf8     MOOS.obj
- 0003:00017c68       MOOS_MOOS_Driver_EHCI_QH__Clean 0000000010045c68     MOOS.obj
- 0003:00017cd8       MOOS_System_Array_1<UInt8>___ctor 0000000010045cd8     MOOS.obj
- 0003:00017cdc       MOOS_System_Collections_Generic_List_1<UInt8>__Dispose 0000000010045cdc     MOOS.obj
- 0003:00017d0c       MOOS_System_Array_1<Char>___ctor 0000000010045d0c     MOOS.obj
- 0003:00017d10       MOOS_System_Array_1<Int32>___ctor 0000000010045d10     MOOS.obj
- 0003:00017d14       MOOS_System_Array_1<MOOS_System_ConsoleKey>___ctor 0000000010045d14     MOOS.obj
- 0003:00017d18       MOOS_System_Array_1<UInt32>___ctor 0000000010045d18     MOOS.obj
- 0003:00017d1c       MOOS_System_Array_1<MOOS_IDT_IDTEntry>___ctor 0000000010045d1c     MOOS.obj
- 0003:00017d20       MOOS_System_Array_1<System___Canon>___ctor 0000000010045d20     MOOS.obj
- 0003:00017d24       MOOS_System_Collections_Generic_List_1<System___Canon>__Insert 0000000010045d24     MOOS.obj
- 0003:00017dec       MOOS_System_Collections_Generic_List_1<System___Canon>__IndexOf 0000000010045dec     MOOS.obj
- 0003:00017e4c       MOOS_System_Collections_Generic_List_1<System___Canon>__Dispose 0000000010045e4c     MOOS.obj
- 0003:00017e7c       MOOS_System_Collections_Generic_Queue_1<System___Canon>__Dequeue 0000000010045e7c     MOOS.obj
- 0003:00017eb8       Internal_CompilerGenerated__Module___SetAppContextSwitches 0000000010045eb8     MOOS.obj
- 0003:00017ebc       MOOS__Module___StartupCodeMain 0000000010045ebc     MOOS.obj
- 0003:00017ebc       __managed__Main            0000000010045ebc     MOOS.obj
+ 0003:00016328       MOOS_System_Windows_Controls_Button___ctor 0000000010044328     MOOS.obj
+ 0003:00016388       MOOS_System_Windows_Controls_Button__Update 0000000010044388     MOOS.obj
+ 0003:0001642c       MOOS_System_Windows_Controls_Button__Draw 000000001004442c     MOOS.obj
+ 0003:00016548       MOOS_System_Windows_Controls_Grid___ctor 0000000010044548     MOOS.obj
+ 0003:00016690       MOOS_System_Windows_Controls_Grid__Update 0000000010044690     MOOS.obj
+ 0003:000166e8       MOOS_System_Windows_Controls_Grid__Draw 00000000100446e8     MOOS.obj
+ 0003:00016888       MOOS_System_Windows_Controls_Grid__onUpdateGrids 0000000010044888     MOOS.obj
+ 0003:00016a68       MOOS_System_Windows_Controls_Grid__onDrawGrids 0000000010044a68     MOOS.obj
+ 0003:00016cb8       MOOS_System_Windows_Controls_Grid__GetGridRowSpan 0000000010044cb8     MOOS.obj
+ 0003:00016d48       MOOS_System_Windows_Controls_Grid__GetGridColumnSpan 0000000010044d48     MOOS.obj
+ 0003:00016db8       MOOS_System_Windows_Controls_Grid__GridPosX 0000000010044db8     MOOS.obj
+ 0003:00016e3c       MOOS_System_Windows_Controls_Grid__GridPosY 0000000010044e3c     MOOS.obj
+ 0003:00016ebc       MOOS_System_Windows_Controls_Grid__GridHight 0000000010044ebc     MOOS.obj
+ 0003:00016f50       MOOS_System_Windows_Controls_Grid__GridWidth 0000000010044f50     MOOS.obj
+ 0003:00016fe8       MOOS_System_Windows_Controls_RowDefinition___ctor 0000000010044fe8     MOOS.obj
+ 0003:00017044       MOOS_System_Windows_Controls_RowDefinition__ToString 0000000010045044     MOOS.obj
+ 0003:00017100       MOOS_System_Windows_Controls_RowDefinitionCollection___ctor 0000000010045100     MOOS.obj
+ 0003:00017158       MOOS_System_Windows_Controls_UIElementCollection___ctor 0000000010045158     MOOS.obj
+ 0003:00017184       MOOS_System_Windows_Controls_Position___ctor 0000000010045184     MOOS.obj
+ 0003:00017188       MOOS_System_Windows_Controls_Widget___ctor 0000000010045188     MOOS.obj
+ 0003:000172d4       MOOS_System_Windows_Controls_Widget__Draw 00000000100452d4     MOOS.obj
+ 0003:00017380       MOOS_System_Windows_Controls_Widget__Update 0000000010045380     MOOS.obj
+ 0003:000173e4       MOOS_System_Windows_Controls_Widget__onSetParent 00000000100453e4     MOOS.obj
+ 0003:00017400       MOOS_System_Windows_Controls_Widget__DrawBorder 0000000010045400     MOOS.obj
+ 0003:00017474       MOOS_System_Windows_Controls_Widget__isFocus 0000000010045474     MOOS.obj
+ 0003:000174ac       MOOS_System_Threading_Monitor__Enter 00000000100454ac     MOOS.obj
+ 0003:000174d4       MOOS_System_Threading_Monitor__Exit 00000000100454d4     MOOS.obj
+ 0003:00017514       MOOS_System_Drawing_Color__FromArgb_1 0000000010045514     MOOS.obj
+ 0003:00017550       MOOS_System_Drawing_Image___ctor_0 0000000010045550     MOOS.obj
+ 0003:00017554       MOOS_System_Drawing_Image__ResizeImage 0000000010045554     MOOS.obj
+ 0003:00017678       MOOS_System_Drawing_Image__Dispose 0000000010045678     MOOS.obj
+ 0003:000176a8       MOOS_System_Runtime_TypeCast__CheckCastClass 00000000100456a8     MOOS.obj
+ 0003:000176a8       RhTypeCast_CheckCastClass  00000000100456a8     MOOS.obj
+ 0003:000176d0       MOOS_System_Runtime_TypeCast__CheckCastArray 00000000100456d0     MOOS.obj
+ 0003:000176d0       RhTypeCast_CheckCastArray  00000000100456d0     MOOS.obj
+ 0003:000176f8       MOOS_System_Runtime_TypeCast__IsInstanceOfArray 00000000100456f8     MOOS.obj
+ 0003:000176f8       RhTypeCast_IsInstanceOfArray 00000000100456f8     MOOS.obj
+ 0003:00017754       MOOS_MOOS_SATA_HBACommandHeader__set_CommandFISLength 0000000010045754     MOOS.obj
+ 0003:00017760       MOOS_MOOS_SATA_HBACommandHeader__set_Write 0000000010045760     MOOS.obj
+ 0003:0001776c       MOOS_MOOS_SATA_SATADevice__Configure 000000001004576c     MOOS.obj
+ 0003:00017840       MOOS_MOOS_SATA_SATADevice__StartCMD 0000000010045840     MOOS.obj
+ 0003:00017864       MOOS_MOOS_SATA_SATADevice__StopCMD 0000000010045864     MOOS.obj
+ 0003:00017898       MOOS_MOOS_SATA_SATADevice__Read 0000000010045898     MOOS.obj
+ 0003:000178b4       MOOS_MOOS_SATA_SATADevice__Write 00000000100458b4     MOOS.obj
+ 0003:000178d0       MOOS_MOOS_SATA_SATADevice__ReadOrWrite 00000000100458d0     MOOS.obj
+ 0003:00017b94       MOOS_MOOS_SATA_SATADevice__FindSlot 0000000010045b94     MOOS.obj
+ 0003:00017bcc       MOOS_MOOS_SATA_SATADevice___ctor 0000000010045bcc     MOOS.obj
+ 0003:00017bec       MOOS_MOOS_Misc_Interrupts_INT___ctor 0000000010045bec     MOOS.obj
+ 0003:00017bf0       MOOS_MOOS_Driver_EHCI_TD__Clean 0000000010045bf0     MOOS.obj
+ 0003:00017c60       MOOS_MOOS_Driver_EHCI_QH__Clean 0000000010045c60     MOOS.obj
+ 0003:00017cd0       MOOS_System_Array_1<UInt8>___ctor 0000000010045cd0     MOOS.obj
+ 0003:00017cd4       MOOS_System_Collections_Generic_List_1<UInt8>__Dispose 0000000010045cd4     MOOS.obj
+ 0003:00017d04       MOOS_System_Array_1<Char>___ctor 0000000010045d04     MOOS.obj
+ 0003:00017d08       MOOS_System_Array_1<Int32>___ctor 0000000010045d08     MOOS.obj
+ 0003:00017d0c       MOOS_System_Array_1<MOOS_System_ConsoleKey>___ctor 0000000010045d0c     MOOS.obj
+ 0003:00017d10       MOOS_System_Array_1<UInt32>___ctor 0000000010045d10     MOOS.obj
+ 0003:00017d14       MOOS_System_Array_1<MOOS_IDT_IDTEntry>___ctor 0000000010045d14     MOOS.obj
+ 0003:00017d18       MOOS_System_Array_1<System___Canon>___ctor 0000000010045d18     MOOS.obj
+ 0003:00017d1c       MOOS_System_Collections_Generic_List_1<System___Canon>__Insert 0000000010045d1c     MOOS.obj
+ 0003:00017de4       MOOS_System_Collections_Generic_List_1<System___Canon>__IndexOf 0000000010045de4     MOOS.obj
+ 0003:00017e44       MOOS_System_Collections_Generic_List_1<System___Canon>__Dispose 0000000010045e44     MOOS.obj
+ 0003:00017e74       MOOS_System_Collections_Generic_Queue_1<System___Canon>__Dequeue 0000000010045e74     MOOS.obj
+ 0003:00017eb0       Internal_CompilerGenerated__Module___SetAppContextSwitches 0000000010045eb0     MOOS.obj
+ 0003:00017eb4       MOOS__Module___StartupCodeMain 0000000010045eb4     MOOS.obj
+ 0003:00017eb4       __managed__Main            0000000010045eb4     MOOS.obj
  0004:00000000       __embedded_metadata        0000000010046000     MOOS.obj
  0004:000028b0       __embedded_metadata_End    00000000100488b0     MOOS.obj
  0004:000028b0       __embedded_resourcedata    00000000100488b0     MOOS.obj
