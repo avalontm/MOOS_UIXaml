@@ -1,37 +1,37 @@
-# MOOS IU XAML
-
-##HOW USE
->use MOOS from directory MOOS/build for test
+# MOOS UI XAML
 
 ![Main](images/screen2.png)
 
-# FEATURES
+## FEATURES
 
-## Controls
+### Controls
 - [x] Window
 - [x] Button
 - [x] Label
 - [x] Grid
 
-## Properties
+### Properties
 - [x] Margin
 - [x] Background
 - [x] Foreground
 - [x] BorderBrush
 - [x] BorderThickness
 
-## Buttons Events
+### Buttons Events
 - [x] Command
 - [x] CommandParameter
 
-## Grids
+### Grids
 - [x] Grid.Row
 - [x] Grid.Column
 - [x] Grid.RowSpan
 - [x] Grid.ColumnSpan
 - [ ] Grid SubGrids
 
-## Fonts
+### Fonts
 - [ ] FontSize
 - [x] Foreground
 - [ ] FontWeight
+
+## How to use
+>How to use MOOS from `MOOS/build` for testing
