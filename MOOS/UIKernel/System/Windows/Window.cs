@@ -150,6 +150,7 @@ namespace System.Windows
         public override void Update()
         {
             base.Update();
+
             if (Content != null)
             {
                 Content.Update();

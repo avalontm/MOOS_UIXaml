@@ -33,28 +33,34 @@ namespace System.Windows.Controls
         {
             if (IsFocus)
             {
-                if (MaxLength > 0)
+                if (key.KeyState == System.ConsoleKeyState.Pressed)
                 {
-                    if (Text.Length > MaxLength)
+                    if (MaxLength > 0)
                     {
-                        return;
-                    }
-                }
-
-                switch (key.Key)
-                {
-                    case ConsoleKey.Backspace:
-                        if (!string.IsNullOrEmpty(Text))
+                        if (Text.Length > MaxLength)
                         {
-                            Text = Text.Remove(Text.Length);
-                        }   
-                        break;
-                    case ConsoleKey.Enter:
+                            return;
+                        }
+                    }
 
-                        break;
-                    default:
-                        Text += key.KeyChar;
-                        break;
+                    switch (key.Key)
+                    {
+                        case ConsoleKey.Backspace:
+                            if (Text.Length > 0)
+                            {
+                                Text.Length -= 1;
+                            }
+                            break;
+                        case ConsoleKey.Enter:
+
+                            break;
+                        default:
+                            if (key.KeyChar != '\0')
+                            {
+                                Text += key.KeyChar.ToString();
+                            }
+                            break;
+                    }
                 }
             }
         }
@@ -62,26 +68,29 @@ namespace System.Windows.Controls
         public override void Update()
         {
             base.Update();
-
         }
 
         int start = 0;
+        DateTime Flicker = DateTime.Now;
 
         public override void Draw()
         {
             base.Draw();
 
+            int pos = 1;
+            int w = 0, h = (Y + (Height / 2)) - (WindowManager.font.FontSize / 2);
+            int fnt = (WindowManager.font.FontSize / 2);
+            int _w = (pos * fnt);
+
             Framebuffer.Graphics.FillRectangle(X, Y, Width, Height, Background.Value);
 
             if (!string.IsNullOrEmpty(Text))
             {
-                int w = 0, h = (Y + (Height / 2)) - (WindowManager.font.FontSize / 2);
-
                 w = WindowManager.font.MeasureString(Text);
-
-                if (w > Width)
+              
+                if (w > Width - fnt)
                 {
-                    start = (Width / WindowManager.font.FontSize) - Text.Length;
+                    start = (Text.Length) - ((Width / fnt) - 2);
                 }
                 else
                 {
@@ -90,14 +99,34 @@ namespace System.Windows.Controls
 
                 for (int i = start; i < Text.Length; i++)
                 {
-                    WindowManager.font.DrawChar(Framebuffer.Graphics, X + w, h, Text[i], Foreground.Value); 
-                }
+                    _w = (pos * fnt);
 
-                if (BorderBrush != null)
-                {
-                    DrawBorder();
+                    if (_w < (Width - fnt))
+                    {
+                        WindowManager.font.DrawChar(Framebuffer.Graphics, X + _w, h, Text[i], Foreground.Value);
+                    }
+                  pos++;
                 }
             }
+
+            _w += (2 + fnt);
+
+            if (IsFocus)
+            {
+                if (DateTime.Now.Ticks > Flicker.Ticks )
+                {
+                    Flicker = DateTime.Now.AddTicks(TimeSpan.FromMilliseconds(50).Ticks);
+                    Framebuffer.Graphics.DrawLine((X + _w), Y + 5, (X + _w), (Y + Height) - 5, 0xFF000000);
+                }
+            }
+
+            if (BorderBrush != null)
+            {
+                DrawBorder();
+            }
+            ;
         }
+
+       
     }
 }
