@@ -1,8 +1,5 @@
 ﻿using MOOS;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Windows.Forms;
 using System.Windows.Media;
 
 namespace System.Windows.Controls
@@ -12,9 +9,19 @@ namespace System.Windows.Controls
         public string Text { set;get; }
         public int FontSize { set; get; }
         public int MaxLength { set; get; }
-        public FontWeight FontWeight { get; set; }
+        public bool IsReadOnly { set; get; }
+        public FontWeight FontWeight  {set; get; }
+        public TextWrapping TextWrapping  {set; get; }
         public HorizontalAlignment HorizontalContentAlignment { get; set; }
         public VerticalAlignment VerticalContentAlignment { get; set; }
+
+
+
+        /* Private */
+        int start = 0;
+        DateTime Flicker = DateTime.Now;
+        bool isShowFlicker;
+
 
         public TextBox()
         {
@@ -25,12 +32,18 @@ namespace System.Windows.Controls
             FontWeight = new FontWeight();
             HorizontalContentAlignment = HorizontalAlignment.Stretch;
             VerticalContentAlignment = VerticalAlignment.Stretch;
+            TextWrapping = TextWrapping.NoWrap;
             Background = Brushes.White;
             Keyboard.OnKeyChanged += Keyboard_OnKeyChanged;
         }
 
         void Keyboard_OnKeyChanged(ConsoleKeyInfo key)
         {
+            if (IsReadOnly)
+            {
+                return;
+            }
+
             if (IsFocus)
             {
                 if (key.KeyState == System.ConsoleKeyState.Pressed)
@@ -70,53 +83,82 @@ namespace System.Windows.Controls
             base.Update();
         }
 
-        int start = 0;
-        DateTime Flicker = DateTime.Now;
 
         public override void Draw()
         {
             base.Draw();
 
             int pos = 1;
-            int w = 0, h = (Y + (Height / 2)) - (WindowManager.font.FontSize / 2);
-            int fnt = (WindowManager.font.FontSize / 2);
+            int w = 0, h = 0;
+          
+            int fnt = 0;
             int _w = (pos * fnt);
-            int _chr = 0;
+
             Framebuffer.Graphics.FillRectangle(X, Y, Width, Height, Background.Value);
 
             if (!string.IsNullOrEmpty(Text))
             {
-                w = WindowManager.font.MeasureString(Text);
-              
-                if (w > Width + fnt)
+                switch (this.TextWrapping)
                 {
-                    start = (Text.Length) - (Width / fnt) - fnt;
-                }
-                else
-                {
-                    start = 0;
-                }
+                    case TextWrapping.WrapWithOverflow:
+                        //WrapWithOverflow
+                        break;
+                    case TextWrapping.NoWrap:
 
-                for (int i = start; i < Text.Length; i++)
-                {
-                    _w = (pos * fnt);
+                        w = WindowManager.font.MeasureString(Text);
+                        h = (Y + (Height / 2)) - (WindowManager.font.FontSize / 2);
 
-                    if (_w < (Width - fnt))
-                    {
-                        _chr += WindowManager.font.DrawChar(Framebuffer.Graphics, X + _chr, h, Text[i], Foreground.Value);
-                    }
-                  pos++;
+                        if (w > Width)
+                        {
+                            start = ((w - Width) / WindowManager.font.FontSize);
+                        }
+                        else
+                        {
+                            start = 0;
+                        }
+
+                        for (int i = start; i < Text.Length; i++)
+                        {
+                            _w = fnt;
+
+                            if (_w < (Width - WindowManager.font.FontSize))
+                            {
+                                fnt += WindowManager.font.DrawChar(Framebuffer.Graphics, X + _w, h, Text[i], Foreground.Value);
+                            }
+                            pos++;
+                        }
+                    break;
+                    case TextWrapping.Wrap:
+                        for (int i = 0; i < Text.Length; i++)
+                        {
+                            w += WindowManager.font.DrawChar(Framebuffer.Graphics, X + w, Y + h, Text[i], Foreground.Value);
+                            if (w + WindowManager.font.FontSize > Width && Width != -1 || Text[i] == '\n')
+                            {
+                                w = 0;
+                                h += WindowManager.font.FontSize;
+
+                                if (Height != -1 && h >= Height)
+                                {
+                                    Framebuffer.Graphics.Copy(X, Y, X, Y + WindowManager.font.FontSize, Width, Width - (WindowManager.font.FontSize));
+                                    h -= WindowManager.font.FontSize;
+                                }
+                            }
+                        }
+                        break;
                 }
             }
 
-            _w += (2 + fnt);
-
             if (IsFocus)
             {
-                if (DateTime.Now.Ticks > Flicker.Ticks )
+                if (isShowFlicker)
                 {
-                    Flicker = DateTime.Now.AddTicks(TimeSpan.FromMilliseconds(50).Ticks);
-                    Framebuffer.Graphics.DrawLine((X + _chr), Y + 5, (X + _chr), (Y + Height) - 5, 0xFF000000);
+                    Framebuffer.Graphics.DrawLine((X + _w + (WindowManager.font.FontSize/2)), Y + 5, (X + _w + (WindowManager.font.FontSize)/2), (Y + Height) - 5, 0xFF000000);
+                }
+
+                if (DateTime.Now.Ticks >= Flicker.Ticks)
+                {
+                    isShowFlicker = !isShowFlicker;
+                    Flicker = DateTime.Now.AddTicks(TimeSpan.FromMilliseconds(100).Ticks);
                 }
             }
 
@@ -124,9 +166,7 @@ namespace System.Windows.Controls
             {
                 DrawBorder();
             }
-            ;
         }
 
-       
     }
 }

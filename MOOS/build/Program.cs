@@ -111,8 +111,17 @@ static unsafe class Program
         Wallpaper = wall.ResizeImage(Framebuffer.Width, Framebuffer.Height);
         wall.Dispose();
 
-        UIMoos xamlWindow = new UIMoos();
-        xamlWindow.ShowDialog();
+        //UIMoos xamlWindow = new UIMoos();
+        //xamlWindow.ShowDialog();
+
+        /*
+        new Thread(() => {
+            Debug.WriteLine("Loading EXE...");
+            byte[] buffer = File.Instance.ReadAllBytes("/MoosApp.exe");
+            Process.Start(buffer);
+            Debug.WriteLine("Loading EXE... [OK]");
+        } ).Start();
+        */
 
         for (; ; )
         {
@@ -125,8 +134,9 @@ static unsafe class Program
             WindowManager.DrawAll();
 
             Framebuffer.Graphics.DrawImage(Control.MousePosition.X, Control.MousePosition.Y, WindowManager.HasWindowMoving ? CursorMoving : Cursor);
+            Framebuffer.Graphics.DrawCircleFill(100, 100, 15, 0xFFFFFFFF);
             Framebuffer.Update();
-           
+
             FPSMeter.Update();
         }
 
