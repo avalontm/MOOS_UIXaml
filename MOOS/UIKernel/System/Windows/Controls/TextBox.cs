@@ -12,7 +12,8 @@ namespace System.Windows.Controls
         public string Text { set;get; }
         public int FontSize { set; get; }
         public int MaxLength { set; get; }
-        public FontWeight FontWeight { get; set; }
+        public FontWeight FontWeight  {set; get; }
+        public TextWrapping TextWrapping  {set; get; }
         public HorizontalAlignment HorizontalContentAlignment { get; set; }
         public VerticalAlignment VerticalContentAlignment { get; set; }
 
@@ -25,6 +26,7 @@ namespace System.Windows.Controls
             FontWeight = new FontWeight();
             HorizontalContentAlignment = HorizontalAlignment.Stretch;
             VerticalContentAlignment = VerticalAlignment.Stretch;
+            TextWrapping = TextWrapping.NoWrap;
             Background = Brushes.White;
             Keyboard.OnKeyChanged += Keyboard_OnKeyChanged;
         }

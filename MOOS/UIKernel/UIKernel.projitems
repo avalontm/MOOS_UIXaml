@@ -37,6 +37,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\GridLength.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\GridLengthConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Media\Brush.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\Windows\TextWrapping.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Thickness.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\ThicknessConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\VerticalAlignment.cs" />
