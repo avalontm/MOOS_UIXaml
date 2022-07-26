@@ -10,7 +10,9 @@
     </Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)System\Diagnostics\Debug.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Globalization\CultureInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\UIFramebuffer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Application.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Controls\ColumnDefinition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Controls\ColumnDefinitionCollection.cs" />

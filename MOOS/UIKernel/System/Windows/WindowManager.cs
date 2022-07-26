@@ -1,4 +1,5 @@
-﻿using MOOS.FS;
+﻿#if Kernel
+using MOOS.FS;
 using MOOS.Misc;
 using System.Collections.Generic;
 using System.Drawing;
@@ -69,3 +70,4 @@ namespace System.Windows
 
     }
 }
+#endif

@@ -1,9 +1,5 @@
 ﻿using MOOS;
-using MOOS.Driver;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Windows.Forms;
 using System.Windows.Media;
 
 namespace System.Windows.Controls
@@ -164,7 +160,6 @@ namespace System.Windows.Controls
                     isShowFlicker = !isShowFlicker;
                     Flicker = DateTime.Now.AddTicks(TimeSpan.FromMilliseconds(100).Ticks);
                 }
-
             }
 
             if (BorderBrush != null)

@@ -46,20 +46,28 @@ namespace ConsoleApp1
         public static extern void Debug_WriteLine(string value);
 
 
-        [DllImport("UIApplication")]
-        public static extern bool UIApplication(ref UIApplication app);
+        [DllImport("Graphics.FillRectangle")]
+        public static extern void Graphics_FillRectangle(int uid, int x, int y, int width, int height, uint color);
+        [DllImport("UIFrameBuffer")]
+        public static extern int UIFrameBuffer(int x, int y, int width, int height);
+        [DllImport("UIFrameBuffer.Update")]
+        public static extern void UIFrameBuffer_Update(int uid);
 
         [RuntimeExport("Main")]
         public static void Main()
         {
-            UIApplication app = new UIApplication();
-            app.x = 100;
-            app.y = 100;
-            app.width = 200;
-            app.height = 320;
+            onDraw();
+        }
 
-            UIApplication(ref app);
+        static void onDraw()
+        {
+            int uid = UIFrameBuffer(100,100,300,300);
 
+            for (; ; )
+            {
+                Graphics_FillRectangle(uid, 100, 100, 300, 300, 0xFF32A852);
+                UIFrameBuffer_Update(uid);
+            }
         }
     }
 }

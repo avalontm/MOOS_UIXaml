@@ -1,6 +1,7 @@
 using MOOS.Driver;
 using MOOS.Graph;
 using MOOS.Misc;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
@@ -12,7 +13,7 @@ namespace MOOS
         public static ushort Width;
         public static ushort Height;
 
-        public static uint* VideoMemory { get; private set; }
+        public static uint* VideoMemory { get; set; }
 
         public static uint* FirstBuffer;
         public static uint* SecondBuffer;
@@ -49,9 +50,9 @@ namespace MOOS
         {
             if (TripleBuffered)
             {
-                for(int i = 0; i < Width * Height; i++) 
+                for (int i = 0; i < Width * Height; i++)
                 {
-                    if(FirstBuffer[i] != SecondBuffer[i]) 
+                    if (FirstBuffer[i] != SecondBuffer[i])
                     {
                         VideoMemory[i] = FirstBuffer[i];
                     }

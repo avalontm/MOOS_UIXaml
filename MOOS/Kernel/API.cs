@@ -1,6 +1,7 @@
 using Internal.Runtime.CompilerServices;
 using MOOS.Driver;
 using MOOS.FS;
+using MOOS.Graph;
 using MOOS.Misc;
 using System;
 using System.Diagnostics;
@@ -40,8 +41,18 @@ namespace MOOS
                     return (delegate*<int, int, uint, void>)&API_DrawPoint;
                 case "Debug.WriteLine":
                     return (delegate*<string, void>)&API_Debug_WriteLine;
-                case "UIApplication":
-                    return (delegate*<UIApplication, bool>)&API_UIApplication;
+                case "Graphics.DrawChar":
+                    return (delegate*<int, int, char, uint, int>)&API_Graphics_DrawChar;
+                case "Graphics.FillRectangle":
+                    return (delegate*<int, int, int, int, int, uint, void>)&API_Graphics_FillRectangle;
+                case "Graphics.DrawString":
+                    return (delegate*<int, int, string, uint, int, int, void>)&API_Graphics_DrawString;
+                case "UIFrameBuffer":
+                    return (delegate*<int, int, int, int, int>)&API_UIFrameBuffer;
+                case "UIFrameBuffer.Update":
+                    return (delegate*<int, void>)&API_UIFrameBuffer_Update;
+                    
+
             }
             Panic.Error($"System call \"{name}\" is not found");
             return null;
@@ -49,18 +60,18 @@ namespace MOOS
 
         public static void API_DrawPoint(int x, int y, uint color)
         {
-            if (!Framebuffer.TripleBuffered) 
+            if (!Framebuffer.TripleBuffered)
             {
                 Framebuffer.Graphics.DrawPoint(x, y, color);
             }
         }
 
-        public static void API_SwitchToConsoleMode() 
+        public static void API_SwitchToConsoleMode()
         {
             Framebuffer.TripleBuffered = false;
         }
 
-        public static void API_ReadAllBytes(string name,ulong* length, byte** data) 
+        public static void API_ReadAllBytes(string name, ulong* length, byte** data)
         {
             byte[] buffer = File.Instance.ReadAllBytes(name);
 
@@ -71,22 +82,22 @@ namespace MOOS
             buffer.Dispose();
         }
 
-        public static void API_Sleep(ulong ms) 
+        public static void API_Sleep(ulong ms)
         {
             Thread.Sleep(ms);
         }
 
-        public static ulong API_GetTick() 
+        public static ulong API_GetTick()
         {
             return Timer.Ticks;
         }
 
-        public static void API_Write(char c) 
+        public static void API_Write(char c)
         {
             Console.Write(c);
         }
 
-        public static void API_WriteLine() 
+        public static void API_WriteLine()
         {
             Console.WriteLine();
         }
@@ -103,7 +114,7 @@ namespace MOOS
             return Allocator.Free(ptr);
         }
 
-        public static nint API_Reallocate(nint intPtr, ulong size) 
+        public static nint API_Reallocate(nint intPtr, ulong size)
         {
             return Allocator.Reallocate(intPtr, size);
         }
@@ -118,18 +129,41 @@ namespace MOOS
             Debug.WriteLine(value);
         }
 
-        public unsafe static bool API_UIApplication(UIApplication app)
+        public static void API_Graphics_FillRectangle(int uid, int x, int y, int width, int height, uint color)
         {
-            Window form = new Window();
-            form.Title = "App Exe";
-            form.X = app.x;
-            form.Y = app.y;
-            form.Width = app.width;
-            form.Height = app.height;
-            form.ShowDialog();
-            return true;
-          
+            Framebuffer.Graphics.FillRectangle(x, y, width, height, color);
         }
-        
+
+        public static int API_Graphics_DrawChar(int x, int y, char chr, uint color)
+        {
+            return WindowManager.font.DrawChar(Framebuffer.Graphics, x, y, chr, color);
+        }
+
+        public static void API_Graphics_DrawString(int x, int y, string str, uint color, int lineLimit, int heightLimit)
+        {
+            WindowManager.font.DrawString(x, y, str, color, lineLimit, heightLimit);
+        }
+
+        public static int API_UIFrameBuffer(int x, int y, int width, int height)
+        {
+            return new UIFramebuffer(x, y, width, height).UID;
+        }
+
+        public static void API_UIFrameBuffer_Update(int uid)
+        {
+            if (Framebuffer.TripleBuffered)
+            {
+                for (int i = 0; i < Framebuffer.Width * Framebuffer.Height; i++)
+                {
+                    if (i >= (UIFramebuffer.Frames[uid].X * UIFramebuffer.Frames[uid].Y) && i <= ((UIFramebuffer.Frames[uid].X + UIFramebuffer.Frames[uid].Width) * (UIFramebuffer.Frames[uid].Y + UIFramebuffer.Frames[uid].Height)))
+                    {
+                        if (Framebuffer.FirstBuffer[i] != UIFramebuffer.Frames[uid].FirstBuffer[i])
+                        {
+                            UIFramebuffer.Frames[uid].FirstBuffer[i] = Framebuffer.FirstBuffer[i];
+                        }
+                    }
+                }
+            }
+        }
     }
 }

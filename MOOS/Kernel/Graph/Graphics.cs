@@ -182,6 +182,64 @@ namespace MOOS.Graph
             }
         }
 
+        public virtual void DrawCircle(int x, int y, int radius, uint color)
+        {
+            double i, angle, x1, y1;
+
+            for (i = 0; i < 360; i += 0.1)
+            {
+                angle = i;
+                x1 = radius * Math.Cos(angle * Math.PI / 180);
+                y1 = radius * Math.Sin(angle * Math.PI / 180);
+                DrawPoint((int)(x + x1), (int)(y + y1), color, true);
+            }
+        }
+
+        public virtual void DrawCircleFillv2(int x0, int y0, int radius, uint color)
+        {
+
+            for (int x = -radius; x < radius; x++)
+            {
+                int height = (int)Math.Sqrt(radius * radius - x * x);
+
+                for (int y = -height; y < height; y++)
+                    DrawPoint(x + x0, y + y0, color);
+            }
+        }
+
+        public virtual void DrawCircleFill(int x0, int y0, int radius, uint color)
+        {
+            int x = radius;
+            int y = 0;
+            int xChange = 1 - (radius << 1);
+            int yChange = 0;
+            int radiusError = 0;
+
+            while (x >= y)
+            {
+                for (int i = x0 - x; i <= x0 + x; i++)
+                {
+                    DrawPoint(i, y0 + y, color, true);
+                    DrawPoint(i, y0 - y, color, true);
+                }
+                for (int i = x0 - y; i <= x0 + y; i++)
+                {
+                    DrawPoint(i, y0 + x, color, true);
+                    DrawPoint(i, y0 - x, color, true);
+                }
+
+                y++;
+                radiusError += yChange;
+                yChange += 2;
+                if (((radiusError << 1) + xChange) > 0)
+                {
+                    x--;
+                    radiusError += xChange;
+                    xChange += 2;
+                }
+            }
+        }
+
         #region Xiaolin Wu's line algorithm
         // swaps two numbers
         void Swap(int* a, int* b)
