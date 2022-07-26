@@ -50,10 +50,8 @@ namespace MOOS.Misc
                 {
                     uint _color = image.GetPixel(baseX + w, baseY + h);
 
-                    //if (_color > 0)
-                    //{
-                        _color = ColorConverter.ConvertPixel(_color, color);
-                    //}
+                    //Replace pixel color
+                    _color = ColorConverter.ConvertPixel(_color, color); 
 
                     if (X != -1 && Y != -1)
                     {
