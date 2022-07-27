@@ -11,6 +11,7 @@
 - [x] TextBox
 - [x] Slider
 - [x] Grid
+- [x] Checked
 
 ### Properties
 - [x] Margin
