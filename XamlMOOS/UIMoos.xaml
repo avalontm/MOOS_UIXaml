@@ -10,6 +10,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -39,6 +40,7 @@
         <Button Grid.Column="2" Grid.Row="3" Command="{Binding ElementName=ClickMeCommand}" CommandParameter="3" Background="#53b01e" Foreground="White" Margin="5" Content="3" BorderBrush="Black" BorderThickness="2"/>
         <Button Grid.Column="2" Grid.Row="4" Command="{Binding ElementName=ClickMeCommand}" CommandParameter="." Background="#1e4ab0" Foreground="White" Margin="5" Content="." BorderBrush="Black" BorderThickness="2"/>
 
+        <Slider Grid.Row="5" Grid.ColumnSpan="4" Margin="5" Value="5" Minimum="0" Maximum="10"/>
     </Grid>
 
 </Window>

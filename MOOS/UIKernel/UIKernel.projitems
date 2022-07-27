@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Controls\FontWeight.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Controls\GridCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Controls\Label.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Controls\Slider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Controls\TextBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\FontWeightConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\HorizontalAlignment.cs" />
