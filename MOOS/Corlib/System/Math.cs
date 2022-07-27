@@ -83,5 +83,27 @@ namespace System
             }
             return (((w + h) * 0.5));
         }
+
+        public static double Round(double number, int decimal_places)
+        {
+            if (decimal_places <= 0)
+            {
+                return number;
+            }
+
+            double power = Pow(10, decimal_places - 1);
+            number *= power;
+
+            return (number >= 0) ? ((int)(number + 0.5))/ power : ((int)(number - 0.5))/ power;
+        }
+
+        public static int Ceiling(double val)
+        {
+            int temp = (int)(val * 10);
+            if (val % 10)
+                return (temp + 1);
+            else
+                return temp;
+        }
     }
 }
