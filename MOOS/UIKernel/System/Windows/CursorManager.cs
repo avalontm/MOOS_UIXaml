@@ -75,7 +75,6 @@ namespace System.Windows
                     if (FocusControl.Cursor.Value != CursorState.None)
                     {
                         State.Value = FocusControl.Cursor.Value;
-                        Debug.WriteLine($"[Cursor] {State.ToString()}");
                         return;
                     }
                 }
