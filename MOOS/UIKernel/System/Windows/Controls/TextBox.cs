@@ -1,6 +1,7 @@
 ﻿using MOOS;
 using System;
 using System.Diagnostics;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace System.Windows.Controls
@@ -34,7 +35,7 @@ namespace System.Windows.Controls
             VerticalContentAlignment = VerticalAlignment.Stretch;
             TextWrapping = TextWrapping.NoWrap;
             Background = Brushes.White;
-            Cursor = Cursor.TextSelect;
+            Cursor = new Cursor(CursorState.TextSelect);
             IsReadOnly = false;
             Keyboard.OnKeyChanged += Keyboard_OnKeyChanged;
         }
@@ -80,7 +81,6 @@ namespace System.Windows.Controls
         public override void Update()
         {
             base.Update();
-            //Keyboard_OnKeyChanged(Keyboard.KeyInfo);
         }
 
 

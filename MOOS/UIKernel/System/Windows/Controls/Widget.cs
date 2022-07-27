@@ -2,6 +2,7 @@
 using MOOS;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace System.Windows.Controls
@@ -16,17 +17,17 @@ namespace System.Windows.Controls
 
     public class Widget
     {
+        Cursor _cursor;
         Brush _background;
         public string Name { set; get; }
         public int X { set; get; }
         public int Y { set; get; }
         public int Width { set; get; }
         public int Height { set; get; }
-        public Cursor Cursor { set; get; }
-        public bool MouseFocus{ set; get; }
         public bool MouseEnter { set; get; }
         public Thickness Margin { set; get; }
         public Thickness Padding { set; get; }
+        
         public Brush Background
         {
             set
@@ -35,6 +36,16 @@ namespace System.Windows.Controls
             }
             get { return _background; }
         }
+
+        public Cursor Cursor
+        {
+            set
+            {
+                _cursor = value;
+            }
+            get { return _cursor; }
+        }
+
         public Brush Foreground { set; get; }
         public Brush BorderBrush { set; get; }
         public Thickness BorderThickness { set; get; }
@@ -75,6 +86,8 @@ namespace System.Windows.Controls
         public int GridRowSpan { get; set; }
         public bool IsFocus { get { return isFocus(); } }
 
+        bool _isFocus;
+
         public Widget() : base()
         {
             Parent = this;
@@ -87,7 +100,7 @@ namespace System.Windows.Controls
             Margin = new Thickness();
             Padding = new Thickness();
             FontFamily = new FontFamily();
-            Cursor = Cursor.Normal;
+            Cursor = new Cursor(CursorState.None);
         }
 
         public virtual void Draw()
@@ -121,22 +134,21 @@ namespace System.Windows.Controls
                 if (!WindowManager.HasWindowMoving && Control.MousePosition.X > X && Control.MousePosition.X < (X + Width) && Control.MousePosition.Y > Y && Control.MousePosition.Y < (Y + Height))
                 {
                     WindowManager.FocusControl = this;
-
+                    _isFocus = true;
                 }
             }
 
             if (!WindowManager.HasWindowMoving && Control.MousePosition.X > X && Control.MousePosition.X < (X + Width) && Control.MousePosition.Y > Y && Control.MousePosition.Y < (Y + Height))
             {
-                WindowManager.FocusControl = this;
-                MouseFocus = true;
+                CursorManager.FocusControl = this;
                 MouseEnter = true;
             }
             else
             {
-                if (WindowManager.FocusControl == this)
+                MouseEnter = false;
+                if (Control.MouseButtons == MouseButtons.Left)
                 {
-                    MouseFocus = false;
-                    MouseEnter = false;
+                    _isFocus = false;
                 }
             }
         }
@@ -168,7 +180,7 @@ namespace System.Windows.Controls
         {
             if (WindowManager.FocusWindow != null && WindowManager.FocusControl != null)
             {
-                if (WindowManager.FocusControl == this)
+                if (WindowManager.FocusControl == this && _isFocus)
                 {
                     return true;
                 }

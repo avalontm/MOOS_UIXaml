@@ -25,6 +25,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\CursorManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\FontWeightConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\HorizontalAlignment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Input\Cursor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Media\Brushes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Media\ColorConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Media\FontFamily.cs" />

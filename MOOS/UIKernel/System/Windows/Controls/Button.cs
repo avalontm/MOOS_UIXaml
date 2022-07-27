@@ -30,19 +30,22 @@ namespace System.Windows.Controls
         {
             base.Update();
 
-            if (!WindowManager.HasWindowMoving && Control.MousePosition.X > X && Control.MousePosition.X < X + Width && Control.MousePosition.Y > Y && Control.MousePosition.Y < Y + Height)
+            if (MouseEnter)
             {
                 this.onMouseFocus();
-                
-                if (Control.MouseButtons == MouseButtons.Left)
-                {
-                    if (Command != null && Command.Source != null)
-                    {
-                        if (!clicked)
-                        {
-                            clicked = true;
 
-                            Command.Source.Execute.Invoke(CommandParameter);
+                if (IsFocus)
+                {
+                    if (Control.MouseButtons == MouseButtons.Left)
+                    {
+                        if (Command != null && Command.Source != null)
+                        {
+                            if (!clicked)
+                            {
+                                clicked = true;
+
+                                Command.Source.Execute.Invoke(CommandParameter);
+                            }
                         }
                     }
                 }

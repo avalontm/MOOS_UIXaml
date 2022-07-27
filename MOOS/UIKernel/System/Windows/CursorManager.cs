@@ -2,13 +2,16 @@
 using MOOS.Misc;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace System.Windows
 {
-    public enum Cursor
+    public enum CursorState
     {
+        None,
         Normal,
         Grab,
         Moving,
@@ -25,7 +28,7 @@ namespace System.Windows
         static Image CursorTextSelect { set; get; }
         static Image CursorHand{ set; get; }
         public static Cursor State { set; get; }
-
+        public static Widget FocusControl { set; get; }
         public static void Initialize()
         {
             //Sized width to 512
@@ -34,22 +37,22 @@ namespace System.Windows
             CursorMoving = new PNG(File.Instance.ReadAllBytes("Images/Grab.png"));
             CursorTextSelect = new PNG(File.Instance.ReadAllBytes("Images/CursorTextSelect.png"));
             CursorHand = new PNG(File.Instance.ReadAllBytes("Images/CursorHand.png"));
-            State = Cursor.Normal; 
+            State = new Cursor(CursorState.Normal); 
         }
 
         public static Image GetCursor
         {
             get
             {
-                switch (State)
+                switch (State.Value)
                 {
-                    case Cursor.Normal:
+                    case CursorState.Normal:
                         return CursorNormal;
-                    case Cursor.Grab:
+                    case CursorState.Grab:
                         return CursorMoving;
-                    case Cursor.TextSelect:
+                    case CursorState.TextSelect:
                         return CursorTextSelect;
-                    case Cursor.Hand:
+                    case CursorState.Hand:
                         return CursorHand;
                     default:
                         return CursorNormal;
@@ -61,23 +64,24 @@ namespace System.Windows
         {
             if (WindowManager.HasWindowMoving)
             {
-                State = Cursor.Grab;
+                State.Value = CursorState.Grab;
                 return;
             }
             
-            if (WindowManager.FocusControl != null)
+            if (FocusControl != null)
             {
-                if (WindowManager.FocusControl.MouseEnter && WindowManager.FocusControl.MouseFocus)
+                if (FocusControl.MouseEnter)
                 {
-                    State = WindowManager.FocusControl.Cursor;
+                    if (FocusControl.Cursor.Value != CursorState.None)
+                    {
+                        State.Value = FocusControl.Cursor.Value;
+                        Debug.WriteLine($"[Cursor] {State.ToString()}");
+                        return;
+                    }
                 }
-                else
-                {
-                    State = Cursor.Normal;
-                }
-                return;
             }
-            State = Cursor.Normal;
+
+            State.Value = CursorState.Normal;
         }
     }
 }

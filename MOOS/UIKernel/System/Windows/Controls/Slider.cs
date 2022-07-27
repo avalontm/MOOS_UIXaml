@@ -74,7 +74,6 @@ namespace System.Windows.Controls
         public override void Update()
         {
             base.Update();
-            //Keyboard_OnKeyChanged(Keyboard.KeyInfo);
         }
 
         public override void Draw()

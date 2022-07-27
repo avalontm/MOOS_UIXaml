@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
+using System.Windows.Input;
 
 namespace System.Windows
 {
@@ -8,15 +10,15 @@ namespace System.Windows
     {
         public object ConvertFrom(object context, CultureInfo cultureInfo, object source)
         {
-            Cursor cursor = Cursor.Normal;
+            Cursor cursor = new Cursor(CursorState.None);
 
             switch (source.ToString().ToLower())
             {
                 case "hand":
-                    cursor = Cursor.Hand;
+                    cursor.Value = CursorState.Hand;
                     break;
                 default:
-                    cursor = Cursor.Normal;
+                    cursor.Value = CursorState.Normal;
                     break;
             }
 

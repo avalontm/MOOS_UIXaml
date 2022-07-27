@@ -10,19 +10,16 @@ namespace MOOS
     {
         public static ConsoleKeyInfo KeyInfo;
 
-
         public static event OnKeyHandler OnKeyChanged
         {
             add
             {
                 _KeyKeyChangeds.Add(value);
-                Debug.WriteLine("add operation");
             }
 
             remove
             {
                 _KeyKeyChangeds.Remove(value);
-                Debug.WriteLine("remove operation");
             }
         }
 
