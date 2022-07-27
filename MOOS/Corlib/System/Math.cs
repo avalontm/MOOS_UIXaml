@@ -83,5 +83,21 @@ namespace System
             }
             return (((w + h) * 0.5));
         }
+
+        public static double Floor(double num)
+        {
+            return (int)num;
+        }
+
+        public static double Round(double d, int decimals)
+        {
+            double multiplier = Pow(10, decimals);
+
+            if (d < 0)
+                multiplier *= -1;
+
+            return Floor((d * multiplier) + 0.5) / multiplier;
+
+        }
     }
 }

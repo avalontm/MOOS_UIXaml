@@ -133,6 +133,8 @@ static unsafe class Program
             WindowManager.UpdateAll();
             WindowManager.DrawAll();
 
+            Framebuffer.Graphics.CreateArc(50, 50, 50, 300,120,50,50, 0xFFFFFFFF);
+
             Framebuffer.Graphics.DrawImage(Control.MousePosition.X, Control.MousePosition.Y, WindowManager.HasWindowMoving ? CursorMoving : Cursor);
             Framebuffer.Update();
 
