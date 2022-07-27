@@ -240,6 +240,23 @@ namespace MOOS.Graph
             }
         }
 
+        public void DrawArc()
+        {
+            int dtheta = (int)(2 * Math.PI / (100));
+            int startAngle = (int)(100 / dtheta);
+            int endAngle = (int)(100 / dtheta);
+            int maxRad = 25;
+
+            for (int i = maxRad; i > 0; i--) // start at longest radius spiral in
+            {
+                for (int j = startAngle; j < endAngle; j++)
+                {
+                    DrawPoint(i, j, 0xFFFFFFFF, true);
+                }
+
+            }
+        }
+
         #region Xiaolin Wu's line algorithm
         // swaps two numbers
         void Swap(int* a, int* b)

@@ -30,6 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Input\Cursor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Media\Brushes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Media\ColorConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Media\Draw.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Media\FontFamily.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Media\FontFamilyConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\MessageBox.cs" />

@@ -99,11 +99,7 @@ namespace System
 
         public static int Ceiling(double val)
         {
-            int temp = (int)(val * 10);
-            if (val % 10)
-                return (temp + 1);
-            else
-                return temp;
+           return (int)((val + 10 - 1) / 10);
         }
     }
 }
