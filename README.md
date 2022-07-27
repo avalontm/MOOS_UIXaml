@@ -9,6 +9,7 @@
 - [x] Button
 - [x] Label
 - [x] TextBox
+- [x] Slider
 - [x] Grid
 
 ### Properties
