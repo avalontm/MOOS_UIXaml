@@ -31,11 +31,39 @@ namespace System.Windows.Controls
             Minimum = 0;
             Value = 0;
             Maximum = 10;
+
+            Keyboard.OnKeyChanged += Keyboard_OnKeyChanged;
+        }
+
+        void Keyboard_OnKeyChanged(ConsoleKeyInfo key)
+        {
+            if (IsFocus)
+            {
+                if (key.KeyState == System.ConsoleKeyState.Pressed)
+                {
+                    switch (key.Key)
+                    {
+                        case ConsoleKey.Left:
+                            if (Value > Minimum)
+                            {
+                                Value--;
+                            }
+                            break;
+                        case ConsoleKey.Right:
+                            if (Value < Maximum)
+                            {
+                                Value++;
+                            }
+                            break;
+                    }
+                }
+            }
         }
 
         public override void Update()
         {
             base.Update();
+
         }
 
         public override void Draw()
