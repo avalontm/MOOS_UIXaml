@@ -6,6 +6,7 @@
 
 using MOOS.Misc;
 using System;
+using System.Windows;
 using static System.ConsoleKey;
 
 namespace MOOS
@@ -57,7 +58,7 @@ namespace MOOS
         public static void OnInterrupt()
         {
             byte b = Native.In8(0x60);
-            PS2Keyboard.ProcessKey(b);
+            ProcessKey(b);
         }
 
         public static void ProcessKey(byte b)

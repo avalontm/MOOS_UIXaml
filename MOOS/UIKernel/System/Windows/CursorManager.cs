@@ -7,12 +7,15 @@ using System.Windows.Controls;
 
 namespace System.Windows
 {
-    public enum CursorState
+    public enum Cursor
     {
-        Normal = 0,
-        Grab =1,
-        Moving=2,
-        TextSelect=3,
+        Normal,
+        Grab,
+        Moving,
+        TextSelect,
+        Hand,
+        Cross,
+        Wait,
     }
 
     public class CursorManager
@@ -20,7 +23,8 @@ namespace System.Windows
         static Image CursorNormal { set; get; }
         static Image CursorMoving { set; get; }
         static Image CursorTextSelect { set; get; }
-        public static CursorState State { set; get; }
+        static Image CursorHand{ set; get; }
+        public static Cursor State { set; get; }
 
         public static void Initialize()
         {
@@ -29,8 +33,8 @@ namespace System.Windows
             CursorNormal = new PNG(File.Instance.ReadAllBytes("Images/Cursor.png"));
             CursorMoving = new PNG(File.Instance.ReadAllBytes("Images/Grab.png"));
             CursorTextSelect = new PNG(File.Instance.ReadAllBytes("Images/CursorTextSelect.png"));
-
-            State = CursorState.Normal; 
+            CursorHand = new PNG(File.Instance.ReadAllBytes("Images/CursorHand.png"));
+            State = Cursor.Normal; 
         }
 
         public static Image GetCursor
@@ -39,12 +43,14 @@ namespace System.Windows
             {
                 switch (State)
                 {
-                    case CursorState.Normal:
+                    case Cursor.Normal:
                         return CursorNormal;
-                    case CursorState.Grab:
+                    case Cursor.Grab:
                         return CursorMoving;
-                    case CursorState.TextSelect:
+                    case Cursor.TextSelect:
                         return CursorTextSelect;
+                    case Cursor.Hand:
+                        return CursorHand;
                     default:
                         return CursorNormal;
                 }
@@ -55,24 +61,23 @@ namespace System.Windows
         {
             if (WindowManager.HasWindowMoving)
             {
-                State = CursorState.Grab;
+                State = Cursor.Grab;
                 return;
             }
-
+            
             if (WindowManager.FocusControl != null)
             {
-                if (WindowManager.FocusControl.MouseEnter)
+                if (WindowManager.FocusControl.MouseEnter && WindowManager.FocusControl.MouseFocus)
                 {
                     State = WindowManager.FocusControl.Cursor;
                 }
                 else
                 {
-                    State = CursorState.Normal;
+                    State = Cursor.Normal;
                 }
                 return;
             }
-
-            State = CursorState.Normal;
+            State = Cursor.Normal;
         }
     }
 }

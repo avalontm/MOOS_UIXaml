@@ -31,11 +31,10 @@ namespace System.Windows.Controls
             Minimum = 0;
             Value = 0;
             Maximum = 10;
-
-            Keyboard.OnKeyChanged += Keyboard_OnKeyChanged;
+            Keyboard.OnKeyChanged += Keyboard_OnKeyChanged1;
         }
 
-        void Keyboard_OnKeyChanged(ConsoleKeyInfo key)
+        void Keyboard_OnKeyChanged1(ConsoleKeyInfo key)
         {
             if (IsFocus)
             {
@@ -75,6 +74,7 @@ namespace System.Windows.Controls
         public override void Update()
         {
             base.Update();
+            //Keyboard_OnKeyChanged(Keyboard.KeyInfo);
         }
 
         public override void Draw()

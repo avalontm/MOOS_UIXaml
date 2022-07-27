@@ -21,6 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Controls\Label.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Controls\Slider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Controls\TextBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\Windows\CursorConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\CursorManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\FontWeightConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\HorizontalAlignment.cs" />

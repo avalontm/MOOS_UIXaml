@@ -173,6 +173,8 @@ public partial class UIMoos : Window
         Binding _binding21 = new Binding("");
         _binding21.Source = ClickEnterCommand;
         _button20.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding21);
+        CursorConverter _cursorConverter = new CursorConverter();
+        _button20.Cursor = ((Cursor)(_cursorConverter.ConvertFrom(null, EnglishCultureInfo, "Hand")));
         _button20.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#1e4ab0")));
         _button20.Foreground = Brushes.Black;
         _button20.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));

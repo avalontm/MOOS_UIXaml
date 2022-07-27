@@ -22,7 +22,8 @@ namespace System.Windows.Controls
         public int Y { set; get; }
         public int Width { set; get; }
         public int Height { set; get; }
-        public CursorState Cursor { set; get; }
+        public Cursor Cursor { set; get; }
+        public bool MouseFocus{ set; get; }
         public bool MouseEnter { set; get; }
         public Thickness Margin { set; get; }
         public Thickness Padding { set; get; }
@@ -86,7 +87,7 @@ namespace System.Windows.Controls
             Margin = new Thickness();
             Padding = new Thickness();
             FontFamily = new FontFamily();
-            Cursor = CursorState.Normal;
+            Cursor = Cursor.Normal;
         }
 
         public virtual void Draw()
@@ -117,19 +118,26 @@ namespace System.Windows.Controls
         {
             if (Control.MouseButtons == MouseButtons.Left)
             {
-                if (!WindowManager.HasWindowMoving && Control.MousePosition.X > X && Control.MousePosition.X < X + Width && Control.MousePosition.Y > Y && Control.MousePosition.Y < Y + Height)
+                if (!WindowManager.HasWindowMoving && Control.MousePosition.X > X && Control.MousePosition.X < (X + Width) && Control.MousePosition.Y > Y && Control.MousePosition.Y < (Y + Height))
                 {
                     WindowManager.FocusControl = this;
+
                 }
             }
 
-            if (!WindowManager.HasWindowMoving && Control.MousePosition.X > X && Control.MousePosition.X < X + Width && Control.MousePosition.Y > Y && Control.MousePosition.Y < Y + Height)
+            if (!WindowManager.HasWindowMoving && Control.MousePosition.X > X && Control.MousePosition.X < (X + Width) && Control.MousePosition.Y > Y && Control.MousePosition.Y < (Y + Height))
             {
+                WindowManager.FocusControl = this;
+                MouseFocus = true;
                 MouseEnter = true;
             }
             else
             {
-                MouseEnter = false;
+                if (WindowManager.FocusControl == this)
+                {
+                    MouseFocus = false;
+                    MouseEnter = false;
+                }
             }
         }
 

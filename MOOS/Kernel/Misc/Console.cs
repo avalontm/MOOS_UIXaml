@@ -20,7 +20,6 @@ namespace MOOS
         private static uint[] ColorsFB;
 
         public static ConsoleColor ForegroundColor;
-
         internal static void Setup()
         {
             OnWrite = null;
