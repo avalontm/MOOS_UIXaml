@@ -34,6 +34,7 @@ namespace System.Windows.Controls
             VerticalContentAlignment = VerticalAlignment.Stretch;
             TextWrapping = TextWrapping.NoWrap;
             Background = Brushes.White;
+            Cursor = CursorState.TextSelect;
             Keyboard.OnKeyChanged += Keyboard_OnKeyChanged;
         }
 

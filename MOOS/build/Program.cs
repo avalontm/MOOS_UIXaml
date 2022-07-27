@@ -12,8 +12,6 @@ using System.Diagnostics;
 static unsafe class Program
 {
     static void Main() { }
-    static Image Cursor;
-    static Image CursorMoving;
     public static Image Wallpaper;
 
     static bool USBMouseTest()
@@ -78,10 +76,7 @@ static unsafe class Program
             Console.WriteLine("USB Keyboard not present");
         }
 
-        //Sized width to 512
-        //https://gitlab.com/Enthymeme/hackneyed-x11-cursors/-/blob/master/theme/right-handed-white.svg
-        Cursor = new PNG(File.Instance.ReadAllBytes("Images/Cursor.png"));
-        CursorMoving = new PNG(File.Instance.ReadAllBytes("Images/Grab.png"));
+        CursorManager.Initialize();
         //Image from unsplash
         Wallpaper = new PNG(File.Instance.ReadAllBytes("Images/Wallpaper1.png"));
 
@@ -132,8 +127,9 @@ static unsafe class Program
             //UIKernel
             WindowManager.UpdateAll();
             WindowManager.DrawAll();
+            CursorManager.Update();
 
-            Framebuffer.Graphics.DrawImage(Control.MousePosition.X, Control.MousePosition.Y, WindowManager.HasWindowMoving ? CursorMoving : Cursor);
+            Framebuffer.Graphics.DrawImage(Control.MousePosition.X, Control.MousePosition.Y, CursorManager.GetCursor );
             Framebuffer.Update();
 
             FPSMeter.Update();

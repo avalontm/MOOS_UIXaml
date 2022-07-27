@@ -22,6 +22,8 @@ namespace System.Windows.Controls
         public int Y { set; get; }
         public int Width { set; get; }
         public int Height { set; get; }
+        public CursorState Cursor { set; get; }
+        public bool MouseEnter { set; get; }
         public Thickness Margin { set; get; }
         public Thickness Padding { set; get; }
         public Brush Background
@@ -84,6 +86,7 @@ namespace System.Windows.Controls
             Margin = new Thickness();
             Padding = new Thickness();
             FontFamily = new FontFamily();
+            Cursor = CursorState.Normal;
         }
 
         public virtual void Draw()
@@ -118,6 +121,15 @@ namespace System.Windows.Controls
                 {
                     WindowManager.FocusControl = this;
                 }
+            }
+
+            if (!WindowManager.HasWindowMoving && Control.MousePosition.X > X && Control.MousePosition.X < X + Width && Control.MousePosition.Y > Y && Control.MousePosition.Y < Y + Height)
+            {
+                MouseEnter = true;
+            }
+            else
+            {
+                MouseEnter = false;
             }
         }
 
