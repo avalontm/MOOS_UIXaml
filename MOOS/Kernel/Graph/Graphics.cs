@@ -252,9 +252,9 @@ namespace MOOS.Graph
             {
                 for (var roundedy = Math.Floor(y); roundedy <= Math.Ceiling(y); roundedy++)
                 {
-                    int percent_x = 1 - Math.Abs(x - roundedx);
-                    int percent_y = 1 - Math.Abs(y - roundedy);
-                    int percent = percent_x * percent_y;
+                    double percent_x = (1 - Math.Abs(x - roundedx));
+                    double percent_y = 1 - Math.Abs(y - roundedy);
+                    double percent = percent_x * percent_y;
                     DrawPoint((int)roundedx, (int)roundedy, (uint)percent, true);
                 }
             }
