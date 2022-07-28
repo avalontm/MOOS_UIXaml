@@ -1,6 +1,6 @@
 # MOOS UI XAML
 
-![Main](images/screen2.png)
+![Main](images/screen3.png)
 
 ## FEATURES
 
