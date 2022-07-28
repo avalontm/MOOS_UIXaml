@@ -31,11 +31,10 @@ namespace System.Windows.Controls
             Minimum = 0;
             Value = 0;
             Maximum = 10;
-
-            Keyboard.OnKeyChanged += Keyboard_OnKeyChanged;
+            Keyboard.OnKeyChanged += Keyboard_OnKeyChanged1;
         }
 
-        void Keyboard_OnKeyChanged(ConsoleKeyInfo key)
+        void Keyboard_OnKeyChanged1(ConsoleKeyInfo key)
         {
             if (IsFocus)
             {
@@ -49,7 +48,19 @@ namespace System.Windows.Controls
                                 Value--;
                             }
                             break;
+                        case ConsoleKey.LeftWindows:
+                            if (Value > Minimum)
+                            {
+                                Value--;
+                            }
+                            break;
                         case ConsoleKey.Right:
+                            if (Value < Maximum)
+                            {
+                                Value++;
+                            }
+                            break;
+                        case ConsoleKey.RightWindows:
                             if (Value < Maximum)
                             {
                                 Value++;
@@ -63,7 +74,6 @@ namespace System.Windows.Controls
         public override void Update()
         {
             base.Update();
-
         }
 
         public override void Draw()

@@ -84,20 +84,22 @@ namespace System
             return (((w + h) * 0.5));
         }
 
-        public static double Floor(double num)
+        public static double Round(double number, int decimal_places)
         {
-            return (int)num;
+            if (decimal_places <= 0)
+            {
+                return number;
+            }
+
+            double power = Pow(10, decimal_places - 1);
+            number *= power;
+
+            return (number >= 0) ? ((int)(number + 0.5))/ power : ((int)(number - 0.5))/ power;
         }
 
-        public static double Round(double d, int decimals)
+        public static int Ceiling(double val)
         {
-            double multiplier = Pow(10, decimals);
-
-            if (d < 0)
-                multiplier *= -1;
-
-            return Floor((d * multiplier) + 0.5) / multiplier;
-
+           return (int)((val + 10 - 1) / 10);
         }
     }
 }

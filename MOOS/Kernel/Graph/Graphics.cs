@@ -240,115 +240,21 @@ namespace MOOS.Graph
             }
         }
 
-        public void DrawEllipse(int x, int y, int a, int b, uint color)
+        public void DrawArc()
         {
-            int wx, wy;
-            int thresh;
-            int asq = a * a;
-            int bsq = b * b;
-            int xa, ya;
+            int dtheta = (int)(2 * Math.PI / (100));
+            int startAngle = (int)(100 / dtheta);
+            int endAngle = (int)(100 / dtheta);
+            int maxRad = 25;
 
-            DrawPoint(x, y + b, color, true);
-            DrawPoint(x, y - b, color, true);
-
-            wx = 0;
-            wy = b;
-            xa = 0;
-            ya = asq * 2 * b;
-            thresh = asq / 4 - asq * b;
-
-            for (; ; )
+            for (int i = maxRad; i > 0; i--) // start at longest radius spiral in
             {
-                thresh += xa + bsq;
-
-                if (thresh >= 0)
+                for (int j = startAngle; j < endAngle; j++)
                 {
-                    ya -= asq * 2;
-                    thresh -= ya;
-                    wy--;
+                    DrawPoint(i, j, 0xFFFFFFFF, true);
                 }
 
-                xa += bsq * 2;
-                wx++;
-
-                if (xa >= ya)
-                    break;
-
-
-                DrawPoint(x + wx, y - wy, color, true);
-                DrawPoint(x - wx, y - wy, color, true);
-                DrawPoint(x + wx, y + wy, color, true);
-                DrawPoint(x - wx, y + wy, color, true);
             }
-
-            DrawPoint(x + a, y, color, true);
-            DrawPoint(x - a, y, color, true);
-
-            wx = a;
-            wy = 0;
-            xa = bsq * 2 * a;
-
-            ya = 0;
-            thresh = bsq / 4 - bsq * a;
-
-            for (; ; )
-            {
-                thresh += ya + asq;
-
-                if (thresh >= 0)
-                {
-                    xa -= bsq * 2;
-                    thresh = thresh - xa;
-                    wx--;
-                }
-
-                ya += asq * 2;
-                wy++;
-
-                if (ya > xa)
-                    break;
-
-                DrawPoint(x + wx, y - wy, color, true);
-                DrawPoint(x - wx, y - wy, color, true);
-                DrawPoint(x + wx, y + wy, color, true);
-                DrawPoint(x - wx, y + wy, color, true);
-            }
-        }
-
-        public void CreateArc(float StartAngle, float SweepAngle, int PointsInArc, int ellipseWidth, int ellipseHeight, int xOffset, int yOffset, uint color)
-        {
-            if (PointsInArc < 0)
-                PointsInArc = 0;
-
-            if (PointsInArc > 360)
-                PointsInArc = 360;
-
-            int xo;
-            int yo;
-            float degs;
-            double rads;
-
-            //could have WidthRadius and HeightRadius be parameters, but easier
-            // for maintenance to have the diameters sent in instead, matching closer
-            // to DrawEllipse and similar methods
-            double radiusW = (double)ellipseWidth / 2.0;
-            double radiusH = (double)ellipseHeight / 2.0;
-
-            for (int p = 0; p < PointsInArc; p++)
-            {
-                degs = StartAngle + ((SweepAngle / PointsInArc) * p);
-
-                rads = (degs * (Math.PI / 180));
-
-                xo = (int)Math.Round(radiusW * Math.Sin(rads), 0);
-                yo = (int)Math.Round(radiusH * Math.Cos(rads), 0);
-
-                xo += (int)Math.Round(radiusW, 0) + xOffset;
-                yo = (int)Math.Round(radiusH, 0) - yo + yOffset;
-
-             DrawPoint(xo, yo, color, true);
-            }
-
         }
 
         #region Xiaolin Wu's line algorithm

@@ -173,6 +173,8 @@ public partial class UIMoos : Window
         Binding _binding21 = new Binding("");
         _binding21.Source = ClickEnterCommand;
         _button20.SetBinding(System.Windows.Controls.Button.CommandProperty, _binding21);
+        CursorConverter _cursorConverter = new CursorConverter();
+        _button20.Cursor = ((Cursor)(_cursorConverter.ConvertFrom(null, EnglishCultureInfo, "Hand")));
         _button20.Background = ((Brush)(_brushConverter.ConvertFrom(null, EnglishCultureInfo, "#1e4ab0")));
         _button20.Foreground = Brushes.Black;
         _button20.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
@@ -357,11 +359,19 @@ public partial class UIMoos : Window
         Slider _slider44 = new Slider();
         _uIElementCollection13.Add(_slider44);
         Grid.SetRow(_slider44, 5);
-        Grid.SetColumnSpan(_slider44, 4);
+        Grid.SetColumnSpan(_slider44, 3);
         _slider44.Margin = ((Thickness)(_thicknessConverter.ConvertFrom(null, EnglishCultureInfo, "5")));
         _slider44.Value = 5;
         _slider44.Minimum = 0;
         _slider44.Maximum = 10;
+        // ---------------------------
+        CheckBox _checkBox45 = new CheckBox();
+        _uIElementCollection13.Add(_checkBox45);
+        Grid.SetRow(_checkBox45, 5);
+        Grid.SetColumn(_checkBox45, 3);
+        BooleanConverter _booleanConverter = new BooleanConverter();
+        _checkBox45.HorizontalAlignment = HorizontalAlignment.Center;
+        _checkBox45.VerticalAlignment = VerticalAlignment.Center;
     }
 
     void onMinus(object obj)

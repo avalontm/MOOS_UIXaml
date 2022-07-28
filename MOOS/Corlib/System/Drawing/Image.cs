@@ -59,6 +59,44 @@ namespace System.Drawing
             return image;
         }
 
+        public Image ConvertToGray()
+        {
+            int nOffset = 4 - Width * 3;
+            uint[] temp = new uint[Width * Height];
+            byte red, green, blue;
+
+            unsafe
+            {
+                byte* p = (byte*)RawData.GetRawData();
+                for (int y = 0; y < Height; ++y)
+                {
+                    for (int x = 0; x < Width; ++x)
+                    {
+                        blue = p[0];
+                        green = p[1];
+                        red = p[2];
+
+                        p[0] = p[1] = p[2] = (byte)(.299 * red + .587 * green + .114 * blue);
+
+                        p += 3;
+                        temp[y * Width + x] = (uint)p;
+                    }
+                    p += nOffset;
+                }
+ 
+            }
+
+            Image image = new Image()
+            {
+                Width = Width,
+                Height = Height,
+                Bpp = Bpp,
+                RawData = temp
+            };
+
+            return image;
+        }
+
         public override void Dispose()
         {
             RawData.Dispose();

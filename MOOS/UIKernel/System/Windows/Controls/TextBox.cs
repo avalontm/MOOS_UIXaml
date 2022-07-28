@@ -1,5 +1,7 @@
 ﻿using MOOS;
 using System;
+using System.Diagnostics;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace System.Windows.Controls
@@ -15,13 +17,12 @@ namespace System.Windows.Controls
         public HorizontalAlignment HorizontalContentAlignment { get; set; }
         public VerticalAlignment VerticalContentAlignment { get; set; }
 
-
+       
 
         /* Private */
         int start = 0;
         DateTime Flicker = DateTime.Now;
         bool isShowFlicker;
-
 
         public TextBox()
         {
@@ -34,6 +35,8 @@ namespace System.Windows.Controls
             VerticalContentAlignment = VerticalAlignment.Stretch;
             TextWrapping = TextWrapping.NoWrap;
             Background = Brushes.White;
+            Cursor = new Cursor(CursorState.TextSelect);
+            IsReadOnly = false;
             Keyboard.OnKeyChanged += Keyboard_OnKeyChanged;
         }
 
@@ -43,7 +46,7 @@ namespace System.Windows.Controls
             {
                 return;
             }
-
+           
             if (IsFocus)
             {
                 if (key.KeyState == System.ConsoleKeyState.Pressed)
@@ -68,10 +71,7 @@ namespace System.Windows.Controls
 
                             break;
                         default:
-                            if (key.KeyChar != '\0')
-                            {
-                                Text += key.KeyChar.ToString();
-                            }
+                            Text += key.KeyChar.ToString();
                             break;
                     }
                 }
