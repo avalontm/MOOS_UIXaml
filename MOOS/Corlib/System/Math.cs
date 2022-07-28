@@ -6,9 +6,9 @@ namespace System
         public static double PI = 3.1415926535897931;
         public static double Tau = 6.2831853071795862;
 
-        public static int Abs(int value) 
+        public static int Abs(double value) 
         {
-            return value < 0 ? value * -1 : value;
+            return (int)(value < 0 ? value * -1 : value);
         }
 
         public static int Clamp(int value, int min, int max)
@@ -100,6 +100,23 @@ namespace System
         public static int Ceiling(double val)
         {
            return (int)((val + 10 - 1) / 10);
+        }
+
+        public static double Floor(double x)
+        {
+            double xcopy = x < 0 ? x * -1 : x;
+            int zeros = 0;
+            double n = 1;
+            for (n = 1; xcopy > n * 10; n *= 10, ++zeros) ;
+            for (xcopy -= n; zeros != -1; xcopy -= n)
+                if (xcopy < 0)
+                {
+                    xcopy += n;
+                    n /= 10;
+                    --zeros;
+                }
+            xcopy += n;
+            return x < 0 ? (xcopy == 0 ? x : x - (1 - xcopy)) : (x - xcopy);
         }
     }
 }

@@ -153,6 +153,12 @@ namespace MOOS.Graph
                         if (fA != 0)
                         {
                             DrawPoint(X + w, Y + h, foreground, true);
+
+                            //works?
+                            if (Framebuffer.AntiAliasing)
+                            {
+                                PlotAntiAliasedPoint(X + w, Y + h);
+                            }
                         }
                     }
             }
@@ -240,20 +246,17 @@ namespace MOOS.Graph
             }
         }
 
-        public void DrawArc()
+        public virtual void PlotAntiAliasedPoint(int x, int y)
         {
-            int dtheta = (int)(2 * Math.PI / (100));
-            int startAngle = (int)(100 / dtheta);
-            int endAngle = (int)(100 / dtheta);
-            int maxRad = 25;
-
-            for (int i = maxRad; i > 0; i--) // start at longest radius spiral in
+            for (var roundedx = Math.Floor(x); roundedx <= Math.Ceiling(x); roundedx++)
             {
-                for (int j = startAngle; j < endAngle; j++)
+                for (var roundedy = Math.Floor(y); roundedy <= Math.Ceiling(y); roundedy++)
                 {
-                    DrawPoint(i, j, 0xFFFFFFFF, true);
+                    int percent_x = 1 - Math.Abs(x - roundedx);
+                    int percent_y = 1 - Math.Abs(y - roundedy);
+                    int percent = percent_x * percent_y;
+                    DrawPoint((int)roundedx, (int)roundedy, (uint)percent, true);
                 }
-
             }
         }
 

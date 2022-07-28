@@ -102,6 +102,7 @@ static unsafe class Program
         Console.WriteLine("Press any key to enter desktop...");
 
         Framebuffer.TripleBuffered = true;
+        Framebuffer.AntiAliasing = true;
 
         Image wall = Wallpaper;
         Wallpaper = wall.ResizeImage(Framebuffer.Width, Framebuffer.Height);

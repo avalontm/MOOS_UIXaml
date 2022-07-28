@@ -21,6 +21,7 @@ namespace MOOS
         public static Graphics Graphics;
 
         static bool _TripleBuffered = false;
+        public static bool AntiAliasing { get;  set; }
 
         /// <summary>
         /// Since you enabled TripleBuffered you have to call Framebuffer.Graphics.Update() in order to make it display
