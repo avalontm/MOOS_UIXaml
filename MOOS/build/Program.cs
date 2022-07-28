@@ -105,7 +105,8 @@ static unsafe class Program
         Framebuffer.AntiAliasing = true;
 
         Image wall = Wallpaper;
-        Wallpaper = wall.ResizeImage(Framebuffer.Width, Framebuffer.Height);
+        //Wallpaper = wall.ResizeImage(Framebuffer.Width, Framebuffer.Height);
+        Wallpaper = wall.Bilinear(Framebuffer.Width, Framebuffer.Height);
         wall.Dispose();
 
         DesktopManager.Initialize();

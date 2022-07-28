@@ -1,3 +1,8 @@
+using Internal.Runtime.CompilerServices;
+using MOOS.Driver;
+using System.Diagnostics;
+using System.Windows.Media;
+
 namespace System.Drawing
 {
     public class Image
@@ -59,39 +64,82 @@ namespace System.Drawing
             return image;
         }
 
-        public Image ConvertToGray()
+        public unsafe Image Bilinear(int newWidth, int newHeight)
         {
-            int nOffset = 4 - Width * 3;
-            uint[] temp = new uint[Width * Height];
-            byte red, green, blue;
+            int pixelSize = Bpp; // 4 pixels
+            int srcStride = pixelSize * Width;
+            int dstStride = pixelSize * newWidth;
 
-            unsafe
+            int dstOffset = dstStride - 3 * newWidth; // 3 bits
+            int xFactor = (Width / newWidth);
+            int yFactor = (Height / newHeight);
+            uint* src;
+            uint* dst;
+
+            fixed (uint* dataPtr = RawData)
             {
-                byte* p = (byte*)RawData.GetRawData();
-                for (int y = 0; y < Height; ++y)
+                src = dataPtr;
+            }
+
+            uint[] tmp = new uint[newHeight * dstStride];
+
+            fixed (uint* dataPtr = tmp)
+            {
+                dst = dataPtr;
+            }
+           
+            double ox, oy, dx1, dy1, dx2, dy2;
+            int ox1, oy1, ox2, oy2;
+
+            int ymax = Height - 1;
+            int xmax = Width - 1;
+
+            uint* tp1, tp2;
+            uint* p1, p2, p3, p4;
+
+            for (int y = 0; y < newHeight; y++)
+            {
+                oy = y * yFactor;
+                oy1 = (int)oy;
+                oy2 = (oy1 == ymax) ? oy1 : oy1 + 1;
+                dy1 = oy - oy1;
+                dy2 = 1.0 - dy1;
+
+                tp1 = src + oy1 * srcStride;
+                tp2 = src + oy2 * srcStride;
+
+                for (int x = 0; x < newHeight; x++)
                 {
-                    for (int x = 0; x < Width; ++x)
-                    {
-                        blue = p[0];
-                        green = p[1];
-                        red = p[2];
+                    ox = x * xFactor;
+                    ox1 = (int)ox;
+                    ox2 = (ox1 == xmax) ? ox1 : ox1 + 1;
+                    dx1 = ox - ox1;
+                    dx2 = 1.0 - dx1;
 
-                        p[0] = p[1] = p[2] = (byte)(.299 * red + .587 * green + .114 * blue);
+                    p1 = tp1 + ox1 * pixelSize;
+                    p2 = tp1 + ox2 * pixelSize;
+                    p3 = tp2 + ox1 * pixelSize;
+                    p4 = tp2 + ox2 * pixelSize;
 
-                        p += 3;
-                        temp[y * Width + x] = (uint)p;
-                    }
-                    p += nOffset;
+                    for (int i = 0; i < pixelSize; i++, dst++, p1++, p2++, p3++, p4++)
+                        *dst = (uint)(dy2 * (dx2 * (*p1) + dx1 * (*p2)) + dy1 * (dx2 * (*p3) + dx1 * (*p4)));
                 }
- 
+
+                dst += dstOffset;
+            }
+
+            int index = 0;
+            for (uint* counter = dst; *counter != 0; counter++)
+            {
+                tmp[index++] = *counter;
             }
 
             Image image = new Image()
             {
-                Width = Width,
-                Height = Height,
+                Width = newWidth,
+                Height = newHeight,
                 Bpp = Bpp,
-                RawData = temp
+                RawData = tmp
             };
 
             return image;

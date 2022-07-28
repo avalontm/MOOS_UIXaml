@@ -153,12 +153,6 @@ namespace MOOS.Graph
                         if (fA != 0)
                         {
                             DrawPoint(X + w, Y + h, foreground, true);
-
-                            //works?
-                            if (Framebuffer.AntiAliasing)
-                            {
-                                PlotAntiAliasedPoint(X + w, Y + h);
-                            }
                         }
                     }
             }
@@ -246,7 +240,7 @@ namespace MOOS.Graph
             }
         }
 
-        public virtual void PlotAntiAliasedPoint(int x, int y)
+        public virtual void DrawPointAntiAliased(int x, int y)
         {
             for (var roundedx = Math.Floor(x); roundedx <= Math.Ceiling(x); roundedx++)
             {

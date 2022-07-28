@@ -20,11 +20,11 @@ namespace System.Desktops.Controls
 
                 if (IconNormal == null)
                 {
-                    IconNormal = _icon.ResizeImage(_icon.Width, _icon.Height);
+                    IconNormal = _icon.Bilinear(_icon.Width, _icon.Height);
                 }
                 if (IconZoom == null)
                 {
-                    IconZoom = IconNormal.ResizeImage((int)(IconNormal.Width * zoom), (int)(IconNormal.Height * zoom));
+                    IconZoom = IconNormal.Bilinear((int)(IconNormal.Width * zoom), (int)(IconNormal.Height * zoom));
                 }
             }
             get { return _icon; }
