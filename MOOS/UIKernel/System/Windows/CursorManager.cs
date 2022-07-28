@@ -29,6 +29,7 @@ namespace System.Windows
         static Image CursorHand{ set; get; }
         public static Cursor State { set; get; }
         public static Widget FocusControl { set; get; }
+
         public static void Initialize()
         {
             //Sized width to 512

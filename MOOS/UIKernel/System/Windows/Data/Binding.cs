@@ -8,7 +8,7 @@ namespace System.Windows.Data
     {
         public ICommand Source { set; get; }
 
-        public Binding(string path)
+        public Binding(string path = "")
         {
         }
     }

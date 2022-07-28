@@ -8,6 +8,7 @@ using System.Runtime;
 using System.Windows.Forms;
 using System.Windows;
 using System.Diagnostics;
+using System.Desktops;
 
 static unsafe class Program
 {
@@ -106,6 +107,8 @@ static unsafe class Program
         Wallpaper = wall.ResizeImage(Framebuffer.Width, Framebuffer.Height);
         wall.Dispose();
 
+        DesktopManager.Initialize();
+
         UIMoos xamlWindow = new UIMoos();
         xamlWindow.ShowDialog();
 
@@ -123,8 +126,10 @@ static unsafe class Program
             WindowManager.InputAll();
 
             Framebuffer.Graphics.DrawImage((Framebuffer.Width / 2) - (Wallpaper.Width / 2), (Framebuffer.Height / 2) - (Wallpaper.Height / 2), Wallpaper, false);
-           
+
             //UIKernel
+            DesktopManager.Update();
+            DesktopManager.Draw();
             WindowManager.UpdateAll();
             WindowManager.DrawAll();
             CursorManager.Update();

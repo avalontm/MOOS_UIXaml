@@ -14,13 +14,15 @@ namespace System.Windows.Media
                 return 0;
             }
 
-            int i = hex.Length > 1 && hex[0] == '0' && (hex[1] == 'x' || hex[1] == 'X') ? 2 : 0;
-            uint value = 0;
+            hex = hex.ToUpper();
 
             if (hex[0] == '#')
             {
                 hex = hex.Remove(0);
             }
+
+            int i = hex.Length > 1 && hex[0] == '0' && (hex[1] == 'x' || hex[1] == 'X') ? 2 : 0;
+            uint value = 0;
 
             while (i < hex.Length)
             {
@@ -48,6 +50,12 @@ namespace System.Windows.Media
             int b = (_base.B * _color.B) / 255;
 
            return (uint)(a << 24 | r << 16 | g << 8 | b);
+        }
+
+        public static Brush FromARGB(int a, int r, int g, int b)
+        {
+            uint color = (uint)(a << 24 | r << 16 | g << 8 | b);
+            return new Brush(color);
         }
     }
 }
