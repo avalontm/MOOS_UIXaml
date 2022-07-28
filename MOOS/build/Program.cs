@@ -137,6 +137,10 @@ static unsafe class Program
             CursorManager.Update();
 
             Framebuffer.Graphics.DrawImage(Control.MousePosition.X, Control.MousePosition.Y, CursorManager.GetCursor );
+
+            //Bilineal
+            UIFilter.Bilinear();
+
             Framebuffer.Update();
 
             FPSMeter.Update();

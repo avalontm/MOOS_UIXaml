@@ -20,6 +20,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)System\Desktops\DesktopManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Diagnostics\Debug.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Globalization\CultureInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\UIFilter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\UIFramebuffer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Application.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\BooleanConverter.cs" />
