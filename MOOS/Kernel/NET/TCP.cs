@@ -2,6 +2,7 @@
 
 using MOOS.Driver;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net;
 using System.Runtime.InteropServices;
 
@@ -66,6 +67,11 @@ namespace MOOS.NET
             }
             OnData?.Invoke(Data);
             Data.Dispose();
+        }
+
+        public bool Close()
+        {
+           return TCP.Clients.Remove(this);
         }
     }
 
@@ -155,6 +161,7 @@ namespace MOOS.NET
             if (currConn == null)
             {
                 Console.WriteLine("TCP connection havn't established yet");
+                Debug.WriteLine("TCP connection havn't established yet");
                 return;
             }
 
@@ -192,6 +199,7 @@ namespace MOOS.NET
             {
                 SendPacket(conn, 0, (byte)TCPFlags.TCP_RST | (byte)TCPFlags.TCP_ACK, null, 0);
                 Console.WriteLine("Error: connection reset");
+                Debug.WriteLine("Error: connection reset");
             }
 
             if ((~flags & (byte)TCPFlags.TCP_ACK) != 0)
@@ -358,6 +366,7 @@ namespace MOOS.NET
                 case TCPStatus.SynReceived:
 
                     Console.WriteLine("Error: tcp connection refused");
+                    Debug.WriteLine("Error: tcp connection refused");
                     break;
 
                 case TCPStatus.Established:
@@ -366,6 +375,7 @@ namespace MOOS.NET
                 case TCPStatus.CloseWait:
 
                     Console.WriteLine("Error: tcp reset");
+                    Debug.WriteLine("Error: tcp reset");
                     break;
 
                 case TCPStatus.Closing:
@@ -402,6 +412,7 @@ namespace MOOS.NET
                 if ((flags & (byte)TCPFlags.TCP_ACK) != 0)
                 {
                     Console.WriteLine("TCP Reset");
+                    Debug.WriteLine("TCP Reset");
                 }
 
                 return;
@@ -423,14 +434,14 @@ namespace MOOS.NET
                     conn.State = TCPStatus.Established;
                     SendPacket(conn, conn.SndNxt, (byte)TCPFlags.TCP_ACK, null, 0);
                     Console.WriteLine("Connection established");
-
+                    Debug.WriteLine("Connection established");
 
 
                 }
                 else
                 {
                     Console.WriteLine("No response");
-
+                    Debug.WriteLine("No response");
                     conn.State = TCPStatus.SynReceived;
 
                     --conn.SndNxt;
@@ -478,6 +489,7 @@ namespace MOOS.NET
             SendPacket(conn, conn.SndNxt, (byte)TCPFlags.TCP_SYN);
             conn.State = TCPStatus.SynSent;
 
+            /*
             ulong t = Timer.Ticks + 3000;
             while ((Timer.Ticks < t) && !conn.Connected)
             {
@@ -486,8 +498,9 @@ namespace MOOS.NET
             if (conn.State == TCPStatus.SynSent)
             {
                 Console.WriteLine("Connection timeout");
+                Debug.WriteLine("Connection timeout");
             }
-
+            */
             return conn;
         }
 
@@ -601,9 +614,13 @@ namespace MOOS.NET
                     Timer.Sleep(1000);
                     if (PacketSent || conn == null) break;
                     Console.WriteLine("Packet may not accpeted. resending");
+                    Debug.WriteLine("Packet may not accpeted. resending");
                 }
                 if (conn != null)
+                {
                     Console.WriteLine("Packet sent");
+                    Debug.WriteLine("Packet sent");
+                }
             }
         }
 

@@ -9,11 +9,12 @@ using System.Windows.Forms;
 using System.Windows;
 using System.Diagnostics;
 using System.Desktops;
+using MOOS.NET;
+using System.Net;
 
 static unsafe class Program
 {
     static void Main() { }
-    public static Image Wallpaper;
 
     static bool USBMouseTest()
     {
@@ -78,8 +79,6 @@ static unsafe class Program
         }
 
         CursorManager.Initialize();
-        //Image from unsplash
-        Wallpaper = new PNG(File.Instance.ReadAllBytes("Images/Wallpaper1.png"));
 
         BitFont.Initialize();
 
@@ -94,6 +93,18 @@ static unsafe class Program
         Audio.Initialize();
         AC97.Initialize();
 
+#if NETWORK
+        //To use network. edit Kernel.csproj and use qemu. add "-net nic,model=rtl8139 -net tap,ifname=tap" to the end of command
+        //Install openVPN's windows tap driver
+        //rename the network adapter to tap in control panel
+        //right click your network connection device. then share the network with tap 
+        //Run
+        Network.Initialise(IPAddress.Parse(192, 168, 137, 188), IPAddress.Parse(192, 168, 137, 1), IPAddress.Parse(255, 255, 255, 0));
+
+        HttpClient client = new HttpClient("192.168.137.2", 80);
+        client.Get();
+#endif
+
         SMain();
     }
 
@@ -103,11 +114,6 @@ static unsafe class Program
 
         Framebuffer.TripleBuffered = true;
         Framebuffer.AntiAliasing = true;
-
-        Image wall = Wallpaper;
-        Wallpaper = wall.ResizeImage(Framebuffer.Width, Framebuffer.Height);
-      
-        wall.Dispose();
 
         DesktopManager.Initialize();
 
@@ -127,8 +133,6 @@ static unsafe class Program
         {
             WindowManager.InputAll();
 
-            Framebuffer.Graphics.DrawImage((Framebuffer.Width / 2) - (Wallpaper.Width / 2), (Framebuffer.Height / 2) - (Wallpaper.Height / 2), Wallpaper, false);
-
             //UIKernel
             DesktopManager.Update();
             DesktopManager.Draw();
@@ -137,9 +141,6 @@ static unsafe class Program
             CursorManager.Update();
 
             Framebuffer.Graphics.DrawImage(Control.MousePosition.X, Control.MousePosition.Y, CursorManager.GetCursor );
-
-            //Bilineal
-            UIFilter.Bilinear();
 
             Framebuffer.Update();
 

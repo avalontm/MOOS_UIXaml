@@ -31,6 +31,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Internal\Runtime\RuntimeConstants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Internal\TypeSystem\ExceptionStringID.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\MulticastDelegate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\Net\HttpClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Nullable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\RuntimeMethodHandle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\RuntimeTypeHandle.cs" />

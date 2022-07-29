@@ -21,7 +21,8 @@ namespace System
             uint* src;
             uint* dst;
 
-            fixed (uint* dataPtr = Framebuffer.Graphics.Save().RawData)
+            Image screen = Framebuffer.Graphics.Save();
+            fixed (uint* dataPtr = screen.RawData)
             {
                 src = dataPtr;
             }
@@ -86,6 +87,7 @@ namespace System
                 Bpp = 4,
                 RawData = tmp
             };
+            screen.Dispose();
 
             Framebuffer.Graphics.DrawImage(0, 0, filter, false);
             filter.Dispose();

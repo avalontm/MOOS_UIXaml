@@ -1,8 +1,11 @@
 ﻿using MOOS;
+using MOOS.FS;
+using MOOS.Misc;
 using System;
 using System.Collections.Generic;
 using System.Desktops.Controls;
 using System.Diagnostics;
+using System.Drawing;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -15,6 +18,7 @@ namespace System.Desktops
         static DesktopDocker docker { set; get; }
         static List<DesktopControl> items { set; get; }
         static ICommand itemDesktop { set; get; }
+        public static Image Wallpaper { set; get; }
 
         public static void Initialize()
         {
@@ -23,6 +27,12 @@ namespace System.Desktops
             docker = new DesktopDocker();
             items = new List<DesktopControl>();
 
+            //Image from unsplash
+            Wallpaper = new PNG(File.Instance.ReadAllBytes("Images/Wallpaper1.png"));
+
+            Image wall = Wallpaper;
+            Wallpaper = wall.ResizeImage(Framebuffer.Width, Framebuffer.Height);
+            wall.Dispose();
 
             //Bar Elements
             DesktopBarItem item = new DesktopBarItem();
@@ -63,6 +73,8 @@ namespace System.Desktops
 
         public static void Draw()
         {
+            Framebuffer.Graphics.DrawImage((Framebuffer.Width / 2) - (Wallpaper.Width / 2), (Framebuffer.Height / 2) - (Wallpaper.Height / 2), Wallpaper, false);
+
             docker.Draw();
             bar.Draw();
 

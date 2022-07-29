@@ -1,4 +1,4 @@
-﻿{
+{
   "profiles": {
     "QEMU(click this dropdown menu for more build options)": {
       "commandName": "Executable",
@@ -22,6 +22,12 @@
       "commandName": "Executable",
       "executablePath": "cmd.exe",
       "commandLineArgs": "/c dotnet publish -p:vm=vmware -r win-x64 -c debug MOOS.csproj",
+      "workingDirectory": ".\\"
+    },
+    "QEMU with NET": {
+      "commandName": "Executable",
+      "executablePath": "cmd.exe",
+      "commandLineArgs": "/c dotnet publish -p:vm=qemunet -r win-x64 -c debug MOOS.csproj",
       "workingDirectory": ".\\"
     }
   }
