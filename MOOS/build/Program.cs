@@ -10,7 +10,10 @@ using System.Windows;
 using System.Diagnostics;
 using System.Desktops;
 using MOOS.NET;
+<<<<<<< HEAD
 using System.Net;
+=======
+>>>>>>> f89c33f9591f572a57228cd9b6ab8d5777d8682e
 
 static unsafe class Program
 {
@@ -91,7 +94,9 @@ static unsafe class Program
         Console.WriteLine("Use Native AOT (Core RT) Technology.");
 
         Audio.Initialize();
-        AC97.Initialize();
+        //AC97.Initialize();
+
+        NetworkInit.Initialize();
 
 #if NETWORK
         //To use network. edit Kernel.csproj and use qemu. add "-net nic,model=rtl8139 -net tap,ifname=tap" to the end of command
@@ -111,6 +116,7 @@ static unsafe class Program
     public static void SMain()
     {
         Console.WriteLine("Press any key to enter desktop...");
+        Console.ReadKey();
 
         Framebuffer.TripleBuffered = true;
         Framebuffer.AntiAliasing = true;

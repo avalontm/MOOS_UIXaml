@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Driver\AC97.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Driver\ACPI.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Driver\ACPITimer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Driver\AMDPCNetII.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Driver\EHCI.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Driver\Framebuffer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Driver\HID.cs" />
@@ -27,6 +28,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Driver\LocalAPIC.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Driver\LocalAPICTimer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Driver\PCI.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Driver\PCIDevice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Driver\PCIExpress.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Driver\PIC.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Driver\PIT.cs" />
@@ -62,6 +64,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)GUI\Snake.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GUI\Welcome.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GUI\Window.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)INTs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IOGroup\IOGroup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IOGroup\Network\AMDPCNetIIIOGroup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IOGroup\PCI.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IOGroup\PIC.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\IOPort.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Memory\ManagedMemoryBlock.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Memory\MemoryBlock.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Memory\MemoryOperations.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Misc\Allocator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Misc\ASC16.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Misc\Audio.cs" />
@@ -95,21 +106,33 @@
     <Compile Include="$(MSBuildThisFileDirectory)NES\NES.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NES\PPU.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NES\Registers.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)NET\ARP.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NET\ARP\ARPCache.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NET\ARP\ARPPacket.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NET\ARP\ARPPacket_Ethernet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NET\Config\DNSConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NET\Config\IPConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NET\Config\NetworkConfig.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NET\Ethernet.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)NET\IPv4.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NET\EthernetPacket.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NET\IPv4\Address.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NET\IPv4\EndPoint.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NET\IPv4\IPPacket.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NET\IPv4\OutgoingBuffer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NET\IPv4\TCP\Tcp.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NET\IPv4\TCP\TCPClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NET\IPv4\TCP\TcpListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NET\IPv4\TCP\TCPPacket.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NET\MACAddress.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NET\Network.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)NET\NIC.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)NET\TCP.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)NET\UDP.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NET\NetworkDebugger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NET\NetworkDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NET\NetworkInit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NET\NetworkStack.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SMP.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SSE.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)stdio.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)stdlib.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)strings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VHD.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)NET\README.md" />
   </ItemGroup>
 </Project>

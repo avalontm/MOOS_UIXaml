@@ -14,9 +14,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)System\Byte.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Char.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Collections\Generic\Dictionary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\Common\BinaryHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\Common\Extentions\ToHexString.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\Runtime\Extensions\BitConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\Runtime\Extensions\ByteConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Delegate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Double.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Enum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\Helpers\ArrayHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Int16.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Int32.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Int64.cs" />
@@ -90,6 +95,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)System\Runtime\RuntimeExportAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Runtime\TypeCast.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\String.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\Text\Encoding.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Threading\Monitor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\TimeSpan.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\UInt16.cs" />

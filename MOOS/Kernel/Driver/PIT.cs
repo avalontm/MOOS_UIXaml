@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using MOOS.Driver;
 using MOOS.Misc;
 
@@ -18,6 +19,12 @@ namespace MOOS
             Native.Out8(0x40, (byte)((timerCount & 0xFF00) >> 8));
 
             Interrupts.EnableInterrupt(0x20);
+        }
+
+        public static void Wait(int vms)
+        {
+            Debug.WriteLine("NotImplementedException");
+            return;
         }
     }
 }

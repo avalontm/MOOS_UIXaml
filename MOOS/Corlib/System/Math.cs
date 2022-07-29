@@ -310,26 +310,24 @@ namespace System
 
         public static double Floor(double x)
         {
-            double xcopy = x < 0 ? x * -1 : x;
-            int zeros = 0;
-            double n = 1;
-            for (n = 1; xcopy > n * 10; n *= 10, ++zeros)
+            if (x >= 0.0)
             {
-                ;
-            }
-
-            for (xcopy -= n; zeros != -1; xcopy -= n)
-            {
-                if (xcopy < 0)
+                if (x < ((long.MaxValue / 2 + 1) * 2.0))
                 {
-                    xcopy += n;
-                    n /= 10;
-                    --zeros;
+                    return (double)(long)x;
                 }
+                return x;
             }
-
-            xcopy += n;
-            return x < 0 ? (xcopy == 0 ? x : x - (1 - xcopy)) : (x - xcopy);
+            else if (x < 0.0)
+            {
+                if (x >= long.MinValue)
+                {
+                    long ix = (long)x;
+                    return (ix == x) ? x : (double)(ix - 1);
+                }
+                return x;
+            }
+            return x;
         }
     }
 

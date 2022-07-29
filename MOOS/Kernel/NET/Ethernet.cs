@@ -1,7 +1,8 @@
 using System.Runtime.InteropServices;
-
+/*
 namespace MOOS.NET
 {
+    
     public static unsafe class Ethernet
     {
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
@@ -63,4 +64,4 @@ namespace MOOS.NET
               ((x & 0xff000000) >> 24);
         }
     }
-}
+}*/

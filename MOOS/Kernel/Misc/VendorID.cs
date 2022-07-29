@@ -1,7 +1,26 @@
 namespace MOOS.Misc
 {
+    public enum EVendorID
+    {
+        Intel = 0x8086,
+        AMD = 0x1022,
+        VMWare = 0x15AD,
+        Bochs = 0x1234,
+        VirtualBox = 0x80EE
+    }
+
+    public enum EDeviceID
+    {
+        SVGAIIAdapter = 0x0405,
+        PCNETII = 0x2000,
+        BGA = 0x1111,
+        VBVGA = 0xBEEF,
+        VBoxGuest = 0xCAFE
+    }
+
     public static class VendorID
     {
+
         public static string GetName(ushort id)
         {
             if (id == 0x0033) return "Paradyne Corp";
@@ -1572,6 +1591,7 @@ namespace MOOS.Misc
             if (id == 0xEDD8) return "ARK Logic, Inc";
             if (id == 0xF5F5) return "F5 Networks Inc";
             if (id == 0xFA57) return "Interagon AS";
+            if (id == 0x1022) return "AMD";
             return "Unknown";
         }
     }

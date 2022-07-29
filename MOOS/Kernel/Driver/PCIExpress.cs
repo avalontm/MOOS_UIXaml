@@ -113,7 +113,7 @@ namespace MOOS.Driver
                     DeviceHeader* Dev = (DeviceHeader*)FuncAddress;
                     if (Dev->Header.DeviceID == 0 || Dev->Header.DeviceID == 0xFFFF) return;
 
-                    PCIDevice device = new PCIDevice();
+                    PCIDevice device = new PCIDevice(Bus, Slot , Func);
                     device.Segment = Segment;
                     device.Bus = Bus;
                     device.Slot = Slot;
@@ -121,13 +121,13 @@ namespace MOOS.Driver
                     device.VendorID = Dev->Header.VendorID;
                     device.IsPCIEDevice = true;
 
-                    device.ClassID = Dev->Header.ClassID;
-                    device.SubClassID = Dev->Header.SubClass;
+                    device.VendorID = Dev->Header.ClassID;
+                    device.DeviceID = Dev->Header.SubClass;
                     device.ProgIF = Dev->Header.ProgIF;
 
                     device.DeviceID = Dev->Header.DeviceID;
 
-                    if (device.ClassID == 0x06 && device.SubClassID == 0x04)
+                    if (device.VendorID == 0x06 && device.DeviceID == 0x04)
                     {
                         BridgeHeader* Bri = (BridgeHeader*)Dev;
 
@@ -152,7 +152,7 @@ namespace MOOS.Driver
                         device.Bar5 = Dev->Bar5;
                     }
 
-                    Console.WriteLine($"[PCI Express {device.Bus}:{device.Slot}:{device.Function}] {VendorID.GetName(device.VendorID)} {ClassID.GetName(device.ClassID)}");
+                   // Console.WriteLine($"[PCI Express {device.Bus}:{device.Slot}:{device.Function}] {VendorID.GetName(device.VendorID)} {ClassID.GetName(device.ClassID)}");
 
                     PCI.Devices.Add(device);
                 }

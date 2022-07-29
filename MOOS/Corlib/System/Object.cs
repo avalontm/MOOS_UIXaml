@@ -36,8 +36,13 @@ namespace System
             => 0;
 
         public virtual string ToString()
-            => "System.Object";
-
+        {
+             return "System.Object";
+        }
+        public virtual string ToString(string value)
+        {
+            return value;
+        }
 
         public virtual void Dispose()
         {
