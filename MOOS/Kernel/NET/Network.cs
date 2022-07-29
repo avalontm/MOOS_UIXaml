@@ -2,8 +2,10 @@ using MOOS.Driver;
 using MOOS.Misc;
 using System.Net;
 
+/*
 namespace MOOS.NET
 {
+
     public static class Network
     {
         public static byte[] MAC;
@@ -23,9 +25,9 @@ namespace MOOS.NET
             Gateway = GatewayAddress.Address;
             Mask = SubnetMask.Address;
             IP = IPAddress.Address;
-            UDP.Clients = new();
-            ARP.Initialise();
-            TCP.Clients = new();
+            //UDP.Clients = new();
+            //ARP.Initialise();
+            //TCP.Clients = new();
 
             MAC = null;
 
@@ -35,7 +37,7 @@ namespace MOOS.NET
             if (Controller == null) Panic.Error("No compatible network controller on this device!");
             if (MAC == null) Panic.Error("NIC didn't set Network.MAC");
 
-            ARP.Require(Network.Gateway);
+            //ARP.Require(Network.Gateway);
         }
     }
-}
+}*/

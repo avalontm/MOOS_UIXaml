@@ -4,7 +4,7 @@ using MOOS;
 
 namespace System.Collections.Generic
 {
-    public class List<T>
+    public class List<T> 
     {
         private T[] _value;
 
@@ -112,6 +112,31 @@ namespace System.Collections.Generic
         public void Clear()
         {
             Count = 0;
+        }
+
+        public List<T> GetEnumerator()
+        {
+            return this;
+        }
+
+        public T Current
+        {
+            get
+            {
+                return this[Index];
+            }
+        }
+
+        int Index = 0;
+
+        public bool MoveNext()
+        {
+            if (Current != this[Count])
+            {
+                Index++;
+                return true;
+            }
+            return false;
         }
 
     }

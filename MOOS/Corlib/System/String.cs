@@ -1,5 +1,6 @@
 using Internal.Runtime.CompilerHelpers;
 using Internal.Runtime.CompilerServices;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 
@@ -238,7 +239,32 @@ namespace System
             return false;
         }
 
-/* ====================================================================== */
+        public string[] Split(char limit)
+        {
+            List<string> strings = new List<string>();
+            string tmp = string.Empty;
+            for (int i = 0; i < this.Length; i++)
+            {
+                if (this[i] == limit)
+                {
+                    strings.Add(tmp);
+                    tmp = string.Empty;
+                }
+                else
+                {
+                    tmp += this[i];
+                }
+
+                if (i == (this.Length - 1))
+                {
+                    strings.Add(tmp);
+                    tmp = string.Empty;
+                }
+            }
+            return strings.ToArray();
+        }
+
+        /* ====================================================================== */
 
         public static bool operator ==(string a, string b)
             => a.Equals(b);
@@ -334,6 +360,32 @@ namespace System
                 args.Dispose();
                 return res;
             }
+        }
+
+        public string PadLeft(int num, char chr)
+        {
+            string result = "";
+
+            for(int i= 0; i < (num - this.Length); i++)
+            {
+                result += chr;
+            }
+
+            return result + this;
+        }
+
+        public string PadLeft(string str, int num)
+        {
+            string result = "";
+
+            for (int i = 0; i < num; i++)
+            {
+                result += this[i];
+            }
+
+            result += str;
+
+            return result;
         }
 
 #endif

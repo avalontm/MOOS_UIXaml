@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Windows;
 using System.Diagnostics;
 using System.Desktops;
+using MOOS.NET;
 
 static unsafe class Program
 {
@@ -92,7 +93,9 @@ static unsafe class Program
         Console.WriteLine("Use Native AOT (Core RT) Technology.");
 
         Audio.Initialize();
-        AC97.Initialize();
+        //AC97.Initialize();
+
+        NetworkInit.Initialize();
 
         SMain();
     }
@@ -100,6 +103,7 @@ static unsafe class Program
     public static void SMain()
     {
         Console.WriteLine("Press any key to enter desktop...");
+        Console.ReadKey();
 
         Framebuffer.TripleBuffered = true;
         Framebuffer.AntiAliasing = true;
@@ -137,9 +141,6 @@ static unsafe class Program
             CursorManager.Update();
 
             Framebuffer.Graphics.DrawImage(Control.MousePosition.X, Control.MousePosition.Y, CursorManager.GetCursor );
-
-            //Bilineal
-            UIFilter.Bilinear();
 
             Framebuffer.Update();
 

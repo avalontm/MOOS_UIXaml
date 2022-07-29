@@ -30,7 +30,7 @@ namespace MOOS.Driver
 
             Console.WriteLine("[EHCI] EHCI controller found!");
 
-            device.WriteRegister(0x04, 0x04 | 0x02 | 0x01);
+            device.WriteRegister32(0x04, 0x04 | 0x02 | 0x01);
 
             uint bar0 = device.Bar0;
             Console.WriteLine($"[EHCI] Bar0: {bar0.ToString("x2")}");

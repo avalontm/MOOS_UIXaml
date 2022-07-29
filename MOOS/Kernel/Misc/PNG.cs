@@ -31,7 +31,7 @@ namespace MOOS.Misc
                         {
                             for (int y = 0; y < h; y++)
                             {
-                                RawData[y * w + x] = (_out[y * w + x] & 0xFF000000) | (Ethernet.SwapLeftRight32(_out[y * w + x] & 0x00FFFFFF)) >> 8;
+                                RawData[y * w + x] = (_out[y * w + x] & 0xFF000000) | (SwapLeftRight32(_out[y * w + x] & 0x00FFFFFF)) >> 8;
                             }
                         }
                     }
@@ -41,6 +41,14 @@ namespace MOOS.Misc
                     Bpp = 4;
                 }
             }
+        }
+
+        uint SwapLeftRight32(uint x)
+        {
+            return ((x & 0x000000ff) << 24) +
+              ((x & 0x0000ff00) << 8) +
+              ((x & 0x00ff0000) >> 8) +
+              ((x & 0xff000000) >> 24);
         }
 
         [DllImport("*")]

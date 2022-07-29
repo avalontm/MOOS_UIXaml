@@ -34,7 +34,7 @@ namespace System.Collections.Generic
         }
 
         public int Length => list.Count;
-
+        public int Count => list.Count;
 
         public void Enqueue(T item)
         {
@@ -47,6 +47,11 @@ namespace System.Collections.Generic
 
             list.Count--;
             return list[list.Count];
+        }
+
+        public T Peek()
+        {
+            return Head;
         }
     }
 }

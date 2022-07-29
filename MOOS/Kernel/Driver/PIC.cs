@@ -59,5 +59,34 @@ namespace MOOS
             value = (byte)(Native.In8(port) & ~(1 << irq));
             Native.Out8(port, value);
         }
+
+        public static void EoiMaster()
+        {
+            Master.Cmd.Byte = (byte)Cmd.EOI;
+        }
+
+        public static void EoiSlave()
+        {
+            Master.Cmd.Byte = (byte)Cmd.EOI;
+            Slave.Cmd.Byte = (byte)Cmd.EOI;
+        }
+
+        static IOGroup.PIC Master = new IOGroup.PIC(false);
+        /// <summary>
+        /// Slave PIC.
+        /// </summary>
+        static IOGroup.PIC Slave = new IOGroup.PIC(true);
+
+        public enum Cmd
+        {
+            /// <summary>
+            /// Initialize.
+            /// </summary>
+            Init = 0x10,
+            /// <summary>
+            /// End of interrupt.
+            /// </summary>
+            EOI = 0x20
+        }
     }
 }

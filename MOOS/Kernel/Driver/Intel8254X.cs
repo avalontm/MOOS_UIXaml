@@ -6,6 +6,7 @@ using System;
 using System.Runtime.InteropServices;
 using static MOOS.Misc.MMIO;
 
+/*
 namespace MOOS.Driver
 {
     public unsafe class Intel8254X : NIC
@@ -356,7 +357,7 @@ namespace MOOS.Driver
                 RXDesc* desc = (RXDesc*)(RXDescs + (RXCurr * 16));
                 while ((desc->status & 0x1) != 0)
                 {
-                    Ethernet.HandlePacket((byte*)desc->addr, desc->length);
+                    //Ethernet.HandlePacket((byte*)desc->addr, desc->length);
                     //desc->addr;
                     desc->status = 0;
                     RXCurr = (RXCurr + 1) % 32;
@@ -388,4 +389,4 @@ namespace MOOS.Driver
             while ((desc->status & 0xff) == 0) ;
         }
     }
-}
+}*/
