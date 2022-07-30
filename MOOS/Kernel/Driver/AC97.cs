@@ -5,7 +5,7 @@ using System;
 using System.Runtime.InteropServices;
 using static Native;
 
-/*
+
 namespace MOOS
 {
     public unsafe class AC97
@@ -98,4 +98,4 @@ namespace MOOS
             public ushort Arribute;
         }
     }
-}*/
+}

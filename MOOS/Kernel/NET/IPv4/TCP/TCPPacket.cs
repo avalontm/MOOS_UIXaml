@@ -293,7 +293,7 @@ namespace MOOS.NET.IPv4.TCP
         /// <returns>byte array value.</returns>
         internal byte[] MakeHeader()
         {
-            byte[] header = new byte[12 + (TCPHeaderLength + TCP_DataLength)];
+            byte[] header = new byte[12 + TCPHeaderLength + TCP_DataLength];
             /* Pseudo Header */
             //Addresses
             for (int b = 0; b < 4; b++)
@@ -301,7 +301,7 @@ namespace MOOS.NET.IPv4.TCP
                 header[0 + b] = SourceIP.address[b];
                 header[4 + b] = DestinationIP.address[b];
             }
-
+            Console.WriteLine($"[PASO6] SourceIP: {SourceIP.ToString()} | DestinationIP: {DestinationIP.ToString()}");
             //Reserved
             header[8] = 0x00;
             //Protocol (TCP)
@@ -311,7 +311,7 @@ namespace MOOS.NET.IPv4.TCP
             header[10] = (byte)((tcplen >> 8) & 0xFF);
             header[11] = (byte)((tcplen >> 0) & 0xFF);
             Console.WriteLine($"[PASO6] Header: {tcplen} | RawData: {RawData.Length} | DataOffset: {DataOffset}");
-           
+
             /* TCP Packet */
             for (int i = 0; i < RawData.Length; i++)
             {

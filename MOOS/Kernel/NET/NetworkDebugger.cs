@@ -70,7 +70,7 @@ namespace MOOS.NET
                 xClient.Connect(Ip, Port);
             }
 
-            Send("--- Cosmos Network Consoleger ---");
+            Send("--- MOOS Network Consoleger ---");
             Send("Consoleger Connected!");
         }
 

@@ -31,14 +31,14 @@ namespace MOOS.NET
             if (device == null)
             {
                 //throw new ArgumentException("PCI Device is null. Unable to get Realtek 8139 card");
-                Debug.WriteLine("PCI Device is null. Unable to get Realtek 8139 card");
+                Console.WriteLine("PCI Device is null. Unable to get Realtek 8139 card");
                 return;
             }
             pciCard = device;
             Base = device.Bar0;
             // We are handling this device
             pciCard.Claimed = true;
-// Setup interrupt handling
+            // Setup interrupt handling
             INTs.SetIrqHandler(device.InterruptLine, HandleNetworkInterrupt);
             // Get IO Address from PCI Bus
             // Enable the card
@@ -265,7 +265,7 @@ namespace MOOS.NET
             //Console.WriteLine("Try sending");
             if (SendBytes(ref data) == false)
             {
-                //Console.WriteLine("Queuing");
+               // Console.WriteLine("Queuing");
                 mTransmitBuffer.Enqueue(data);
             }
             return true;
@@ -273,7 +273,7 @@ namespace MOOS.NET
         public override bool ReceiveBytes(byte[] buffer, int offset, int max)
         {
             //throw new NotImplementedException();
-            Debug.WriteLine("NotImplementedException");
+            Console.WriteLine("NotImplementedException");
             return false;
         }
         public override byte[] ReceivePacket()

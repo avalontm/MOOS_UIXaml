@@ -109,10 +109,8 @@ namespace MOOS.NET.IPv4
         internal static void AddPacket(IPPacket packet)
         {
             EnsureQueueExists();
-            Console.WriteLine($"[AddPacket] FindInterface | {packet.SourceIP.ToString()}");
             NetworkDevice nic = IPConfig.FindInterface(packet.SourceIP);
             packet.SourceMAC = nic.MACAddress;
-            Console.WriteLine($"[SourceMAC] {packet.SourceMAC.ToString()}");
             queue.Add(new BufferEntry(nic, packet));
 
         }
@@ -155,71 +153,65 @@ namespace MOOS.NET.IPv4
                     break;
                 }
 
-                //foreach (BufferEntry entry in queue)
                 for (int e = 0; e < queue.Count; e++)
                 {
-                    BufferEntry entry = queue[e];
-
-                    if (entry.Status == BufferEntry.EntryStatus.ADDED)
+                    if (queue[e].Status == BufferEntry.EntryStatus.ADDED)
                     {
-                        if (IPConfig.IsLocalAddress(entry.Packet.DestinationIP) == false)
+                        if (IPConfig.IsLocalAddress(queue[e].Packet.DestinationIP) == false)
                         {
-                            entry.nextHop = IPConfig.FindRoute(entry.Packet.DestinationIP);
-                            if (entry.nextHop == null)
+                            queue[e].nextHop = IPConfig.FindRoute(queue[e].Packet.DestinationIP);
+                            if (queue[e].nextHop == null)
                             {
-                                entry.Status = BufferEntry.EntryStatus.DONE;
+                                queue[e].Status = BufferEntry.EntryStatus.DONE;
                                 continue;
                             }
 
-                            if (ARPCache.Contains(entry.nextHop) == true)
+                            if (ARPCache.Contains(queue[e].nextHop) == true)
                             {
-                                entry.Packet.DestinationMAC = ARPCache.Resolve(entry.nextHop);
+                                queue[e].Packet.DestinationMAC = ARPCache.Resolve(queue[e].nextHop);
+                                queue[e].NIC.QueueBytes(queue[e].Packet.RawData);
 
-                                entry.NIC.QueueBytes(entry.Packet.RawData);
-
-                                entry.Status = BufferEntry.EntryStatus.DONE;
+                                queue[e].Status = BufferEntry.EntryStatus.DONE;
                             }
                             else
                             {
-                                ARPRequest_Ethernet arp_request = new ARPRequest_Ethernet(entry.NIC.MACAddress, entry.Packet.SourceIP,
-                                    MACAddress.Broadcast, entry.nextHop, MACAddress.None);
+                                ARPRequest_Ethernet arp_request = new ARPRequest_Ethernet(queue[e].NIC.MACAddress, queue[e].Packet.SourceIP,
+                                    MACAddress.Broadcast, queue[e].nextHop, MACAddress.None);
 
-                                entry.NIC.QueueBytes(arp_request.RawData);
+                                queue[e].NIC.QueueBytes(arp_request.RawData);
 
-                                entry.Status = BufferEntry.EntryStatus.ROUTE_ARP_SENT;
+                                queue[e].Status = BufferEntry.EntryStatus.ROUTE_ARP_SENT;
                             }
                             continue;
                         }
-                        if (ARPCache.Contains(entry.Packet.DestinationIP) == true)
+                        if (ARPCache.Contains(queue[e].Packet.DestinationIP) == true)
                         {
-                            entry.Packet.DestinationMAC = ARPCache.Resolve(entry.Packet.DestinationIP);
+                            queue[e].Packet.DestinationMAC = ARPCache.Resolve(queue[e].Packet.DestinationIP);
+                            queue[e].NIC.QueueBytes(queue[e].Packet.RawData);
 
-                            entry.NIC.QueueBytes(entry.Packet.RawData);
-
-                            entry.Status = BufferEntry.EntryStatus.DONE;
+                            queue[e].Status = BufferEntry.EntryStatus.DONE;
                         }
                         else
                         {
-                            ARPRequest_Ethernet arp_request = new ARPRequest_Ethernet(entry.NIC.MACAddress, entry.Packet.SourceIP,
-                                MACAddress.Broadcast, entry.Packet.DestinationIP, MACAddress.None);
+                            ARPRequest_Ethernet arp_request = new ARPRequest_Ethernet(queue[e].NIC.MACAddress, queue[e].Packet.SourceIP,
+                                MACAddress.Broadcast, queue[e].Packet.DestinationIP, MACAddress.None);
 
-                            entry.NIC.QueueBytes(arp_request.RawData);
+                            queue[e].NIC.QueueBytes(arp_request.RawData);
 
-                            entry.Status = BufferEntry.EntryStatus.ARP_SENT;
+                            queue[e].Status = BufferEntry.EntryStatus.ARP_SENT;
                         }
                     }
-                    else if (entry.Status == BufferEntry.EntryStatus.DHCP_REQUEST)
+                    else if (queue[e].Status == BufferEntry.EntryStatus.DHCP_REQUEST)
                     {
-                        entry.NIC.QueueBytes(entry.Packet.RawData);
-
-                        entry.Status = BufferEntry.EntryStatus.DONE;
-
+                        queue[e].NIC.QueueBytes(queue[e].Packet.RawData);
+                        queue[e].Status = BufferEntry.EntryStatus.DONE;
+                       
                     }
-                    else if (entry.Status == BufferEntry.EntryStatus.JUST_SEND)
+                    else if (queue[e].Status == BufferEntry.EntryStatus.JUST_SEND)
                     {
-                        entry.NIC.QueueBytes(entry.Packet.RawData);
+                        queue[e].NIC.QueueBytes(queue[e].Packet.RawData);
 
-                        entry.Status = BufferEntry.EntryStatus.DONE;
+                        queue[e].Status = BufferEntry.EntryStatus.DONE;
                     }
                 }
                 int i = 0;
@@ -245,28 +237,27 @@ namespace MOOS.NET.IPv4
         internal static void ARPCache_Update(ARPReply_Ethernet arp_reply)
         {
             EnsureQueueExists();
-            //foreach (BufferEntry entry in queue)
+
             for (int e = 0; e < queue.Count; e++)
             {
-                BufferEntry entry = queue[e];
-                if (entry.Status == BufferEntry.EntryStatus.ARP_SENT)
+                if (queue[e].Status == BufferEntry.EntryStatus.ARP_SENT)
                 {
-                    var xDestIP = entry.Packet.DestinationIP.Hash;
+                    var xDestIP = queue[e].Packet.DestinationIP.Hash;
                     var xSenderIP = arp_reply.SenderIP.Hash;
-                    if (entry.Packet.DestinationIP.CompareTo(arp_reply.SenderIP) == 0)
+                    if (queue[e].Packet.DestinationIP.CompareTo(arp_reply.SenderIP) == 0)
                     {
-                        entry.Packet.DestinationMAC = arp_reply.SenderMAC;
+                        queue[e].Packet.DestinationMAC = arp_reply.SenderMAC;
 
-                        entry.Status = BufferEntry.EntryStatus.JUST_SEND;
+                        queue[e].Status = BufferEntry.EntryStatus.JUST_SEND;
                     }
                 }
-                else if (entry.Status == BufferEntry.EntryStatus.ROUTE_ARP_SENT)
+                else if (queue[e].Status == BufferEntry.EntryStatus.ROUTE_ARP_SENT)
                 {
-                    if (entry.nextHop.CompareTo(arp_reply.SenderIP) == 0)
+                    if (queue[e].nextHop.CompareTo(arp_reply.SenderIP) == 0)
                     {
-                        entry.Packet.DestinationMAC = arp_reply.SenderMAC;
+                        queue[e].Packet.DestinationMAC = arp_reply.SenderMAC;
 
-                        entry.Status = BufferEntry.EntryStatus.JUST_SEND;
+                        queue[e].Status = BufferEntry.EntryStatus.JUST_SEND;
                     }
                 }
             }

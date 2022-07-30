@@ -72,6 +72,7 @@ namespace MOOS.NET.IPv4.TCP
         /// <exception cref="Sys.IO.IOException">Thrown on IO error.</exception>
         public void Start()
         {
+
             StateMachine = new Tcp(LocalPort, 0, Address.Zero, Address.Zero);
 
             StateMachine.rxBuffer = new Queue<TCPPacket>(8);

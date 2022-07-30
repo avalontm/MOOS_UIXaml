@@ -14,6 +14,7 @@ using MOOS.NET;
 using MOOS.NET.IPv4.TCP;
 using MOOS.NET.IPv4;
 using MOOS.NET.Config;
+using MOOS.NET.IPv4.UDP.DHCP;
 
 static unsafe class Program
 {
@@ -94,22 +95,27 @@ static unsafe class Program
         Console.WriteLine("Use Native AOT (Core RT) Technology.");
 
         Audio.Initialize();
-        //AC97.Initialize();
+        AC97.Initialize();
 
         //Network Config
         Network.Initialize();
         NetworkStack.Initialize();
-        var ipconfig = new IPConfig(Address.Parse("192.168.1.150"), Address.Parse("255.255.255.0"));
-        NetworkStack.ConfigIP(NetworkDevice.Devices[0], ipconfig);
-       
-        //TCPClient Test
-        TcpClient client = new TcpClient(5000);
-        client.Connect(Address.Parse("192.168.1.113"), 5000);
-        byte[] buffer = System.Text.Encoding.ASCII.GetBytes("Hola mundo!");
-        Console.WriteLine($"[buffer] {buffer.Length}");
-        client.Send(buffer);
 
+        if (NetworkDevice.Devices.Count > 0)
+        {
+            //NetworkDevice nic = NetworkDevice.GetDeviceByName("eth0"); //get network device by name
+            //IPConfig.Enable(nic, new Address(192, 168, 5, 3), new Address(255, 255, 255, 0), new Address(192, 168, 5, 1)); //enable IPv4 configuration
 
+            /** Send a DHCP Discover packet **/
+            //This will automatically set the IP config after DHCP response
+            var xClient = new DHCPClient();
+            xClient.SendDiscoverPacket();
+            Console.WriteLine($"[CurrentAddress] {NetworkConfiguration.CurrentAddress.ToString()}");
+
+            //Global.mDebugger = new NetworkConsoleger(25);
+            //Global.mDebugger.Start();
+        }
+     
         SMain();
     }
 

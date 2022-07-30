@@ -1,5 +1,7 @@
 ﻿using MOOS.NET.ARP;
 using MOOS.NET.IPv4.TCP;
+using MOOS.NET.IPv4.UDP;
+using MOOS.NET.IPv4.UDP.DHCP;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -41,19 +43,19 @@ namespace MOOS.NET.IPv4
                 switch (ip_packet.Protocol)
                 {
                     case 1:
-                        //ICMPPacket.ICMPHandler(packetData);
+                        ICMPPacket.ICMPHandler(packetData);
                         break;
                     case 6:
                         TCPPacket.TCPHandler(packetData);
                         break;
                     case 17:
-                        //UDPPacket.UDPHandler(packetData);
+                        UDPPacket.UDPHandler(packetData);
                         break;
                 }
             }
             else if (NetworkStack.MACMap.ContainsKey(ip_packet.DestinationMAC.Hash))
 {
-                //DHCPPacket.DHCPHandler(packetData);
+                DHCPPacket.DHCPHandler(packetData);
             }
         }
 
@@ -97,6 +99,7 @@ namespace MOOS.NET.IPv4
             SourceIP = new Address(RawData, 26);
             DestinationIP = new Address(RawData, 30);
             DataOffset = (ushort)(14 + HeaderLength);
+
         }
 
         /// <summary>
