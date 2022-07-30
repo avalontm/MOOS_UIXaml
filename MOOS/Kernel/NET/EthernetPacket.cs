@@ -50,8 +50,7 @@ namespace MOOS.NET
         /// </summary>
         /// <param name="type">Type.</param>
         /// <param name="packet_size">Size.</param>
-        protected EthernetPacket(ushort type, int packet_size)
-            : this(MACAddress.None, MACAddress.None, type, packet_size)
+        protected EthernetPacket(ushort type, int packet_size) : this(MACAddress.None, MACAddress.None, type, packet_size)
         {
         }
 

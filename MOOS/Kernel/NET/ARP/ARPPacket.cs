@@ -52,7 +52,7 @@ namespace MOOS.NET.ARP
                     ARPRequest_Ethernet arp_request = new ARPRequest_Ethernet(packetData);
                     if (arp_request.SenderIP == null)
                     {
-                        Debug.WriteLine("SenderIP null in ARPHandler!");
+                        Console.WriteLine("SenderIP null in ARPHandler!");
                     }
                     arp_request = new ARPRequest_Ethernet(packetData);
 
@@ -60,7 +60,7 @@ namespace MOOS.NET.ARP
 
                     if (NetworkStack.AddressMap.ContainsKey(arp_request.TargetIP.Hash) == true)
                     {
-                        Debug.WriteLine("ARP Request Recvd from " + arp_request.SenderIP.ToString());
+                        Console.WriteLine("ARP Request Recvd from " + arp_request.SenderIP.ToString());
                         NetworkDevice nic = NetworkStack.AddressMap[arp_request.TargetIP.Hash];
 
                         ARPReply_Ethernet reply =
@@ -75,9 +75,9 @@ namespace MOOS.NET.ARP
                 if ((arp_packet.HardwareType == 1) && (arp_packet.ProtocolType == 0x0800))
                 {
                     ARPReply_Ethernet arp_reply = new ARPReply_Ethernet(packetData);
-                    Debug.WriteLine("Received ARP Reply");
-                    Debug.WriteLine(arp_reply.ToString());
-                    Debug.WriteLine("ARP Reply Recvd from " + arp_reply.SenderIP.ToString());
+                    Console.WriteLine("Received ARP Reply");
+                    Console.WriteLine(arp_reply.ToString());
+                    Console.WriteLine("ARP Reply Recvd from " + arp_reply.SenderIP.ToString());
                     ARPCache.Update(arp_reply.SenderIP, arp_reply.SenderMAC);
 
                     OutgoingBuffer.ARPCache_Update(arp_reply);

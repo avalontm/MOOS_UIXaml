@@ -8,7 +8,8 @@ using System.Text;
 
 namespace MOOS.NET
 {
-    public class NetworkDebugger
+    
+    public class NetworkConsoleger
     {
         /// <summary>
         /// TCP Server.
@@ -31,21 +32,21 @@ namespace MOOS.NET
         public int Port { get; set; }
 
         /// <summary>
-        /// Create NetworkDebugger class (used to listen for a debugger connection)
+        /// Create NetworkConsoleger class (used to listen for a Consoleger connection)
         /// </summary>
         /// <param name="port">Port used for TCP connection.</param>
-        public NetworkDebugger(int port)
+        public NetworkConsoleger(int port)
         {
             Port = port;
             xListener = new TcpListener((ushort)port);
         }
 
         /// <summary>
-        /// Create NetworkDebugger class (used to connect to a remote debugger)
+        /// Create NetworkConsoleger class (used to connect to a remote Consoleger)
         /// </summary>
-        /// <param name="ip">IP Address of the remote debugger.</param>
+        /// <param name="ip">IP Address of the remote Consoleger.</param>
         /// <param name="port">Port used for TCP connection.</param>
-        public NetworkDebugger(Address ip, int port)
+        public NetworkConsoleger(Address ip, int port)
         {
             Ip = ip;
             Port = port;
@@ -53,7 +54,7 @@ namespace MOOS.NET
         }
 
         /// <summary>
-        /// Start debugger
+        /// Start Consoleger
         /// </summary>
         public void Start()
         {
@@ -61,7 +62,7 @@ namespace MOOS.NET
             {
                 xListener.Start();
 
-                Debug.WriteLine("Waiting for remote debugger connection at " + NetworkConfiguration.CurrentAddress.ToString() + ":" + Port);
+                Console.WriteLine("Waiting for remote Consoleger connection at " + NetworkConfiguration.CurrentAddress.ToString() + ":" + Port);
                 xClient = xListener.AcceptTcpClient(); //blocking
             }
             else if (xListener == null)
@@ -69,25 +70,25 @@ namespace MOOS.NET
                 xClient.Connect(Ip, Port);
             }
 
-            Send("--- Cosmos Network Debugger ---");
-            Send("Debugger Connected!");
+            Send("--- Cosmos Network Consoleger ---");
+            Send("Consoleger Connected!");
         }
 
         /// <summary>
-        /// Send text to the debugger
+        /// Send text to the Consoleger
         /// </summary>
-        /// <param name="message">Text to send to the debugger.</param>
+        /// <param name="message">Text to send to the Consoleger.</param>
         public void Send(string message)
         {
             xClient.Send(Encoding.ASCII.GetBytes("[" + DateTime.Now.ToString("HH:mm:ss") + "] - " + message + "\r\n"));
         }
 
         /// <summary>
-        /// Stop the debugger by closing TCP Connection
+        /// Stop the Consoleger by closing TCP Connection
         /// </summary>
         public void Stop()
         {
-            Debug.WriteLine("Closing Debugger connection");
+            Console.WriteLine("Closing Consoleger connection");
             Send("Closing...");
             xClient.Close();
         }

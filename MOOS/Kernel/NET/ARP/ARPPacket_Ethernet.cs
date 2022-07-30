@@ -55,7 +55,7 @@ namespace MOOS.NET.ARP
             mSenderIP = new Address(RawData, 28);
             if (SenderIP == null)
             {
-                Debug.WriteLine("But its already null again");
+                Console.WriteLine("But its already null again");
             }
             mTargetMAC = new MACAddress(RawData, 32);
             mTargetIP = new Address(RawData, 38);
@@ -192,7 +192,7 @@ namespace MOOS.NET.ARP
         {
             if (SenderIP == null)
             {
-                Debug.WriteLine("In ARPRequest_Ethernet, SenderIP is null!");
+                Console.WriteLine("In ARPRequest_Ethernet, SenderIP is null!");
             }
         }
 

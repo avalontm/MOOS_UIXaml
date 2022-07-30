@@ -51,7 +51,7 @@ namespace MOOS.NET.IPv4
             if (buffer == null || buffer.Length < (offset + 4))
             {
                 //throw new ArgumentException("buffer does not contain enough data starting at offset", "buffer");
-                Debug.WriteLine("buffer does not contain enough data starting at offset");
+                Console.WriteLine("buffer does not contain enough data starting at offset");
                 return;
             }
             address[0] = buffer[offset];
@@ -153,14 +153,7 @@ namespace MOOS.NET.IPv4
         /// <returns>String with IP Address in dotted notation</returns>
         public override string ToString()
         {
-            return
-                address[0] +
-                "." +
-                address[1] +
-                "." +
-                address[2] +
-                "." +
-                address[3];
+            return $"{address[0]}.{address[1]}.{address[2]}.{address[3]}";
         }
 
         /// <summary>
@@ -225,7 +218,7 @@ namespace MOOS.NET.IPv4
             else
             {
                 //throw new ArgumentException("obj is not a IPv4Address", "obj");
-                Debug.WriteLine("obj is not a IPv4Address");
+                Console.WriteLine("obj is not a IPv4Address");
                 return -1;
             }
         }

@@ -123,10 +123,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)NET\IPv4\TCP\TcpListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NET\IPv4\TCP\TCPPacket.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NET\MACAddress.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)NET\Network.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NET\NetworkDebugger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NET\NetworkDevice.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)NET\NetworkInit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NET\Network.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NET\NetworkStack.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SMP.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SSE.cs" />

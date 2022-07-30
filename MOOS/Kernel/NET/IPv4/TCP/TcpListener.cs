@@ -42,7 +42,7 @@ namespace MOOS.NET.IPv4.TCP
             if (StateMachine == null)
             {
                 //new Exception("TcpListener is not started.");
-                Debug.WriteLine("TcpListener is not started.");
+                Console.WriteLine("TcpListener is not started.");
                 return null;
             }
 
@@ -94,7 +94,7 @@ namespace MOOS.NET.IPv4.TCP
             if (StateMachine == null)
             {
                 //new Exception("TcpListener is not started.");
-                Debug.WriteLine("TcpListener is not started.");
+                Console.WriteLine("TcpListener is not started.");
                 return;
             }
 

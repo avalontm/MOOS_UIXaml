@@ -109,9 +109,12 @@ namespace MOOS.NET.IPv4
         internal static void AddPacket(IPPacket packet)
         {
             EnsureQueueExists();
+            Console.WriteLine($"[AddPacket] FindInterface | {packet.SourceIP.ToString()}");
             NetworkDevice nic = IPConfig.FindInterface(packet.SourceIP);
             packet.SourceMAC = nic.MACAddress;
+            Console.WriteLine($"[SourceMAC] {packet.SourceMAC.ToString()}");
             queue.Add(new BufferEntry(nic, packet));
+
         }
 
         /// <summary>
@@ -148,7 +151,7 @@ namespace MOOS.NET.IPv4
 
                 if (second >= 4)
                 {
-                    Debug.WriteLine("No response in 4 secondes...");
+                    Console.WriteLine("No response in 4 secondes...");
                     break;
                 }
 
@@ -156,6 +159,7 @@ namespace MOOS.NET.IPv4
                 for (int e = 0; e < queue.Count; e++)
                 {
                     BufferEntry entry = queue[e];
+
                     if (entry.Status == BufferEntry.EntryStatus.ADDED)
                     {
                         if (IPConfig.IsLocalAddress(entry.Packet.DestinationIP) == false)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MOOS;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
@@ -89,8 +90,8 @@ namespace System.Common
             if (offset > 24)
             {
                 //throw new ArgumentException("Offset can not move outside the 32 bit range");
-                Debug.WriteLine("Offset can not move outside the 32 bit range");
-                return 0;
+                Console.WriteLine("Offset can not move outside the 32 bit range");
+                return 00;
             }
 
             data = data >> offset;

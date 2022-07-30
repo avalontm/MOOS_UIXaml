@@ -24,14 +24,10 @@
       "commandLineArgs": "/c dotnet publish -p:vm=vmware -r win-x64 -c debug MOOS.csproj",
       "workingDirectory": ".\\"
     },
-<<<<<<< HEAD
-    "QEMU with NET": {
-=======
-    "QUEMU with NET": {
->>>>>>> f89c33f9591f572a57228cd9b6ab8d5777d8682e
+    "VirtualBox": {
       "commandName": "Executable",
       "executablePath": "cmd.exe",
-      "commandLineArgs": "/c dotnet publish -p:vm=qemunet -r win-x64 -c debug MOOS.csproj",
+      "commandLineArgs": "/c dotnet publish -p:vm=vbox -r win-x64 -c debug MOOS.csproj",
       "workingDirectory": ".\\"
     }
   }

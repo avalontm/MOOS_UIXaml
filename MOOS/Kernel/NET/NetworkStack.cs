@@ -31,7 +31,7 @@ namespace MOOS.NET
         /// Initialize the Network Stack to prepare it for operation.
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException">Thrown on fatal error (contact support).</exception>
-        public static void Init()
+        public static void Initialize()
         {
             AddressMap = new Dictionary<uint, NetworkDevice>();
             MACMap = new Dictionary<uint, NetworkDevice>();
@@ -134,7 +134,7 @@ namespace MOOS.NET
         {
             if (packetData == null)
             {
-                Debug.WriteLine("Error packet data null");
+                Console.WriteLine("Error packet data null");
                 return;
             }
 

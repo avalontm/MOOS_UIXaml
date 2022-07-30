@@ -36,7 +36,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Internal\Runtime\RuntimeConstants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Internal\TypeSystem\ExceptionStringID.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\MulticastDelegate.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)System\Net\HttpClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Nullable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\RuntimeMethodHandle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\RuntimeTypeHandle.cs" />
@@ -69,7 +68,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)System\ConsoleModifiers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\ConsoleKeyState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Math.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)System\Net\IPAddress.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Object.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\ObsoleteAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\ParamArrayAttribute.cs" />
@@ -109,5 +107,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Forms\Control.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Forms\MessageBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Windows\Forms\MouseButtons.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)System\Net\" />
   </ItemGroup>
 </Project>

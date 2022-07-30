@@ -104,6 +104,12 @@ namespace MOOS
                     CheckBus(fn);
                 }
             }
+
+            PCIExpress.Initialize();
+
+            Console.Write("[PCI] PCI Initialized. ");
+            Console.Write(((ulong)Devices.Count).ToString());
+            Console.WriteLine(" Devices");
         }
 
         /// <summary>
@@ -131,6 +137,11 @@ namespace MOOS
 
         private static void CheckFunction(PCIDevice xPCIDevice)
         {
+            if (xPCIDevice == null || xPCIDevice.VendorID == 0xFFFF)
+            {
+                return;
+            }
+
             Devices.Add(xPCIDevice);
 
             if (xPCIDevice.ClassCode == 0x6 && xPCIDevice.Subclass == 0x4)
@@ -232,36 +243,23 @@ namespace MOOS
             Native.Out32(0xCFC, Value);
         }
 
-        public static void WriteRegister32(uint Bus, uint Slot, uint Function, byte aRegister, uint Value)
-        {
-            uint xAddr = GetAddressBase((ushort)Bus, Slot, Function) | ((uint)(aRegister & 0xFC));
-            Native.Out32(0xCF8, xAddr);
-            Native.Out32(0xCFC, Value);
-        }
-
         public static uint ReadRegister32(ushort Bus, ushort Slot, ushort Function, byte aRegister)
         {
-            uint xAddr = PCI.GetAddressBase(Bus, Slot, Function) | ((uint)(aRegister & 0xFC));
-            Native.Out32(0xCF8, xAddr);
-            return Native.In32(0xCFC);
-        }
-        public static uint ReadRegister32(uint Bus, uint Slot, uint Function, byte aRegister)
-        {
-            uint xAddr = PCI.GetAddressBase((ushort)Bus, Slot, Function) | ((uint)(aRegister & 0xFC));
+            uint xAddr = GetAddressBase(Bus, Slot, Function) | ((uint)(aRegister & 0xFC));
             Native.Out32(0xCF8, xAddr);
             return Native.In32(0xCFC);
         }
 
         public static ushort ReadRegister16(ushort Bus, ushort Slot, ushort Function, byte aRegister)
         {
-            uint xAddr = PCI.GetAddressBase(Bus, Slot, Function) | ((uint)(aRegister & 0xFC));
+            uint xAddr = GetAddressBase(Bus, Slot, Function) | ((uint)(aRegister & 0xFC));
             Native.Out32(0xCF8, xAddr);
             return (ushort)(Native.In32(0xCFC) >> ((aRegister % 4) * 8) & 0xFFFF);
         }
 
         public static byte ReadRegister8(ushort Bus, ushort Slot, ushort Function, byte aRegister)
         {
-            uint xAddr = PCI.GetAddressBase(Bus, Slot, Function) | ((uint)(aRegister & 0xFC));
+            uint xAddr = GetAddressBase(Bus, Slot, Function) | ((uint)(aRegister & 0xFC));
             Native.Out32(0xCF8, xAddr);
             return ((byte)(Native.In32(0xCFC) >> ((aRegister % 4) * 8) & 0xFF));
         }

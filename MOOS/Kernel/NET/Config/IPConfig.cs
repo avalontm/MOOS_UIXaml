@@ -64,9 +64,9 @@ namespace MOOS.NET.Config
 
             for (int i = 0; i < ipConfigs.Count; i++)
             {
-               IPConfig ipConfig = ipConfigs[i];
-               if ((ipConfig.IPAddress.Hash & ipConfig.SubnetMask.Hash) ==
-                    (destIP.Hash & ipConfig.SubnetMask.Hash))
+                IPConfig ipConfig = ipConfigs[i];
+
+                if ((ipConfig.IPAddress.Hash & ipConfig.SubnetMask.Hash) == (destIP.Hash & ipConfig.SubnetMask.Hash))
                 {
                     return ipConfig.IPAddress;
                 }
@@ -82,6 +82,7 @@ namespace MOOS.NET.Config
                 ipConfig.Dispose();
             }
 
+            Console.WriteLine($"[FindNetwork] Nothing");
             return default_gw;
         }
 
@@ -91,7 +92,7 @@ namespace MOOS.NET.Config
             {
                 IPConfig config = new IPConfig(ip, subnet, gw);
                 NetworkStack.ConfigIP(device, config);
-                Debug.WriteLine("Config OK.");
+                Console.WriteLine("Config OK.");
                 return true;
             }
             return false;
@@ -150,8 +151,7 @@ namespace MOOS.NET.Config
         /// </summary>
         /// <param name="ip">IP Address</param>
         /// <param name="subnet">Subnet Mask</param>
-        public IPConfig(Address ip, Address subnet)
-            : this(ip, subnet, Address.Zero)
+        public IPConfig(Address ip, Address subnet) : this(ip, subnet, Address.Zero)
         {
         }
 

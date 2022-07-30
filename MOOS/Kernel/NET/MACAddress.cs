@@ -37,7 +37,7 @@ namespace MOOS.NET
             if (address == null || address.Length != 6)
             {
                 //throw new ArgumentException("MACAddress is null or has wrong length", "address");
-                Debug.WriteLine("MACAddress is null or has wrong length");
+                Console.WriteLine("MACAddress is null or has wrong length");
                 return;
             }
 
@@ -60,7 +60,7 @@ namespace MOOS.NET
             if (buffer == null || buffer.Length < (offset + 6))
             {
                 //throw new ArgumentException("buffer does not contain enough data starting at offset", "buffer");
-                Debug.WriteLine("buffer does not contain enough data starting at offset");
+                Console.WriteLine("buffer does not contain enough data starting at offset");
                 return;
             }
 
@@ -72,8 +72,7 @@ namespace MOOS.NET
             bytes[5] = buffer[offset + 5];
         }
 
-        public MACAddress(MACAddress m)
-            : this(m.bytes)
+        public MACAddress(MACAddress m) : this(m.bytes)
         {
         }
 
@@ -107,7 +106,7 @@ namespace MOOS.NET
             else
             {
                 //throw new ArgumentException("obj is not a MACAddress", "obj");
-                Debug.WriteLine("obj is not a MACAddress");
+                Console.WriteLine("obj is not a MACAddress");
                 return -1;
             }
         }
@@ -128,7 +127,7 @@ namespace MOOS.NET
             else
             {
                 //throw new ArgumentException("obj is not a MACAddress", "obj");
-                Debug.WriteLine("obj is not a MACAddress");
+                Console.WriteLine("obj is not a MACAddress");
                 return false;
             }
         }

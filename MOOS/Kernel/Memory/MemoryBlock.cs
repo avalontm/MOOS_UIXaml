@@ -63,7 +63,7 @@ namespace MOOS.Memory
                 if (aByteOffset >= Size)
                 {
                     //throw new Exception("Memory access violation");
-                    Debug.WriteLine("Memory access violation");
+                    Console.WriteLine("Memory access violation");
                     return 0;
                 }
                 return *(uint*)(Base + aByteOffset);
@@ -72,7 +72,7 @@ namespace MOOS.Memory
             {
                 if (aByteOffset >= Size)
                 {
-                    Debug.WriteLine("Memory access violation");
+                    Console.WriteLine("Memory access violation");
                     return;
                 }
                 (*(uint*)(Base + aByteOffset)) = value;
@@ -95,7 +95,7 @@ namespace MOOS.Memory
         /// <param name="aByteOffset">A start.</param>
         /// <param name="aCount">A count.</param>
         /// <param name="aData">A data.</param>
-        //[global::IL2CPU.API.Attribs.DebugStub(Off = true)]
+        //[global::IL2CPU.API.Attribs.ConsoleStub(Off = true)]
         public unsafe void Fill(uint aByteOffset, uint aCount, uint aData)
         {
             // TODO thow exception if aStart and aCount are not in bound. I've tried to do this but Bochs dies :-(
@@ -109,7 +109,7 @@ namespace MOOS.Memory
         /// <param name="aByteOffset">Byte offset from Base</param>
         /// <param name="aCount">Number of integers to fill</param>
         /// <param name="aData">Value to fill memory block with</param>
-        //[global::IL2CPU.API.Attribs.DebugStub(Off = true)]
+        //[global::IL2CPU.API.Attribs.ConsoleStub(Off = true)]
         public unsafe void Fill(int aByteOffset, int aCount, int aData)
         {
             // TODO thow exception if aStart and aCount are not in bound. I've tried to do this but Bochs dies :-(
@@ -141,7 +141,7 @@ namespace MOOS.Memory
         /// <param name="aByteOffset">Starting point offset in bytes</param>
         /// <param name="aCount">Data size.</param>
         /// <param name="aData">A data to fill memory block with.</param>
-        //[global::IL2CPU.API.Attribs.DebugStub(Off = true)]
+        //[global::IL2CPU.API.Attribs.ConsoleStub(Off = true)]
         public unsafe void Fill(uint aByteOffset, uint aCount, ushort aData)
         {
             // TODO thow exception if aStart and aCount are not in bound. I've tried to do this but Bochs dies :-(
@@ -155,7 +155,7 @@ namespace MOOS.Memory
         /// <param name="aByteOffset">Starting point offset in bytes</param>
         /// <param name="aCount">Data size.</param>
         /// <param name="aData">A data to fill memory block with.</param>
-        //[global::IL2CPU.API.Attribs.DebugStub(Off = true)]
+        //[global::IL2CPU.API.Attribs.ConsoleStub(Off = true)]
         public unsafe void Fill(uint aByteOffset, uint aCount, byte aData)
         {
             // TODO thow exception if aStart and aCount are not in bound. I've tried to do this but Bochs dies :-(
@@ -168,7 +168,7 @@ namespace MOOS.Memory
         /// </summary>
         /// <param name="aData">A data buffer array.</param>
         /// <exception cref="OverflowException">Thrown if aData length in greater then Int32.MaxValue.</exception>
-        //[global::IL2CPU.API.Attribs.DebugStub(Off = true)]
+        //[global::IL2CPU.API.Attribs.ConsoleStub(Off = true)]
         public unsafe void Copy(uint[] aData)
         {
             Copy(0, aData, 0, aData.Length);
@@ -241,7 +241,7 @@ namespace MOOS.Memory
             if (aData.Length < aCount)
             {
                 //throw new IndexOutOfRangeException();
-                Debug.WriteLine("IndexOutOfRangeException");
+                Console.WriteLine("IndexOutOfRangeException");
                 return;
             }
             Copy(0, aData, aIndex, aCount);
@@ -282,7 +282,7 @@ namespace MOOS.Memory
         /// <param name="aDest">Destination location.</param>
         /// <param name="aSrc">Sourcs location.</param>
         /// <param name="aCount">Number of bytes to move.</param>
-        //[global::IL2CPU.API.Attribs.DebugStub(Off = true)]
+        //[global::IL2CPU.API.Attribs.ConsoleStub(Off = true)]
         public unsafe void MoveDown(uint aDest, uint aSrc, uint aCount)
         {
             byte* xDest = (byte*)(Base + aDest);
@@ -301,7 +301,7 @@ namespace MOOS.Memory
         public void MoveUp(uint aDest, uint aSrc, uint aCount)
         {
            // throw new Exception("TODO");
-            Debug.WriteLine("TODO");
+            Console.WriteLine("TODO");
             return;
         }
 
@@ -317,7 +317,7 @@ namespace MOOS.Memory
             if (aBuffer.Length >= Size)
             {
                 //throw new Exception("Memory access violation");
-                Debug.WriteLine("Memory access violation");
+                Console.WriteLine("Memory access violation");
                 return;
             }
             for (int i = 0; i < aBuffer.Length; i++)
@@ -337,7 +337,7 @@ namespace MOOS.Memory
             if (aBuffer.Length >= Size)
             {
                // throw new Exception("Memory access violation");
-                Debug.WriteLine("Memory access violation");
+                Console.WriteLine("Memory access violation");
                 return;
             }
             for (int i = 0; i < aBuffer.Length; i++)
@@ -357,7 +357,7 @@ namespace MOOS.Memory
             if (aBuffer.Length >= Size)
             {
                // throw new Exception("Memory access violation");
-                Debug.WriteLine("Memory access violation");
+                Console.WriteLine("Memory access violation");
                 return;
             }
             for (int i = 0; i < aBuffer.Length; i++)
@@ -377,7 +377,7 @@ namespace MOOS.Memory
             if (aBuffer.Length >= Size)
             {
                 //throw new Exception("Memory access violation");
-                Debug.WriteLine("Memory access violation");
+                Console.WriteLine("Memory access violation");
                 return;
             }
             for (int i = 0; i < aBuffer.Length; i++)
@@ -397,7 +397,7 @@ namespace MOOS.Memory
             if (aBuffer.Length >= Size)
             {
                 //throw new Exception("Memory access violation");
-                Debug.WriteLine("Memory access violation");
+                Console.WriteLine("Memory access violation");
                 return;
             }
             for (int i = 0; i < aBuffer.Length; i++)
@@ -417,7 +417,7 @@ namespace MOOS.Memory
             if (aBuffer.Length >= Size)
             {
                 //throw new Exception("Memory access violation");
-                Debug.WriteLine("Memory access violation");
+                Console.WriteLine("Memory access violation");
                 return;
             }
             for (int i = 0; i < aBuffer.Length; i++)
@@ -494,7 +494,7 @@ namespace MOOS.Memory
                 if (aByteOffset >= Size)
                 {
                     //throw new Exception("Memory access violation");
-                    Debug.WriteLine("Memory access violation");
+                    Console.WriteLine("Memory access violation");
                     return 0; 
                 }
                 return *(byte*)(Base + aByteOffset);
@@ -504,7 +504,7 @@ namespace MOOS.Memory
                 if (aByteOffset >= Size)
                 {
                     //throw new Exception("Memory access violation");
-                    Debug.WriteLine("Memory access violation");
+                    Console.WriteLine("Memory access violation");
                     return;
                 }
                 (*(byte*)(Base + aByteOffset)) = value;
@@ -550,7 +550,7 @@ namespace MOOS.Memory
                 if (aByteOffset >= Size)
                 {
                     //throw new Exception("Memory access violation");
-                    Debug.WriteLine("Memory access violation");
+                    Console.WriteLine("Memory access violation");
                     return 0;
                 }
                 return *(ushort*)(Base + aByteOffset);
@@ -560,7 +560,7 @@ namespace MOOS.Memory
                 if (aByteOffset >= Size)
                 {
                     //throw new Exception("Memory access violation");
-                    Debug.WriteLine("Memory access violation");
+                    Console.WriteLine("Memory access violation");
                     return;
                 }
                 (*(ushort*)(Base + aByteOffset)) = value;
@@ -607,7 +607,7 @@ namespace MOOS.Memory
                 if (aByteOffset >= Size)
                 {
                     //throw new Exception("Memory access violation");
-                    Debug.WriteLine("Memory access violation");
+                    Console.WriteLine("Memory access violation");
                     return 0;
                 }
                 return *(uint*)(Base + aByteOffset);
@@ -617,7 +617,7 @@ namespace MOOS.Memory
                 if (aByteOffset >= Size)
                 {
                     //throw new Exception("Memory access violation");
-                    Debug.WriteLine("Memory access violation");
+                    Console.WriteLine("Memory access violation");
                     return;
                 }
                 (*(uint*)(Base + aByteOffset)) = value;

@@ -49,7 +49,7 @@ namespace MOOS.NET.IPv4
         {
             if (obj is EndPoint)
             {
-                var other = (EndPoint)obj;
+                EndPoint other = (EndPoint)obj;
 
                 if ((other.Address.CompareTo(Address) != 0) || (other.Port != Port))
                 {
@@ -61,7 +61,7 @@ namespace MOOS.NET.IPv4
             else
             {
                 //throw new ArgumentException("obj is not a IPv4EndPoint", "obj");
-                Debug.WriteLine("obj is not a IPv4EndPoint");
+                Console.WriteLine("obj is not a IPv4EndPoint");
                 return -1;
             }
         }

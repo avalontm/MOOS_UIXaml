@@ -9,7 +9,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.Net;
 using System.Runtime;
 using System.Runtime.InteropServices;
 using System.Windows;
@@ -83,7 +82,7 @@ namespace MOOS.Misc
             Console.WriteLine($"[SMP] Trampoline: 0x{((ulong)Trampoline).ToString("x2")}");
             Native.Movsb((byte*)SMP.Trampoline, (byte*)Trampoline, 512);
 
-            //SMP.Initialize((uint)SMP.Trampoline);
+            SMP.Initialize((uint)SMP.Trampoline);
 
 #if HasGC
             GC.AllowCollect = true;

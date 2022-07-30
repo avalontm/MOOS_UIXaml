@@ -29,8 +29,10 @@ namespace MOOS.NET.IPv4
 
             if (ip_packet.SourceIP == null)
             {
-                Debug.WriteLine("SourceIP null in IPv4Handler!");
+                Console.WriteLine("SourceIP null in IPv4Handler!");
+                return;
             }
+
             ARPCache.Update(ip_packet.SourceIP, ip_packet.SourceMAC);
 
             if ((NetworkStack.AddressMap.ContainsKey(ip_packet.DestinationIP.Hash) == true) ||
@@ -106,7 +108,9 @@ namespace MOOS.NET.IPv4
         /// <param name="dest">Destionation address.</param>
         /// <param name="Flags">Flags.</param>
         protected IPPacket(ushort dataLength, byte protocol, Address source, Address dest, byte Flags) : this(MACAddress.None, MACAddress.None, dataLength, protocol, source, dest, Flags)
-        { }
+        {
+
+        }
 
         /// <summary>
         /// Create new instance of the <see cref="IPPacket"/> class.
@@ -118,7 +122,9 @@ namespace MOOS.NET.IPv4
         /// <param name="Flags">Flags.</param>
         /// /// <param name="broadcast">Mac address</param>
         protected IPPacket(ushort dataLength, byte protocol, Address source, Address dest, byte Flags, MACAddress broadcast) : this(MACAddress.None, broadcast, dataLength, protocol, source, dest, Flags)
-        { }
+        {
+
+        }
 
         /// <summary>
         /// Create new instance of the <see cref="IPPacket"/> class.
@@ -131,7 +137,7 @@ namespace MOOS.NET.IPv4
         /// <param name="dest">Destionation address.</param>
         /// <param name="Flags">Flags.</param>
         /// <exception cref="sys.ArgumentException">Thrown if RawData is invalid or null.</exception>
-        public IPPacket(MACAddress srcMAC, MACAddress destMAC, ushort dataLength, byte protocol,Address source, Address dest, byte Flags): base(destMAC, srcMAC, 0x0800, dataLength + 14 + 20)
+        public IPPacket(MACAddress srcMAC, MACAddress destMAC, ushort dataLength, byte protocol, Address source, Address dest, byte Flags): base(destMAC, srcMAC, 0x0800, dataLength + 14 + 20)
         {
             RawData[14] = 0x45;
             RawData[15] = 0;
@@ -149,16 +155,16 @@ namespace MOOS.NET.IPv4
             RawData[23] = protocol;
             RawData[24] = 0x00;
             RawData[25] = 0x00;
+
             for (int b = 0; b < 4; b++)
             {
                 RawData[26 + b] = source.address[b];
                 RawData[30 + b] = dest.address[b];
             }
+
             IPCRC = CalcIPCRC(20);
             RawData[24] = (byte)((IPCRC >> 8) & 0xFF);
             RawData[25] = (byte)((IPCRC >> 0) & 0xFF);
-
-            InitFields();
         }
 
         /// <summary>

@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.Net;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -56,9 +55,7 @@ namespace System.Desktops.Controls
 
         void onTermina(object obj)
         {
-            HttpClient client = new HttpClient("192.168.137.2", 80);
-            client.Get();
-            client.Dispose();
+
         }
 
         void onItemsReorder()

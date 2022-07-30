@@ -70,6 +70,10 @@ namespace MOOS.Driver
         public ushort Bus;
         public ushort Slot;
         public ushort Function;
+        public ushort VendorID;
+        public ushort DeviceID;
+
+        public ushort Status;
 
         public uint Bar0;
         public uint Bar1;
@@ -77,11 +81,6 @@ namespace MOOS.Driver
         public uint Bar3;
         public uint Bar4;
         public uint Bar5;
-
-        public ushort VendorID;
-        public ushort DeviceID;
-
-        public ushort Status;
 
         public byte RevisionID;
         public byte ProgIF;
@@ -122,6 +121,7 @@ namespace MOOS.Driver
             this.Function = Function;
 
             VendorID = ReadRegister16((byte)Config.VendorID);
+
             DeviceID = ReadRegister16((byte)Config.DeviceID);
 
             Bar0 = ReadRegister32(0x10);
@@ -206,16 +206,16 @@ namespace MOOS.Driver
         /// <returns>byte value.</returns>
         public byte ReadRegister8(byte aRegister)
         {
-            uint xAddr = PCI.GetAddressBase(Bus, Slot, Function) | ((uint)(aRegister & 0xFC));
-            IO.ConfigAddressPort.DWord = xAddr;
-            return (byte)(IO.ConfigDataPort.DWord >> ((aRegister % 4) * 8) & 0xFF);
+            uint xAddr = GetAddressBase(Bus, Slot, Function) | ((uint)(aRegister & 0xFC));
+            Native.Out32(0xCF8, xAddr);
+            return ((byte)(Native.In32(0xCFC) >> ((aRegister % 4) * 8) & 0xFF));
         }
 
         public void WriteRegister8(byte aRegister, byte value)
         {
-            uint xAddr = PCI.GetAddressBase(Bus, Slot, Function) | ((uint)(aRegister & 0xFC));
-            IO.ConfigAddressPort.DWord = xAddr;
-            IO.ConfigDataPort.Byte = value;
+            uint xAddr = GetAddressBase(Bus, Slot, Function) | ((uint)(aRegister & 0xFC));
+            Native.Out32(0xCF8, xAddr);
+            Native.Out16(0xCFC, value);
         }
 
         /// <summary>
@@ -225,7 +225,7 @@ namespace MOOS.Driver
         /// <returns>UInt16 value.</returns>
         public ushort ReadRegister16(byte aRegister)
         {
-            uint xAddr = PCI.GetAddressBase(Bus, Slot, Function) | ((uint)(aRegister & 0xFC));
+            uint xAddr = GetAddressBase(Bus, Slot, Function) | ((uint)(aRegister & 0xFC));
             Native.Out32(0xCF8, xAddr);
             return (ushort)(Native.In32(0xCFC) >> ((aRegister % 4) * 8) & 0xFFFF);
         }
@@ -237,36 +237,48 @@ namespace MOOS.Driver
         /// <param name="value">A value.</param>
         public void WriteRegister16(byte aRegister, ushort value)
         {
-            uint xAddr = PCI.GetAddressBase(Bus, Slot, Function) | ((uint)(aRegister & 0xFC));
-            IO.ConfigAddressPort.DWord = xAddr;
-            IO.ConfigDataPort.Word = value;
+            uint xAddr = GetAddressBase(Bus, Slot, Function) | ((uint)(aRegister & 0xFC));
+            Native.Out32(0xCF8, xAddr);
+            Native.Out16(0xCFC, value);
         }
 
         public uint ReadRegister32(byte aRegister)
         {
-            uint xAddr = PCI.GetAddressBase(Bus, Slot, Function) | ((uint)(aRegister & 0xFC));
-            IO.ConfigAddressPort.DWord = xAddr;
-            return IO.ConfigDataPort.DWord;
+            uint xAddr = GetAddressBase(Bus, Slot, Function) | ((uint)(aRegister & 0xFC));
+            Native.Out32(0xCF8, xAddr);
+            return Native.In32(0xCFC);
         }
         public ushort ReadRegister(byte aRegister)
         {
-            uint xAddr = PCI.GetAddressBase(Bus, Slot, Function) | ((uint)(aRegister & 0xFC));
-            IO.ConfigAddressPort.DWord = xAddr;
-            return (ushort)IO.ConfigDataPort.DWord;
+            uint xAddr = GetAddressBase(Bus, Slot, Function) | ((uint)(aRegister & 0xFC));
+            Native.Out32(0xCF8, xAddr);
+            return (ushort)(Native.In32(0xCFC) >> ((aRegister % 4) * 8) & 0xFFFF);
         }
 
         public void WriteRegister32(byte aRegister, uint value)
         {
-            uint xAddr = PCI.GetAddressBase(Bus, Slot, Function) | ((uint)(aRegister & 0xFC));
-            IO.ConfigAddressPort.DWord = xAddr;
-            IO.ConfigDataPort.DWord = value;
+            uint xAddr = GetAddressBase(Bus, Slot, Function) | ((uint)(aRegister & 0xFC));
+            Native.Out32(0xCF8, xAddr);
+            Native.Out32(0xCFC, value);
         }
 
         public void WriteRegister(byte aRegister, uint value)
         {
-            uint xAddr = PCI.GetAddressBase(Bus, Slot, Function) | ((uint)(aRegister & 0xFC));
-            IO.ConfigAddressPort.DWord = xAddr;
-            IO.ConfigDataPort.DWord = value;
+            uint xAddr = GetAddressBase(Bus, Slot, Function) | ((uint)(aRegister & 0xFC));
+            Native.Out32(0xCF8, xAddr);
+            Native.Out32(0xCFC, value);
+        }
+
+        /// <summary>
+        /// Get address base.
+        /// </summary>
+        /// <param name="aBus">A bus.</param>
+        /// <param name="aSlot">A slot.</param>
+        /// <param name="aFunction">A function.</param>
+        /// <returns>UInt32 value.</returns>
+        protected static uint GetAddressBase(ushort aBus, ushort aSlot, ushort aFunction)
+        {
+            return (uint)(0x80000000 | (aBus << 16) | ((aSlot & 0x1F) << 11) | ((aFunction & 0x07) << 8));
         }
         #endregion
 

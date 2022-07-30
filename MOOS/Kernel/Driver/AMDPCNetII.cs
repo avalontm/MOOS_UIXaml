@@ -27,8 +27,7 @@ namespace MOOS.Driver
         protected Queue<byte[]> mTransmitBuffer;
         private int mNextTXDesc;
 
-        public AMDPCNetII(PCIDevice device)
-            : base()
+        public AMDPCNetII(PCIDevice device) : base()
         {
             if (device == null)
             {
@@ -47,6 +46,7 @@ namespace MOOS.Driver
             // Get the EEPROM MAC Address and set it as the devices MAC
             byte[] eeprom_mac = new byte[6];
             uint result = io.MAC1.DWord;
+
             eeprom_mac[0] = BinaryHelper.GetByteFrom32bit(result, 0);
             eeprom_mac[1] = BinaryHelper.GetByteFrom32bit(result, 8);
             eeprom_mac[2] = BinaryHelper.GetByteFrom32bit(result, 16);
@@ -224,7 +224,6 @@ namespace MOOS.Driver
         public override bool Enable()
         {
             StatusRegister = 0x43;
-
             return true;
         }
 

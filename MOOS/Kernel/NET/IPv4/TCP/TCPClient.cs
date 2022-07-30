@@ -32,15 +32,14 @@ namespace MOOS.NET.IPv4.TCP
         /// <param name="localPort">Local port.</param>
         /// <exception cref="ArgumentOutOfRangeException">Thrown on fatal error (contact support).</exception>
         /// <exception cref="ArgumentException">Thrown if localPort already exists.</exception>
+      
         public TcpClient(int localPort)
         {
             StateMachine = new Tcp((ushort)localPort, 0, Address.Zero, Address.Zero);
-
             StateMachine.rxBuffer = new Queue<TCPPacket>(8);
-
             StateMachine.Status = Status.CLOSED;
         }
-
+      
         /// <summary>
         /// Create new instance of the <see cref="TcpClient"/> class.
         /// </summary>
@@ -48,8 +47,7 @@ namespace MOOS.NET.IPv4.TCP
         /// <param name="destPort">Destination port.</param>
         /// <exception cref="ArgumentOutOfRangeException">Thrown on fatal error (contact support).</exception>
         /// <exception cref="ArgumentException">Thrown if TcpClient with localPort 0 exists.</exception>
-        public TcpClient(Address dest, int destPort)
-            : this(0)
+        public TcpClient(Address dest, int destPort): this(0)
         {
             StateMachine.RemoteEndPoint.Address = dest;
             StateMachine.RemoteEndPoint.Port = (ushort)destPort;
@@ -66,7 +64,7 @@ namespace MOOS.NET.IPv4.TCP
             if (StateMachine.Status == Status.ESTABLISHED)
             {
                 //throw new Exception("Client must be closed before setting a new connection.");
-                Debug.WriteLine("Client must be closed before setting a new connection.");
+                Console.WriteLine("Client must be closed before setting a new connection.");
                 return;
             }
 
@@ -95,13 +93,13 @@ namespace MOOS.NET.IPv4.TCP
             Tcp.Connections.Add(StateMachine);
 
             StateMachine.SendEmptyPacket(Flags.SYN);
-
+           
             StateMachine.Status = Status.SYN_SENT;
 
             if (StateMachine.WaitStatus(Status.ESTABLISHED, timeout) == false)
             {
                // throw new Exception("Failed to open TCP connection!");
-                Debug.WriteLine("Failed to open TCP connection!");
+                Console.WriteLine("Failed to open TCP connection!");
                 return;
             }
         }
@@ -124,7 +122,7 @@ namespace MOOS.NET.IPv4.TCP
                 if (StateMachine.WaitStatus(Status.CLOSED, 5000) == false)
                 {
                     //throw new Exception("Failed to close TCP connection!");
-                    Debug.WriteLine("Failed to close TCP connection!");
+                    Console.WriteLine("Failed to close TCP connection!");
                     return;
                 }
             }
@@ -146,17 +144,18 @@ namespace MOOS.NET.IPv4.TCP
             if ((StateMachine.RemoteEndPoint.Address == null) || (StateMachine.RemoteEndPoint.Port == 0))
             {
                 //throw new InvalidOperationException("Must establish a default remote host by calling Connect() before using this Send() overload");
-                Debug.WriteLine("Must establish a default remote host by calling Connect() before using this Send() overload");
+                Console.WriteLine("Must establish a default remote host by calling Connect() before using this Send() overload");
                 return;
             }
             if (StateMachine.Status != Status.ESTABLISHED)
             {
                 //throw new Exception("Client must be connected before sending data.");
-                Debug.WriteLine("Client must be connected before sending data.");
+                Console.WriteLine("Client must be connected before sending data.");
                 return;
             }
-if (data.Length > 536)
-{
+
+            if (data.Length > 536)
+            {
                 var chunks = ArrayHelper.ArraySplit(data, 536);
 
                 for (int i = 0; i < chunks.Length; i++)
@@ -190,7 +189,7 @@ if (data.Length > 536)
             if (StateMachine.Status != Status.ESTABLISHED)
             {
                 //throw new Exception("Client must be connected before receiving data.");
-                Debug.WriteLine("Client must be connected before receiving data.");
+                Console.WriteLine("Client must be connected before receiving data.");
                 return null;
 
             }
@@ -222,7 +221,7 @@ if (data.Length > 536)
                 if (StateMachine.Status != Status.ESTABLISHED)
                 {
                     //throw new Exception("Client must be connected before receiving data.");
-                    Debug.WriteLine("Client must be connected before receiving data.");
+                    Console.WriteLine("Client must be connected before receiving data.");
                     return null;
                 }
             }

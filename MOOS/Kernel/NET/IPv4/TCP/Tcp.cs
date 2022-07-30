@@ -157,7 +157,7 @@ namespace MOOS.NET.IPv4.TCP
         internal static List<Tcp> Connections;
 
         /// <summary>
-        /// String / enum correspondance (used for debugging)
+        /// String / enum correspondance (used for Consoleging)
         /// </summary>
         internal static string[] table;
 
@@ -223,8 +223,7 @@ namespace MOOS.NET.IPv4.TCP
                 {
                     Connections.RemoveAt(i);
 
-                    Debug.WriteLine("Connection removed!");
-
+                    Console.WriteLine("Connection removed!");
                     return;
                 }
             }
@@ -268,6 +267,7 @@ namespace MOOS.NET.IPv4.TCP
 
         public Tcp(ushort localPort, ushort remotePort, Address localIp, Address remoteIp)
         {
+           
             LocalEndPoint = new EndPoint(localIp, localPort);
             RemoteEndPoint = new EndPoint(remoteIp, remotePort);
             TCB = new TransmissionControlBlock();
@@ -281,7 +281,7 @@ namespace MOOS.NET.IPv4.TCP
         /// <exception cref="Sys.IO.IOException">Thrown on IO error.</exception>
         public void ReceiveData(TCPPacket packet)
         {
-            Debug.WriteLine("[" + table[(int)Status] + "] " + packet.ToString());
+            Console.WriteLine("[" + table[(int)Status] + "] " + packet.ToString());
 
             if (Status == Status.CLOSED)
             {
@@ -326,7 +326,7 @@ namespace MOOS.NET.IPv4.TCP
                         case Status.TIME_WAIT:
                             break;
                         default:
-                            Debug.WriteLine("Unknown TCP connection state.");
+                            Console.WriteLine("Unknown TCP connection state.");
                             break;
                     }
                 }
@@ -337,7 +337,7 @@ namespace MOOS.NET.IPv4.TCP
                         SendEmptyPacket(Flags.ACK);
                     }
 
-                    Debug.WriteLine("Sequence number or segment data invalid, packet passed.");
+                    Console.WriteLine("Sequence number or segment data invalid, packet passed.");
                 }
             }
         }
@@ -352,7 +352,7 @@ namespace MOOS.NET.IPv4.TCP
         {
             if (packet.RST)
             {
-                Debug.WriteLine("RST received at LISTEN state, packet passed.");
+                Console.WriteLine("RST received at LISTEN state, packet passed.");
 
                 return;
             }
@@ -360,7 +360,7 @@ namespace MOOS.NET.IPv4.TCP
             {
                 Status = Status.CLOSED;
 
-                Debug.WriteLine("TCP connection closed! (FIN received on LISTEN state)");
+                Console.WriteLine("TCP connection closed! (FIN received on LISTEN state)");
             }
             else if (packet.ACK)
             {
@@ -447,13 +447,13 @@ namespace MOOS.NET.IPv4.TCP
                 {
                     Status = Status.CLOSED;
 
-                    Debug.WriteLine("Simultaneous open not supported.");
+                    Console.WriteLine("Simultaneous open not supported.");
                 }
                 else
                 {
                     Status = Status.CLOSED;
 
-                    Debug.WriteLine("TCP connection closed! (" + packet.getFlags() + " received on SYN_SENT state)");
+                    Console.WriteLine("TCP connection closed! (" + packet.getFlags() + " received on SYN_SENT state)");
                 }
             }
             else if (packet.ACK)
@@ -463,7 +463,7 @@ namespace MOOS.NET.IPv4.TCP
                 {
                     SendEmptyPacket(Flags.RST, packet.AckNumber);
 
-                    Debug.WriteLine("Bad ACK received at SYN_SENT.");
+                    Console.WriteLine("Bad ACK received at SYN_SENT.");
                 }
                 else
                 {
@@ -477,13 +477,13 @@ namespace MOOS.NET.IPv4.TCP
             {
                 Status = Status.CLOSED;
 
-                Debug.WriteLine("TCP connection closed! (FIN received on SYN_SENT state).");
+                Console.WriteLine("TCP connection closed! (FIN received on SYN_SENT state).");
             }
             else if (packet.RST)
             {
                 Status = Status.CLOSED;
 
-                Debug.WriteLine("Connection refused by remote computer.");
+                Console.WriteLine("Connection refused by remote computer.");
             }
         }
 
@@ -543,8 +543,8 @@ if (packet.PSH)
                 }
 
                 if (packet.TCP_DataLength > 0 && packet.SequenceNumber >= TCB.RcvNxt) //packet sequencing
-{
-TCB.RcvNxt += packet.TCP_DataLength;
+                {
+                TCB.RcvNxt += packet.TCP_DataLength;
 
                     Data = ArrayHelper.Concat(Data, packet.TCP_Data);
                 }
@@ -553,7 +553,7 @@ TCB.RcvNxt += packet.TCP_DataLength;
             {
                 Status = Status.CLOSED;
 
-                Debug.WriteLine("TCP Connection resetted!");
+                Console.WriteLine("TCP Connection resetted!");
             }
             else if (packet.FIN)
             {
@@ -653,8 +653,8 @@ TCB.RcvNxt += packet.TCP_DataLength;
         {
             Status = Status.TIME_WAIT;
 
-            //HAL.Global.PIT.Wait(300); //TODO: Calculate time value
-            Timer.Sleep(300);
+            //TODO: Calculate time value
+            PIT.Wait(300);
             Status = Status.CLOSED;
         }
 
@@ -665,6 +665,7 @@ TCB.RcvNxt += packet.TCP_DataLength;
         {
             int second = 0;
             int _deltaT = 0;
+
 
             while (Status != status)
             {
@@ -712,6 +713,7 @@ TCB.RcvNxt += packet.TCP_DataLength;
         /// </summary>
         private void SendPacket(TCPPacket packet)
         {
+            Console.WriteLine($"[SendPacket] {packet.DataLength}");
             OutgoingBuffer.AddPacket(packet);
             NetworkStack.Update();
 

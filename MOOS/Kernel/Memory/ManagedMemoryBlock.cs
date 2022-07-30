@@ -74,7 +74,7 @@ namespace MOOS.Memory
                 if (offset > Size)
                 {
                     //throw new ArgumentOutOfRangeException(nameof(offset));
-                    Debug.WriteLine("ArgumentOutOfRangeException");
+                    Console.WriteLine("ArgumentOutOfRangeException");
                     return 0;
                 }
 
@@ -85,7 +85,7 @@ namespace MOOS.Memory
                 if (offset < 0 || offset > Size)
                 {
                     //throw new ArgumentOutOfRangeException(nameof(offset));
-                    Debug.WriteLine("ArgumentOutOfRangeException");
+                    Console.WriteLine("ArgumentOutOfRangeException");
                 }
                 *((byte*)Offset + offset) = value;
             }
@@ -182,7 +182,7 @@ namespace MOOS.Memory
             if (aByteOffset < 0 || aByteOffset > Size)
             {
                 //throw new ArgumentOutOfRangeException("offset");
-                Debug.WriteLine("ArgumentOutOfRangeException");
+                Console.WriteLine("ArgumentOutOfRangeException");
                 return;
             }
             (*(byte*)(Offset + aByteOffset)) = value;
@@ -199,7 +199,7 @@ namespace MOOS.Memory
             if (aByteOffset > Size)
             {
                 //throw new ArgumentOutOfRangeException(nameof(aByteOffset));
-                Debug.WriteLine("ArgumentOutOfRangeException");
+                Console.WriteLine("ArgumentOutOfRangeException");
                 return 0;
             }
 
@@ -217,7 +217,7 @@ namespace MOOS.Memory
             if (aByteOffset < 0 || aByteOffset > Size)
             {
                 //throw new ArgumentOutOfRangeException(nameof(aByteOffset));
-                Debug.WriteLine("ArgumentOutOfRangeException");
+                Console.WriteLine("ArgumentOutOfRangeException");
                 return;
             }
             *((ushort*)(Offset + aByteOffset)) = value;
@@ -234,7 +234,7 @@ namespace MOOS.Memory
             if (aByteOffset > Size)
             {
                 //throw new ArgumentOutOfRangeException(nameof(aByteOffset));
-                Debug.WriteLine("ArgumentOutOfRangeException");
+                Console.WriteLine("ArgumentOutOfRangeException");
                 return 0;
             }
 
@@ -252,7 +252,7 @@ namespace MOOS.Memory
             if (aByteOffset < 0 || aByteOffset > Size)
             {
                 //throw new ArgumentOutOfRangeException(nameof(aByteOffset));
-                Debug.WriteLine("ArgumentOutOfRangeException");
+                Console.WriteLine("ArgumentOutOfRangeException");
                 return;
             }
             *((uint*)(Offset + aByteOffset)) = value;
@@ -269,13 +269,13 @@ namespace MOOS.Memory
             if (aByteOffset < 0 || aByteOffset > Size)
             {
                 //throw new ArgumentOutOfRangeException("offset");
-                Debug.WriteLine("ArgumentOutOfRangeException");
+                Console.WriteLine("ArgumentOutOfRangeException");
                 return;
             }
             if (value.Length + aByteOffset > Size)
             {
                 //throw new ArgumentOutOfRangeException("value");
-                Debug.WriteLine("ArgumentOutOfRangeException");
+                Console.WriteLine("ArgumentOutOfRangeException");
                 return;
             }
             for (int index = 0; index < value.Length; index++)

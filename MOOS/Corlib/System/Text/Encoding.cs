@@ -11,11 +11,12 @@ namespace System.Text
             get { return new Encoding(); }
         }
 
-        public byte[] GetBytes(string value)
+        public byte[] GetBytes(string s)
         {
-            return null;
+            byte[] buffer = new byte[s.Length];
+            for (int i = 0; i < buffer.Length; i++) buffer[i] = (byte)s[i];
+            return buffer;
         }
-
 
     }
 }

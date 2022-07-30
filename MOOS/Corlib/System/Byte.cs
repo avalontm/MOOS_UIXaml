@@ -34,7 +34,7 @@ namespace System
                 var ind = digits.IndexOf(s[i]);
                 if (ind == -1)
                 {
-                    //throw new FormatException();
+                    Console.WriteLine("Malformated");
                     return 0;
                 }
                 result = (result * 10) + ind;

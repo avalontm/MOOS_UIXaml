@@ -1,5 +1,6 @@
 ﻿using MOOS.Misc;
 using System.Runtime.InteropServices;
+using static MOOS.Driver.PCIDevice;
 
 namespace MOOS.Driver
 {
@@ -152,7 +153,7 @@ namespace MOOS.Driver
                         device.Bar5 = Dev->Bar5;
                     }
 
-                   // Console.WriteLine($"[PCI Express {device.Bus}:{device.Slot}:{device.Function}] {VendorID.GetName(device.VendorID)} {ClassID.GetName(device.ClassID)}");
+                    Console.WriteLine($"[PCI Express {device.Bus}:{device.Slot}:{device.Function}] {DeviceClass.GetDeviceString(device)}");
 
                     PCI.Devices.Add(device);
                 }

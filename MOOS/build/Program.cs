@@ -10,10 +10,10 @@ using System.Windows;
 using System.Diagnostics;
 using System.Desktops;
 using MOOS.NET;
-<<<<<<< HEAD
-using System.Net;
-=======
->>>>>>> f89c33f9591f572a57228cd9b6ab8d5777d8682e
+
+using MOOS.NET.IPv4.TCP;
+using MOOS.NET.IPv4;
+using MOOS.NET.Config;
 
 static unsafe class Program
 {
@@ -96,19 +96,19 @@ static unsafe class Program
         Audio.Initialize();
         //AC97.Initialize();
 
-        NetworkInit.Initialize();
+        //Network Config
+        Network.Initialize();
+        NetworkStack.Initialize();
+        var ipconfig = new IPConfig(Address.Parse("192.168.1.150"), Address.Parse("255.255.255.0"));
+        NetworkStack.ConfigIP(NetworkDevice.Devices[0], ipconfig);
+       
+        //TCPClient Test
+        TcpClient client = new TcpClient(5000);
+        client.Connect(Address.Parse("192.168.1.113"), 5000);
+        byte[] buffer = System.Text.Encoding.ASCII.GetBytes("Hola mundo!");
+        Console.WriteLine($"[buffer] {buffer.Length}");
+        client.Send(buffer);
 
-#if NETWORK
-        //To use network. edit Kernel.csproj and use qemu. add "-net nic,model=rtl8139 -net tap,ifname=tap" to the end of command
-        //Install openVPN's windows tap driver
-        //rename the network adapter to tap in control panel
-        //right click your network connection device. then share the network with tap 
-        //Run
-        Network.Initialise(IPAddress.Parse(192, 168, 137, 188), IPAddress.Parse(192, 168, 137, 1), IPAddress.Parse(255, 255, 255, 0));
-
-        HttpClient client = new HttpClient("192.168.137.2", 80);
-        client.Get();
-#endif
 
         SMain();
     }
