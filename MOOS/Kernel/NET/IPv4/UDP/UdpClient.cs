@@ -8,7 +8,7 @@ namespace MOOS.NET.IPv4.UDP
     /// <summary>
     /// UdpClient class. Used to manage the UDP connection to a client.
     /// </summary>
-    public class UdpClient //: IDisposable
+    public class UdpClient : IDisposable
     {
         /// <summary>
         /// Clients dictionary.
@@ -221,9 +221,10 @@ namespace MOOS.NET.IPv4.UDP
         /// <summary>
         /// Close Client
         /// </summary>
-        public void Dispose()
+        public override void Dispose()
         {
             Close();
+            this.Dispose();
         }
     }
 }

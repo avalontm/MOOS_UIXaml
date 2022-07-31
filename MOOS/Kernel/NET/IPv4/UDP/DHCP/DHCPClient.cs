@@ -48,7 +48,6 @@ namespace MOOS.NET.IPv4.UDP.DHCP
             {
                 if (second > (timeout / 1000))
                 {
-                    Console.WriteLine($"[Receive] Return");
                     return -1;
                 }
                 if (_deltaT != RTC.Second)
@@ -89,8 +88,6 @@ namespace MOOS.NET.IPv4.UDP.DHCP
         /// </summary>
         public void SendReleasePacket()
         {
-            //foreach (NetworkDevice networkDevice in NetworkDevice.Devices)
-
             for (int i = 0; i < NetworkDevice.Devices.Count; i++)
             {
                 Address source = IPConfig.FindNetwork(DHCPServerAddress(NetworkDevice.Devices[i]));

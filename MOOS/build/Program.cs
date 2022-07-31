@@ -100,15 +100,12 @@ static unsafe class Program
         //Network Config
         Network.Initialize();
         NetworkStack.Initialize();
-
+        
         if (NetworkDevice.Devices.Count > 0)
         {
-            //NetworkDevice nic = NetworkDevice.GetDeviceByName("eth0"); //get network device by name
-            //IPConfig.Enable(nic, new Address(192, 168, 5, 3), new Address(255, 255, 255, 0), new Address(192, 168, 5, 1)); //enable IPv4 configuration
-
             /** Send a DHCP Discover packet **/
             //This will automatically set the IP config after DHCP response
-            var xClient = new DHCPClient();
+            DHCPClient xClient = new DHCPClient();
             xClient.SendDiscoverPacket();
             Console.WriteLine($"[CurrentAddress] {NetworkConfiguration.CurrentAddress.ToString()}");
 

@@ -16,6 +16,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)System\Collections\Generic\Dictionary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Common\BinaryHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Common\Extentions\ToHexString.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IDisposable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Runtime\Extensions\BitConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Runtime\Extensions\ByteConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Delegate.cs" />

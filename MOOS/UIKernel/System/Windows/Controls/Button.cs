@@ -43,7 +43,6 @@ namespace System.Windows.Controls
                             if (!clicked)
                             {
                                 clicked = true;
-
                                 Command.Source.Execute.Invoke(CommandParameter);
                             }
                         }

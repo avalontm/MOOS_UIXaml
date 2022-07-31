@@ -1,6 +1,7 @@
 ﻿using MOOS;
 using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using System.Windows.Media;
 
 namespace System.Windows.Controls
@@ -74,6 +75,14 @@ namespace System.Windows.Controls
         public override void Update()
         {
             base.Update();
+
+            if (Control.MouseButtons == MouseButtons.Left)
+            {
+                if (!WindowManager.HasWindowMoving && Control.MousePosition.X > X && Control.MousePosition.X < (X + Width) && Control.MousePosition.Y > Y && Control.MousePosition.Y < (Y + Height))
+                {
+                    Value = (((Control.MousePosition.X - (X-(_slideW / 2))) / Maximum) / 2) ;
+                }
+            }
         }
 
         public override void Draw()

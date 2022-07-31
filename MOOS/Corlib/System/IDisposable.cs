@@ -6,6 +6,6 @@ namespace System
 {
     public unsafe interface IDisposable 
     {
-        void Dispose();
+        public void Dispose();
     }
 }
