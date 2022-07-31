@@ -75,8 +75,7 @@ namespace MOOS.NET.IPv4.UDP
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException">Thrown on fatal error (contact support).</exception>
         /// <exception cref="ArgumentException">Thrown if UdpClient with localPort 0 exists.</exception>
-        public UdpClient()
-            : this(0)
+        public UdpClient(): this(0)
         { }
 
         /// <summary>
@@ -198,6 +197,7 @@ namespace MOOS.NET.IPv4.UDP
         /// <exception cref="InvalidOperationException">Thrown on fatal error (contact support).</exception>
         public byte[] Receive(ref EndPoint source)
         {
+            Console.WriteLine($"[Receive] {source.Address}");
             while (rxBuffer.Count < 1) ;
 
             var packet = new UDPPacket(rxBuffer.Dequeue().RawData);
@@ -213,8 +213,9 @@ namespace MOOS.NET.IPv4.UDP
         /// <param name="packet">Packet to receive.</param>
         /// <exception cref="OverflowException">Thrown on fatal error (contact support).</exception>
         /// <exception cref="Sys.IO.IOException">Thrown on IO error.</exception>
-        internal void ReceiveData(UDPPacket packet)
+        public void ReceiveData(UDPPacket packet)
         {
+            Console.WriteLine($"[ReceiveData] {packet.RawData.Length}");
             rxBuffer.Enqueue(packet);
         }
 

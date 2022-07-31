@@ -26,7 +26,7 @@ namespace MOOS.NET.IPv4.UDP
         {
             UDPPacket udp_packet = new UDPPacket(packetData);
 
-            Global.mDebugger.Send("[Received] UDP packet from " + udp_packet.SourceIP.ToString() + ":" + udp_packet.SourcePort.ToString());
+            Console.WriteLine("[Received] UDP packet from " + udp_packet.SourceIP.ToString() + ":" + udp_packet.SourcePort.ToString());
 
             if (udp_packet.SourcePort == 67)
             {
@@ -57,20 +57,17 @@ namespace MOOS.NET.IPv4.UDP
         /// Create new instance of the <see cref="UDPPacket"/> class.
         /// </summary>
         /// <param name="rawData">Raw data.</param>
-        public UDPPacket(byte[] rawData)
-            : base(rawData)
+        public UDPPacket(byte[] rawData) : base(rawData)
         {
         }
 
-        public UDPPacket(Address source, Address dest, ushort srcport, ushort destport, ushort datalength)
-            : base((ushort)(datalength + 8), 17, source, dest, 0x00)
+        public UDPPacket(Address source, Address dest, ushort srcport, ushort destport, ushort datalength) : base((ushort)(datalength + 8), 17, source, dest, 0x00)
         {
             MakePacket(srcport, destport, datalength);
             InitFields();
         }
 
-        public UDPPacket(Address source, Address dest, ushort srcport, ushort destport, ushort datalength, MACAddress destmac)
-            : base((ushort)(datalength + 8), 17, source, dest, 0x00, destmac)
+        public UDPPacket(Address source, Address dest, ushort srcport, ushort destport, ushort datalength, MACAddress destmac) : base((ushort)(datalength + 8), 17, source, dest, 0x00, destmac)
         {
             MakePacket(srcport, destport, datalength);
             InitFields();
@@ -86,8 +83,7 @@ namespace MOOS.NET.IPv4.UDP
         /// <param name="data">Data array.</param>
         /// <exception cref="OverflowException">Thrown if data array length is greater than Int32.MaxValue.</exception>
         /// <exception cref="ArgumentException">Thrown if RawData is invalid or null.</exception>
-        public UDPPacket(Address source, Address dest, ushort srcPort, ushort destPort, byte[] data)
-            : base((ushort)(data.Length + 8), 17, source, dest, 0x00)
+        public UDPPacket(Address source, Address dest, ushort srcPort, ushort destPort, byte[] data) : base((ushort)(data.Length + 8), 17, source, dest, 0x01)
         {
             MakePacket(srcPort, destPort, (ushort)data.Length);
 

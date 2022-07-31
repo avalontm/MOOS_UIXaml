@@ -100,19 +100,19 @@ static unsafe class Program
         //Network Config
         Network.Initialize();
         NetworkStack.Initialize();
-        
+
         if (NetworkDevice.Devices.Count > 0)
         {
             /** Send a DHCP Discover packet **/
             //This will automatically set the IP config after DHCP response
             DHCPClient xClient = new DHCPClient();
             xClient.SendDiscoverPacket();
+
+            Console.WriteLine($"[MACAddress] {NetworkDevice.Devices[0].MACAddress}");
             Console.WriteLine($"[CurrentAddress] {NetworkConfiguration.CurrentAddress.ToString()}");
 
-            //Global.mDebugger = new NetworkConsoleger(25);
-            //Global.mDebugger.Start();
         }
-     
+
         SMain();
     }
 

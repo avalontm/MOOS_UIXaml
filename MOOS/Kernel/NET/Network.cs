@@ -37,7 +37,7 @@ namespace MOOS.NET
                         Console.WriteLine("Registered at " + AMDPCNetIIDevice.NameID + " (" + AMDPCNetIIDevice.MACAddress.ToString() + ")");
 
                         AMDPCNetIIDevice.Enable();
-
+ 
                         NetworkDeviceID++;
                     }
 

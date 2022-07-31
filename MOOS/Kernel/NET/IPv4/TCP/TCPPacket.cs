@@ -78,21 +78,23 @@ namespace MOOS.NET.IPv4.TCP
             }
             else
             {
-                Debug.WriteLine("Checksum incorrect! Packet passed.");
+                Global.mDebugger.Send("Checksum incorrect! Packet passed.");
             }
         }
 
         /// <summary>
         /// Create new instance of the <see cref="TCPPacket"/> class.
         /// </summary>
-        internal TCPPacket() : base()
+        internal TCPPacket()
+            : base()
         { }
 
         /// <summary>
         /// Create new instance of the <see cref="TCPPacket"/> class.
         /// </summary>
         /// <param name="rawData">Raw data.</param>
-        public TCPPacket(byte[] rawData) : base(rawData)
+        public TCPPacket(byte[] rawData)
+            : base(rawData)
         { }
 
         /// <summary>
@@ -141,7 +143,8 @@ namespace MOOS.NET.IPv4.TCP
             ushort WSValue, ushort UrgentPointer)
             : base(20, 6, source, dest, 0x40)
         {
-            MakePacket(source, dest, srcPort, destPort, sequencenumber,acknowledgmentnb, Headerlenght, Flags, WSValue, UrgentPointer);
+            MakePacket(source, dest, srcPort, destPort, sequencenumber,
+            acknowledgmentnb, Headerlenght, Flags, WSValue, UrgentPointer);
         }
 
         /// <summary>
@@ -159,7 +162,9 @@ namespace MOOS.NET.IPv4.TCP
         /// <param name="UrgentPointer">Urgent Pointer.</param>
         /// <exception cref="OverflowException">Thrown if data array length is greater than Int32.MaxValue.</exception>
         /// <exception cref="ArgumentException">Thrown if RawData is invalid or null.</exception>
-        private void MakePacket(Address source, Address dest, ushort srcPort, ushort destPort,ulong sequencenumber, ulong acknowledgmentnb, ushort Headerlenght, byte Flags,  ushort WSValue, ushort UrgentPointer)
+        private void MakePacket(Address source, Address dest, ushort srcPort, ushort destPort,
+            ulong sequencenumber, ulong acknowledgmentnb, ushort Headerlenght, byte Flags,
+            ushort WSValue, ushort UrgentPointer)
         {
             //ports
             RawData[DataOffset + 0] = (byte)((srcPort >> 8) & 0xFF);
@@ -199,6 +204,7 @@ namespace MOOS.NET.IPv4.TCP
             RawData[DataOffset + 19] = (byte)((UrgentPointer >> 0) & 0xFF);
 
             InitFields();
+
             //Checksum computation
             byte[] header = MakeHeader();
             ushort calculatedcrc = CalcOcCRC(header, 0, header.Length);
@@ -269,9 +275,7 @@ namespace MOOS.NET.IPv4.TCP
         /// <exception cref="ArgumentException">Thrown if RawData is invalid or null.</exception>
         internal void AddOption(TCPOption option)
         {
-            //throw new NotImplementedException();
             Console.WriteLine("NotImplementedException");
-            return;
         }
 
         /// <summary>
@@ -293,7 +297,8 @@ namespace MOOS.NET.IPv4.TCP
         /// <returns>byte array value.</returns>
         internal byte[] MakeHeader()
         {
-            byte[] header = new byte[12 + TCPHeaderLength + TCP_DataLength];
+            byte[] header = new byte[12 + (TCPHeaderLength + TCP_DataLength)];
+
             /* Pseudo Header */
             //Addresses
             for (int b = 0; b < 4; b++)
@@ -301,7 +306,6 @@ namespace MOOS.NET.IPv4.TCP
                 header[0 + b] = SourceIP.address[b];
                 header[4 + b] = DestinationIP.address[b];
             }
-            Console.WriteLine($"[PASO6] SourceIP: {SourceIP.ToString()} | DestinationIP: {DestinationIP.ToString()}");
             //Reserved
             header[8] = 0x00;
             //Protocol (TCP)
@@ -310,13 +314,13 @@ namespace MOOS.NET.IPv4.TCP
             //TCP Length
             header[10] = (byte)((tcplen >> 8) & 0xFF);
             header[11] = (byte)((tcplen >> 0) & 0xFF);
-            Console.WriteLine($"[PASO6] Header: {tcplen} | RawData: {RawData.Length} | DataOffset: {DataOffset}");
 
             /* TCP Packet */
-            for (int i = 0; i < RawData.Length; i++)
+            for (int i = 0; i < tcplen; i++)
             {
-                header[12 + i] = RawData[i];
+                header[12 + i] = RawData[DataOffset + i];
             }
+
             return header;
         }
 
@@ -326,8 +330,11 @@ namespace MOOS.NET.IPv4.TCP
         /// <returns>True if checksum correct, False otherwise.</returns>
         private bool CheckCRC()
         {
-            byte[] header = MakeHeader();
-            return CalcOcCRC(header, 0, header.Length) == Checksum;
+            //byte[] header = MakeHeader();
+
+            //return CalcOcCRC(header, 0, header.Length) == Checksum;
+
+            return true;
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using MOOS.NET.Config;
+﻿using MOOS.Driver;
+using MOOS.NET.Config;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -44,6 +45,7 @@ namespace MOOS.NET.IPv4.UDP.DHCP
             int second = 0;
             int _deltaT = 0;
 
+            Console.WriteLine($"[Receive] {rxBuffer.Count}");
             while (rxBuffer.Count < 1)
             {
                 if (second > (timeout / 1000))

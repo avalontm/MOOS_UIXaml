@@ -12,7 +12,7 @@ namespace MOOS.NET
         Wireless
     }
 
-    public abstract class NetworkDevice //: IDisposable
+    public abstract class NetworkDevice : IDisposable
     {
         public static List<NetworkDevice> Devices { get; private set; }
 
@@ -33,7 +33,13 @@ namespace MOOS.NET
             Devices = new List<NetworkDevice>();
         }
 
-        public DataReceivedHandler DataReceived;
+        DataReceivedHandler _dataReceived;
+        public DataReceivedHandler DataReceived
+        {
+            set { _dataReceived = value;
+            }
+            get { return _dataReceived; }
+        }
 
         protected NetworkDevice()
         {
@@ -93,7 +99,6 @@ namespace MOOS.NET
         public abstract byte[] ReceivePacket();
 
         public abstract int BytesAvailable();
-
         public abstract bool Enable();
 
         public abstract bool IsSendBufferFull();

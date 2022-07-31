@@ -1,4 +1,5 @@
-﻿using MOOS.NET.ARP;
+﻿using MOOS.Driver;
+using MOOS.NET.ARP;
 using MOOS.NET.Config;
 using System;
 using System.Collections.Generic;
@@ -205,7 +206,6 @@ namespace MOOS.NET.IPv4
                     {
                         queue[e].NIC.QueueBytes(queue[e].Packet.RawData);
                         queue[e].Status = BufferEntry.EntryStatus.DONE;
-                       
                     }
                     else if (queue[e].Status == BufferEntry.EntryStatus.JUST_SEND)
                     {

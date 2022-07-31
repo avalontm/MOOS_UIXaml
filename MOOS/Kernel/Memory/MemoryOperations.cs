@@ -217,7 +217,7 @@ namespace MOOS.Memory
         /// <param name="size">Size of data.</param>
         public static unsafe void Copy(byte* dest, byte* src, int size)
         {
-            // Plugged
+            Native.Movsd((uint*)dest, (uint*)src, (ulong)size);
         }
 
         /// <summary>
@@ -227,9 +227,9 @@ namespace MOOS.Memory
         /// <param name="src">Source.</param>
         /// <param name="size">Size of data.</param>
         //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe void Copy(uint* dest, uint* src, int size)
+        public static unsafe void Copy(uint* dest, uint* src, ulong size)
         {
-            Copy((byte*)dest, (byte*)src, size * 4);
+            Native.Movsd(dest, src, size);
         }
 
         /// <summary>
@@ -255,7 +255,7 @@ namespace MOOS.Memory
             fixed (uint* destPtr = dest)
             fixed (uint* srcPtr = src)
             {
-                Copy(destPtr, srcPtr, dest.Length);
+                Native.Movsd(destPtr, srcPtr, (ulong)dest.Length);
             }
         }
 

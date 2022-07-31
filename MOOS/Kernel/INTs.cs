@@ -771,7 +771,7 @@ namespace MOOS
             {
                 byte* xAddress = (byte*)0xB8000;
 
-                PutErrorString(0, 0, "Cosmos CPU Exception");
+                PutErrorString(0, 0, "MOOS CPU Exception");
 
                 PutErrorString(2, 0, "Error Code: 0x");
                 PutErrorChar(2, 14, xHex[(int)((ctx.Interrupt >> 4) & 0xF)]);

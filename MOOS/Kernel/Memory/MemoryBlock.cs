@@ -188,7 +188,7 @@ namespace MOOS.Memory
 
             fixed (uint* aDataPtr = aData)
             {
-                MemoryOperations.Copy(xDest, aDataPtr + aIndex, aCount);
+                Native.Movsd(xDest, aDataPtr + aIndex, (ulong)aCount);
             }
         }
 
@@ -440,7 +440,7 @@ namespace MOOS.Memory
             uint[] array = new uint[aCount];
             fixed (uint* aArrayPtr = array)
             {
-                MemoryOperations.Copy(aArrayPtr + aIndex, xDest, aCount);
+                Native.Movsd(aArrayPtr + aIndex, xDest, (ulong)aCount);
             }
             return array;
         }

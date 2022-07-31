@@ -40,6 +40,7 @@ namespace MOOS.NET.IPv4.UDP.DHCP
         /// <exception cref="sysIO.IOException">Thrown on IO error.</exception>
         public static void DHCPHandler(byte[] packetData)
         {
+            Console.WriteLine($"[DHCPHandler] {packetData.Length}");
             var dhcp_packet = new DHCPPacket(packetData);
 
             var receiver = UdpClient.GetClient(dhcp_packet.DestinationPort);
@@ -59,8 +60,7 @@ namespace MOOS.NET.IPv4.UDP.DHCP
         /// Create new instance of the <see cref="DHCPPacket"/> class.
         /// </summary>
         /// <param name="rawData">Raw data.</param>
-        public DHCPPacket(byte[] rawData)
-            : base(rawData)
+        public DHCPPacket(byte[] rawData) : base(rawData)
         { }
 
         /// <summary>
@@ -68,8 +68,7 @@ namespace MOOS.NET.IPv4.UDP.DHCP
         /// </summary>
         /// <param name="mac_src">Source MAC Address.</param>
         /// <param name="dhcpDataSize">DHCP Data size</param>
-        internal DHCPPacket(MACAddress mac_src, ushort dhcpDataSize)
-            : this(Address.Zero, Address.Broadcast, mac_src, dhcpDataSize)
+        internal DHCPPacket(MACAddress mac_src, ushort dhcpDataSize) : this(Address.Zero, Address.Broadcast, mac_src, dhcpDataSize)
         { }
 
         /// <summary>
@@ -81,8 +80,7 @@ namespace MOOS.NET.IPv4.UDP.DHCP
         /// <param name="dhcpDataSize">DHCP Data size</param>
         /// <exception cref="OverflowException">Thrown if data array length is greater than Int32.MaxValue.</exception>
         /// <exception cref="ArgumentException">Thrown if RawData is invalid or null.</exception>
-        internal DHCPPacket(Address client, Address server, MACAddress mac_src, ushort dhcpDataSize)
-            : base(client, server, 68, 67, (ushort)(dhcpDataSize + 240), MACAddress.Broadcast)
+        internal DHCPPacket(Address client, Address server, MACAddress mac_src, ushort dhcpDataSize): base(client, server, 68, 67, (ushort)(dhcpDataSize + 240), MACAddress.Broadcast)
         {
             //Request
             RawData[42] = 0x01;
@@ -130,10 +128,24 @@ namespace MOOS.NET.IPv4.UDP.DHCP
             RawData[74] = mac_src.bytes[4];
             RawData[75] = mac_src.bytes[5];
 
+            /*
+            //Padding
+            for (int i = 0; i < 10; i++)
+            {
+                RawData[76 + i] = 0x0;
+            }
+
+            //Host Name
+            for (int i = 0; i < 74; i++)
+            {
+                RawData[(76 + 10) + i] = (int)'a';
+            }
+            */
+
             //Fill 0
             for (int i = 0; i < 202; i++)
             {
-                RawData[76 + i] = 0x00;
+                RawData[76 + i] = 0x0;
             }
 
             //DHCP Magic cookie

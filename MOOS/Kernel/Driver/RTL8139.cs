@@ -34,8 +34,9 @@ namespace MOOS.NET
                 Console.WriteLine("PCI Device is null. Unable to get Realtek 8139 card");
                 return;
             }
+
             pciCard = device;
-            Base = device.Bar0;
+            Base = device.BaseAddressBar[0].BaseAddress;
             // We are handling this device
             pciCard.Claimed = true;
             // Setup interrupt handling
@@ -68,6 +69,7 @@ namespace MOOS.NET
             mRecvBuffer = new Queue<byte[]>();
             mTransmitBuffer = new Queue<byte[]>();
         }
+
         private static byte Inb(uint port)
         {
             return new IOPort((ushort)port).Byte;
@@ -94,9 +96,10 @@ namespace MOOS.NET
         {
             new IOPort((ushort)port).DWord = val;
         }
+
         public static List<RTL8139> FindAll()
         {
-            //Console.WriteLine("Scanning for Realtek 8139 cards...");
+            Console.WriteLine("Scanning for Realtek 8139 cards...");
 
             List<RTL8139> cards = new List<RTL8139>();
 
@@ -111,10 +114,11 @@ namespace MOOS.NET
             }
             return cards;
         }
+
         protected void HandleNetworkInterrupt(ref IRQContext aContext)
         {
             ushort cur_status = IntStatusRegister;
-            //Console.WriteLine("RTL8139 Interrupt: ISR=" + cur_status.ToString());
+            Console.WriteLine("RTL8139 Interrupt: ISR=" + cur_status.ToString());
             if ((cur_status & 0x01) != 0)
             {
                 while ((CommandRegister & 0x01) == 0)
@@ -142,6 +146,7 @@ namespace MOOS.NET
             }
             IntStatusRegister = cur_status;
         }
+
         #region Register Access
         protected uint RBStartRegister
         {

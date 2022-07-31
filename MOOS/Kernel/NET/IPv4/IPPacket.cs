@@ -13,7 +13,7 @@ namespace MOOS.NET.IPv4
     /// </summary>
     public class IPPacket : EthernetPacket
     {
-        protected byte ipHeaderLength;
+        protected ushort ipHeaderLength;
 
         private static ushort sNextFragmentID;
 
@@ -25,7 +25,7 @@ namespace MOOS.NET.IPv4
         /// <exception cref="sys.IO.IOException">Thrown on IO error.</exception>
         /// <exception cref="sys.ArgumentException">Thrown on fatal error (contact support).</exception>
         /// <exception cref="sys.OverflowException">Thrown if packetData array length is greater than Int32.MaxValue.</exception>
-        internal static void IPv4Handler(byte[] packetData)
+        public static void IPv4Handler(byte[] packetData)
         {
             var ip_packet = new IPPacket(packetData);
 
@@ -37,8 +37,7 @@ namespace MOOS.NET.IPv4
 
             ARPCache.Update(ip_packet.SourceIP, ip_packet.SourceMAC);
 
-            if ((NetworkStack.AddressMap.ContainsKey(ip_packet.DestinationIP.Hash) == true) ||
-                (ip_packet.DestinationIP.address[3] == 255))
+            if ((NetworkStack.AddressMap.ContainsKey(ip_packet.DestinationIP.Hash) == true) || (ip_packet.DestinationIP.address[3] == 255))
             {
                 switch (ip_packet.Protocol)
                 {
@@ -54,7 +53,8 @@ namespace MOOS.NET.IPv4
                 }
             }
             else if (NetworkStack.MACMap.ContainsKey(ip_packet.DestinationMAC.Hash))
-{
+            {
+                Console.WriteLine($"[DHCPHandler] {packetData.Length}");
                 DHCPPacket.DHCPHandler(packetData);
             }
         }
@@ -86,8 +86,9 @@ namespace MOOS.NET.IPv4
         protected override void InitFields()
         {
             base.InitFields();
-            IPVersion = (byte)((RawData[14] & 0xF0) >> 4);
-            ipHeaderLength = (byte)(RawData[14] & 0x0F);
+
+            IPVersion =(ushort)((RawData[14] & 0xF0) >> 4);
+            ipHeaderLength = (ushort)(RawData[14] & 0x0F);
             TypeOfService = RawData[15];
             IPLength = (ushort)((RawData[16] << 8) | RawData[17]);
             FragmentID = (ushort)((RawData[18] << 8) | RawData[19]);
@@ -112,7 +113,7 @@ namespace MOOS.NET.IPv4
         /// <param name="Flags">Flags.</param>
         protected IPPacket(ushort dataLength, byte protocol, Address source, Address dest, byte Flags) : this(MACAddress.None, MACAddress.None, dataLength, protocol, source, dest, Flags)
         {
-
+              InitFields();
         }
 
         /// <summary>
@@ -126,7 +127,7 @@ namespace MOOS.NET.IPv4
         /// /// <param name="broadcast">Mac address</param>
         protected IPPacket(ushort dataLength, byte protocol, Address source, Address dest, byte Flags, MACAddress broadcast) : this(MACAddress.None, broadcast, dataLength, protocol, source, dest, Flags)
         {
-
+            InitFields();
         }
 
         /// <summary>
@@ -168,6 +169,8 @@ namespace MOOS.NET.IPv4
             IPCRC = CalcIPCRC(20);
             RawData[24] = (byte)((IPCRC >> 8) & 0xFF);
             RawData[25] = (byte)((IPCRC >> 0) & 0xFF);
+
+            InitFields();
         }
 
         /// <summary>
@@ -222,7 +225,7 @@ namespace MOOS.NET.IPv4
         /// <summary>
         /// Get IP version.
         /// </summary>
-        internal byte IPVersion { get; private set; }
+        internal ushort IPVersion { get; private set; }
         /// <summary>
         /// Get header length.
         /// </summary>
@@ -231,7 +234,7 @@ namespace MOOS.NET.IPv4
         /// <summary>
         /// Get type of service.
         /// </summary>
-        internal byte TypeOfService { get; private set; }
+        internal ushort TypeOfService { get; private set; }
 
         /// <summary>
         /// Get IP length.

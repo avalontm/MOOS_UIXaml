@@ -85,8 +85,7 @@ namespace MOOS.NET.IPv4.UDP.DNS
         /// <param name="len">Length</param>
         /// <exception cref="OverflowException">Thrown if data array length is greater than Int32.MaxValue.</exception>
         /// <exception cref="ArgumentException">Thrown if RawData is invalid or null.</exception>
-        public DNSPacket(Address source, Address dest, ushort urlnb, ushort len)
-            : base(source, dest, 53, 53, (ushort)(len + 12))
+        public DNSPacket(Address source, Address dest, ushort urlnb, ushort len) : base(source, dest, 53, 53, (ushort)(len + 12))
         {
             Random rnd = new Random();
             byte transactionID = (byte)rnd.Next(0, Int32.MaxValue);
