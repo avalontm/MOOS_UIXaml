@@ -32,8 +32,7 @@ namespace MOOS.NET.ARP
         /// <summary>
         /// Create new instance of the <see cref="ARPRequest_Ethernet"/> class.
         /// </summary>
-        internal ARPPacket_Ethernet()
-            : base()
+        internal ARPPacket_Ethernet() : base()
         { }
 
         /// <summary>

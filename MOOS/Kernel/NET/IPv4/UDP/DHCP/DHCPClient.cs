@@ -32,6 +32,7 @@ namespace MOOS.NET.IPv4.UDP.DHCP
         /// <exception cref="ArgumentException">Thrown if UdpClient with localPort 53 exists.</exception>
         public DHCPClient() : base(68)
         {
+            
         }
 
         /// <summary>
@@ -45,7 +46,6 @@ namespace MOOS.NET.IPv4.UDP.DHCP
             int second = 0;
             int _deltaT = 0;
 
-            Console.WriteLine($"[Receive] {rxBuffer.Count}");
             while (rxBuffer.Count < 1)
             {
                 if (second > (timeout / 1000))

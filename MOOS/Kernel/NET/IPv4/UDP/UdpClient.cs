@@ -8,7 +8,7 @@ namespace MOOS.NET.IPv4.UDP
     /// <summary>
     /// UdpClient class. Used to manage the UDP connection to a client.
     /// </summary>
-    public class UdpClient : IDisposable
+    public class UdpClient //: IDisposable
     {
         /// <summary>
         /// Clients dictionary.
@@ -102,8 +102,7 @@ namespace MOOS.NET.IPv4.UDP
         /// <param name="destPort">Destination port.</param>
         /// <exception cref="ArgumentOutOfRangeException">Thrown on fatal error (contact support).</exception>
         /// <exception cref="ArgumentException">Thrown if UdpClient with localPort 0 exists.</exception>
-        public UdpClient(Address dest, int destPort)
-            : this(0)
+        public UdpClient(Address dest, int destPort) : this(0)
         {
             destination = dest;
             destinationPort = destPort;

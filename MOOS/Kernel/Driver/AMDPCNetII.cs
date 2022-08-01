@@ -7,11 +7,12 @@ using System.Collections.Generic;
 using System.Common;
 using System.Diagnostics;
 using System.Text;
+using static MOOS.INTs;
 using static MOOS.Misc.Interrupts;
 
 namespace MOOS.Driver
 {
-    public class AMDPCNetII : NetworkDevice
+    public unsafe class AMDPCNetII : NetworkDevice
     {
         protected PCIDevice pciCard;
         protected AMDPCNetIIIOGroup io;
@@ -101,12 +102,14 @@ namespace MOOS.Driver
             // Setup our Receive and Transmit Queues
             mTransmitBuffer = new Queue<byte[]>();
             mRecvBuffer = new Queue<byte[]>();
-
+       
             INTs.SetIrqHandler(device.InterruptLine, HandleNetworkInterrupt);
-}
 
-        protected void HandleNetworkInterrupt(ref INTs.IRQContext aContext)
+        }
+
+        protected void HandleNetworkInterrupt(ref IRQContext aContext)
         {
+            Console.WriteLine("[HandleNetworkInterrupt]");
             uint cur_status = StatusRegister;
 
             if ((cur_status & 0x100) != 0)
@@ -334,6 +337,7 @@ namespace MOOS.Driver
 
         private void ReadRawData()
         {
+            Console.WriteLine($"[ReadRawData]");
             uint status;
             ushort recv_size;
             byte[] recv_data;

@@ -15,6 +15,8 @@ using MOOS.NET.IPv4.TCP;
 using MOOS.NET.IPv4;
 using MOOS.NET.Config;
 using MOOS.NET.IPv4.UDP.DHCP;
+using MOOS.NET.ARP;
+using MOOS.NET.IPv4.UDP;
 
 static unsafe class Program
 {
@@ -103,7 +105,7 @@ static unsafe class Program
 
         if (NetworkDevice.Devices.Count > 0)
         {
-            /** Send a DHCP Discover packet **/
+             /** Send a DHCP Discover packet **/
             //This will automatically set the IP config after DHCP response
             DHCPClient xClient = new DHCPClient();
             xClient.SendDiscoverPacket();

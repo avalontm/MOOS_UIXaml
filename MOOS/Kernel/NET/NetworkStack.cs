@@ -1,6 +1,7 @@
 ﻿using MOOS.NET.ARP;
 using MOOS.NET.Config;
 using MOOS.NET.IPv4;
+using MOOS.NET.IPv4.UDP.DHCP;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
